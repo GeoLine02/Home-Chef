@@ -75,3 +75,17 @@ export const fetchRestaurantProducts = (payload: any) => {
     payload,
   };
 };
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export const selectProduct = (payload: any) => {
+  return {
+    type: appActions.SELECT_PRODUCT,
+    payload,
+  };
+};
+
+export const toggleProductModal = () => {
+  return {
+    type: appActions.TOGGLE_PRODUCT_MODAL,
+  };
+};
