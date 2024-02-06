@@ -1,7 +1,6 @@
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import routes from "./constants/routes";
 import Home from "./pages/Home";
-import Products from "./pages/Products";
 import RestaurantByID from "./pages/RestaurantByID";
 import Header from "./components/blocks/Header/Header";
 import "./App.css";
@@ -19,10 +18,15 @@ function App() {
     (state: RootState) => state.search.isSearchFocused
   );
   const isAuthOpen = useSelector((state: RootState) => state.auth.isAuthOpen);
+
+  const isProductOpen = useSelector(
+    (state: RootState) => state.products.toggleProductModal
+  );
+
   return (
     <div
       className={
-        isCartOpen || isSideBarOpen || isAuthOpen
+        isCartOpen || isSideBarOpen || isAuthOpen || isProductOpen
           ? " blur-xl bg-gray-400 bg-opacity-70"
           : ""
       }
@@ -33,7 +37,6 @@ function App() {
         <div>
           <Routes>
             <Route path={routes.home} element={<Home />} />
-            <Route path={routes.products} element={<Products />} />
             <Route path={routes.checkOut} element={<CheckOut />} />
             <Route path={`${routes.home}/:id`} element={<RestaurantByID />} />
           </Routes>
