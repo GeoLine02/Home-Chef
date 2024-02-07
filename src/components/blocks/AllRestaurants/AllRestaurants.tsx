@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { http } from "../../../helpers/http";
 import { useDispatch, useSelector } from "react-redux";
 import { handleFetchRestaurants } from "../../../store/actions/actionCreator";
@@ -11,24 +11,42 @@ const AllRestaurants = () => {
   const restaurantsState = useSelector(
     (state: RootState) => state.restaurants.restaurants
   );
-  useEffect(() => {
-    const fetchRestaurants = async () => {
-      try {
-        const apiCallOptions = {
-          headers: {
-            "content-type": "application/json",
-          },
-          method: "GET",
-        };
-        const res = await http("/restaurant", apiCallOptions);
-        const parsedRes = await res.json();
-        dispatch(handleFetchRestaurants(parsedRes));
-      } catch (err) {
-        console.log("Restaurant fetching error", err);
-      }
+  const [offSet, setOffSet] = useState<number>(0);
+
+  const fetchRestaurants = useCallback(() => {
+    const apiCallOptions = {
+      headers: {
+        "content-type": "application/json",
+      },
+      method: "GET",
     };
-    fetchRestaurants();
+    http("/restaurant", apiCallOptions)
+      .then((jsonRestaurantList) => jsonRestaurantList.json())
+      .then((restaurantList) =>
+        dispatch(handleFetchRestaurants(restaurantList))
+      );
   }, [dispatch]);
+
+  useEffect(() => {
+    if (offSet === 0) {
+      fetchRestaurants();
+    }
+  }, [fetchRestaurants, offSet]);
+
+  const handleScroll = useCallback(() => {
+    if (
+      window.innerHeight + document.documentElement.scrollTop ===
+      document.documentElement.offsetHeight
+    ) {
+      fetchRestaurants();
+    }
+  }, [fetchRestaurants]);
+
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll);
+    setOffSet((prev) => (prev = prev + 1));
+  }, [handleScroll]);
+
   return (
     <div className="flex flex-wrap justify-center gap-6">
       {restaurantsState.map(
