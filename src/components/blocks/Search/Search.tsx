@@ -4,9 +4,9 @@ import SearchBar from "../../elements/SearchBar";
 import CheckLocation from "../../elements/CheckLocation";
 import SearchResults from "../../elements/SearchResults";
 import { useSelector } from "react-redux";
+import { RootState } from "../../../store/state/rootReducers";
 const Search = () => {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const searchResult = useSelector((state: any) => state.search.search);
+  const searchResult = useSelector((state: RootState) => state.search.search);
   return (
     <div className="hidden lg:flex lg:gap-7">
       <Logo />
