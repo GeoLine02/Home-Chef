@@ -1,11 +1,11 @@
 import { useSelector } from "react-redux";
 import RestaurantCard from "../../elements/RestaurantCard";
 import { RestaurantResultType } from "../../../store/reducers/restaurantReducer";
+import { RootState } from "../../../store/state/rootReducers";
 
 const FilteredRestaurants = () => {
   const filteredRestaurants = useSelector(
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    (state: any) => state.restaurants.filteredRestaurants
+    (state: RootState) => state.restaurants.filteredRestaurants
   );
   return (
     <div className="flex flex-wrap gap-6 justify-center">
