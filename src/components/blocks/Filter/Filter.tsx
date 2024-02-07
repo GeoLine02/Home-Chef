@@ -10,7 +10,6 @@ const Filter = () => {
   const selectedCategoryId = useSelector(
     (state: RootState) => state.restaurants.selectedCategoryID
   );
-  console.log(selectedCategoryId);
   useEffect(() => {
     const filterRestaurantsData = async () => {
       try {
