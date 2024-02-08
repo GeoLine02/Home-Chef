@@ -1,16 +1,27 @@
 import ScrollBtn from "../../elements/ScrollBtn";
-import FilteredRestaurantCategory from "../../elements/FilteredRestaurantCategory";
 import { http } from "../../../helpers/http";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchRestaurantCategories } from "../../../store/actions/actionCreator";
+import {
+  fetchRestaurantCategories,
+  selectCategoryID,
+} from "../../../store/actions/actionCreator";
 import { restaurantCategoryType } from "../../../types";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Controller } from "swiper/modules";
+import "swiper/css";
+import Asian from "../../../assets/FoodList/asian.svg";
+
 const FilteredRestaurantCategoryList = () => {
   const dispatch = useDispatch();
-  const restaurantCategoreis = useSelector(
+  const restaurantCategories = useSelector(
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     (state: any) => state.restaurants.restaurantCategories
   );
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const [controlledSwiper, setControlledSwiper] = useState<any>(null);
+  const [activeIndex, setActiveIndex] = useState(0);
+
   useEffect(() => {
     const fetchRestaurantCategoriesData = async () => {
       try {
@@ -27,26 +38,63 @@ const FilteredRestaurantCategoryList = () => {
     };
     fetchRestaurantCategoriesData();
   }, [dispatch]);
+
+  useEffect(() => {
+    const handleSlideChange = () => {
+      setActiveIndex(controlledSwiper.activeIndex);
+    };
+
+    if (controlledSwiper) {
+      controlledSwiper.on("slideChange", handleSlideChange);
+    }
+  }, [controlledSwiper]);
+
+  const handleClickPrev = () => controlledSwiper.slidePrev();
+  const handleClickNext = () => controlledSwiper.slideNext();
+
+  const numberOfSlides = restaurantCategories?.length;
+  const slidesPerView = 12;
+  const lastSlideIndex = numberOfSlides - slidesPerView;
+
   return (
     <div>
       <h1>All Restourants</h1>
-      <div className="flex gap-3 whitespace-nowrap overflow-x-auto relative lg:w-[79vw] lg:mx-auto lg:overflow-x-hidden">
-        {restaurantCategoreis?.map(
-          (restaurantCategory: restaurantCategoryType) => {
+      <Swiper
+        slidesPerView={slidesPerView}
+        modules={[Controller]}
+        controller={{ control: controlledSwiper }}
+        onSwiper={setControlledSwiper}
+        className="flex gap-3 whitespace-nowrap overflow-x-auto relative lg:w-[79vw] lg:mx-auto lg:overflow-x-hidden"
+      >
+        {restaurantCategories?.map(
+          (restaurantCategory: restaurantCategoryType, index: number) => {
             return (
-              <FilteredRestaurantCategory
-                id={restaurantCategory.id}
-                key={restaurantCategory.id}
-                typeName={restaurantCategory.typeName}
-                typeNameRU={restaurantCategory.typeNameRU}
-              />
+              <SwiperSlide
+                key={index}
+                className="flex flex-col justify-center items-center"
+              >
+                <img
+                  onClick={() =>
+                    dispatch(selectCategoryID(restaurantCategory.id))
+                  }
+                  className="w-16 h-16 cursor-pointer"
+                  src={Asian}
+                  alt={
+                    restaurantCategory.typeName || restaurantCategory.typeNameRU
+                  }
+                />
+                <span>{restaurantCategory.typeName}</span>
+              </SwiperSlide>
             );
           }
         )}
-        <div className="hidden lg:block lg:absolute lg:top-4 lg:right-14">
-          <ScrollBtn role="right" />
-        </div>
-      </div>
+        {activeIndex !== lastSlideIndex && (
+          <ScrollBtn role="right" onClick={handleClickNext} />
+        )}
+        {activeIndex !== 0 && (
+          <ScrollBtn role="left" onClick={handleClickPrev} />
+        )}
+      </Swiper>
     </div>
   );
 };
