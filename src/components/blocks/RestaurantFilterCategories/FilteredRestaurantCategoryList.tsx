@@ -3,7 +3,10 @@ import ScrollBtn from "../../elements/ScrollBtn";
 import { http } from "../../../helpers/http";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchRestaurantCategories } from "../../../store/actions/actionCreator";
+import {
+  fetchRestaurantCategories,
+  selectCategoryID,
+} from "../../../store/actions/actionCreator";
 import { restaurantCategoryType } from "../../../types";
 import foodList from "../../../constants/FoodList";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -74,9 +77,14 @@ const FilteredRestaurantCategoryList = () => {
           return (
             <SwiperSlide
               key={index}
-              className="flex flex-col justify-center items-center"
+              className="flex flex-col justify-center items-center cursor-pointer"
             >
-              <img className="w-16 h-16" src={food.icon} alt={food.typeName} />
+              <img
+                className="w-16 h-16"
+                src={food.icon}
+                alt={food.typeName}
+                onClick={() => dispatch(selectCategoryID(food.id))}
+              />
               <span>{food.typeName}</span>
             </SwiperSlide>
           );
