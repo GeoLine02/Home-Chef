@@ -52,6 +52,12 @@ export const toggleAuthModal = () => {
   };
 };
 
+export const toggleProfileModal = () => {
+  return {
+    type: appActions.TOGGLE_PROFILE_MODAL,
+  };
+};
+
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const filterRestaurants = (payload: any) => {
   return {

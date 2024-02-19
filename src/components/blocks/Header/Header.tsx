@@ -6,10 +6,14 @@ import { useDispatch, useSelector } from "react-redux";
 import { toggleBurger } from "../../../store/actions/actionCreator";
 import SideBarModal from "../SideBarModal/SideBarModal";
 import AuthModal from "../AuthModal/AuthModal";
+import ProfileModal from "../ProfileModal/ProfileModal.tsx";
+
 const Header = () => {
   const dispatch = useDispatch();
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const isAuthOpen = useSelector((state: any) => state.auth.isAuthOpen);
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const isProfileOpen = useSelector((state: any) => state.auth.isProfileOpen);
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const sideBarState = useSelector((state: any) => state.sideBar.isSideBarOpen);
   const handleToggleBurger = () => {
@@ -37,6 +41,7 @@ const Header = () => {
         <SideBarModal children />
       </div>
       {isAuthOpen && <AuthModal children />}
+      {isProfileOpen && <ProfileModal children />}
     </nav>
   );
 };

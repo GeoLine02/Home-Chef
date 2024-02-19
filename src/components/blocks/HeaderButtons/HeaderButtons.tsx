@@ -3,10 +3,12 @@ import CartBtn from "../../elements/CartBtn";
 import LanguageBtn from "../../elements/LanguageBtn";
 import LogInBtn from "../../elements/LogInBtn";
 import CartModal from "../CartModal/CartModal";
+import ProfileBtn from "../../elements/ProfileBtn";
 
 const HeaderButtons = () => {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const setCart = useSelector((state: any) => state.cart.isCartOpen);
+  const token = localStorage.getItem("token");
 
   return (
     <div className="hidden lg:flex lg:gap-6">
@@ -23,7 +25,7 @@ const HeaderButtons = () => {
           <CartModal children />
         </div>
       </div>
-      <LogInBtn />
+      {token ? <ProfileBtn /> : <LogInBtn />}
     </div>
   );
 };

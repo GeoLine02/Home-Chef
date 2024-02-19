@@ -2,7 +2,10 @@ import { useEffect } from "react";
 import { getUserByToken } from "../helpers/http";
 import { useQuery } from "../hooks/useQuery";
 import { useDispatch } from "react-redux";
-import { handleFetchUserVkInfo } from "../store/actions/actionCreator";
+import {
+  handleFetchUserVkInfo,
+  toggleProductModal,
+} from "../store/actions/actionCreator";
 import routes from "../constants/routes";
 import { useNavigate } from "react-router-dom";
 
@@ -18,6 +21,7 @@ const Social = () => {
         if (user) {
           localStorage.setItem("token", token as string);
           dispatch(handleFetchUserVkInfo(user));
+          dispatch(toggleProductModal());
         }
       });
     }

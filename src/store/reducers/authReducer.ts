@@ -1,13 +1,15 @@
-import { VKUserResultType } from "../../types/user";
+import { IVKUserProfileData } from "../../types/user";
 import appActions from "../actions/actions";
 
-export interface RootState {
+export interface IRootState {
   isAuthOpen: boolean;
-  authUserVkInfo: undefined | VKUserResultType;
+  isProfileOpen: boolean;
+  authUserVkInfo: undefined | IVKUserProfileData;
 }
 
-export const initialState: RootState = {
+export const initialState: IRootState = {
   isAuthOpen: false,
+  isProfileOpen: false,
   authUserVkInfo: undefined,
 };
 
@@ -18,6 +20,12 @@ export const authReducer = (state = initialState, action: any) => {
       return {
         ...state,
         isAuthOpen: !state.isAuthOpen,
+      };
+    }
+    case appActions.TOGGLE_PROFILE_MODAL: {
+      return {
+        ...state,
+        isProfileOpen: !state.isProfileOpen,
       };
     }
     case appActions.FETCH_USER_VK_INFO:

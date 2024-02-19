@@ -12,6 +12,7 @@ import Social from "./pages/Social";
 import { useEffect } from "react";
 import { getUserByToken } from "./helpers/http";
 import { handleFetchUserVkInfo } from "./store/actions/actionCreator";
+import FavouriteRestaurants from "./pages/FavouriteRestaurants";
 
 function App() {
   const dispatch = useDispatch();
@@ -24,10 +25,13 @@ function App() {
   );
   const isAuthOpen = useSelector((state: RootState) => state.auth.isAuthOpen);
 
+  // const isProfileOpen = useSelector(
+  //   (state: RootState) => state.auth.isProfileOpen
+  // );
+
   const isProductOpen = useSelector(
     (state: RootState) => state.products.toggleProductModal
   );
-  
 
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -57,7 +61,11 @@ function App() {
             <Route path={routes.home} element={<Home />} />
             <Route path={routes.checkOut} element={<CheckOut />} />
             <Route path={`${routes.home}/:id`} element={<RestaurantByID />} />
-            <Route path={`${routes.social}`} element={<Social />} />
+            <Route path={routes.social} element={<Social />} />
+            <Route
+              path={routes.favouriteRestaurants}
+              element={<FavouriteRestaurants />}
+            />
           </Routes>
         </div>
         {isSearchFocused ? null : <Footer />}

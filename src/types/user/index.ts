@@ -1,4 +1,4 @@
-export interface VKUserResultType {
+export interface IVKUserProfileData {
   email: string;
   firstName: string;
   lastName: string;

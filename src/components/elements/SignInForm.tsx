@@ -1,13 +1,23 @@
+import { IoCloseOutline } from "react-icons/io5";
 import Google from "../../assets/Google.svg";
 import Vk from "../../assets/Vk.svg";
+import { useDispatch } from "react-redux";
+import { toggleAuthModal } from "../../store/actions/actionCreator";
 
 const SignInForm = () => {
+  const dispatch = useDispatch()
   const handleVKontakteSignIn = async () => {
     window.open("http://localhost:4000/auth/vkontakte/callback", "_self");
   };
 
   return (
     <div className="flex flex-col gap-[32px]">
+      <div
+          className="w-[48px] h-[48px] rounded-full absolute top-[-20px] right-[-20px] bg-white flex items-center justify-center  hover:cursor-pointer"
+          onClick={() => dispatch(toggleAuthModal())}
+        >
+          <IoCloseOutline className="text-[24px] text-[#847469] " />
+        </div>
       <div>
         <h1 className="text-3xl font-medium w-full text-center">
           Enter your phone number or email address
