@@ -39,9 +39,22 @@ export const handleFetchRestaurants = (payload: any) => {
   };
 };
 
+export const handleFetchUserVkInfo = (payload: []) => {
+  return {
+    type: appActions.FETCH_USER_VK_INFO,
+    payload,
+  };
+};
+
 export const toggleAuthModal = () => {
   return {
     type: appActions.TOGGLE_AUTH_MODAL,
+  };
+};
+
+export const toggleProfileModal = () => {
+  return {
+    type: appActions.TOGGLE_PROFILE_MODAL,
   };
 };
 

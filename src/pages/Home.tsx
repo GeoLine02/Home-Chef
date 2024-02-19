@@ -72,7 +72,7 @@ const Home = () => {
             <div>
               <SaleList />
             </div>
-            <div className="mt-6">
+            <div className="mt-6 relative">
               <FilteredRestaurantCategoryList />
             </div>
             <div className="mt-6">

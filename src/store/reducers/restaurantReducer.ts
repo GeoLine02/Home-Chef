@@ -31,7 +31,6 @@ export const restaurantReducer = (state = initialState, action: any) => {
         ...state,
         restaurants: [...state.restaurants, ...action.payload],
       };
-
     case appActions.FILTER_RESTAURANTS: {
       return {
         ...state,

@@ -1,7 +1,7 @@
 import Logo from "../../elements/Logo";
 import Location from "../../elements/Location";
 import SearchBar from "../../elements/SearchBar";
-import CheckLocation from "../../elements/CheckLocation";
+// import CheckLocation from "../../elements/CheckLocation";
 import SearchResults from "../../elements/SearchResults";
 import { useSelector } from "react-redux";
 import { RootState } from "../../../store/state/rootReducers";
@@ -13,7 +13,7 @@ const Search = () => {
       <div className="relative">
         <Location />
         <div className="absolute top-14 z-20">
-          <CheckLocation />
+          {/* <CheckLocation /> */}
         </div>
       </div>
       <div className="relative">
