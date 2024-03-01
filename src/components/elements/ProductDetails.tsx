@@ -1,17 +1,34 @@
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { ProductType } from "../blocks/ProductList/ProductList";
 import { AiOutlineClose } from "react-icons/ai";
-import { toggleProductModal } from "../../store/actions/actionCreator";
+import {
+  addCartItem,
+  toggleProductModal,
+} from "../../store/actions/actionCreator";
+import CartProductQuantity from "./CartProductQuantity";
+import { RootState } from "../../store/state/rootReducers";
 
 const ProductDetails = ({
+  id,
   productName,
   productPhoto,
   productDescription,
   productPrice,
 }: ProductType) => {
   const dispatch = useDispatch();
+
+  const productState = useSelector(
+    (state: RootState) => state.products.products
+  );
+
+  const handleAddToCart = () => {
+    const product = productState.find((item: ProductType) => item.id === id);
+    const quantity = 1;
+    dispatch(addCartItem(product, quantity));
+  };
+
   return (
-    <div className=" bg-white block gap-9 w-screen h-screen rounded-md md:px-6 lg:pt-6 lg:pb-24 relative lg:flex md:w-fit md:h-auto">
+    <div className="bg-white block gap-9 h-screen rounded-md md:px-6 lg:pt-6 lg:pb-24 relative lg:flex md:w-fit md:h-auto">
       <div
         onClick={() => {
           dispatch(toggleProductModal());
@@ -33,13 +50,12 @@ const ProductDetails = ({
         {/* buttons */}
         <div className="flex flex-col-reverse lg:flex-col gap-6">
           <div className="flex items-center gap-8">
-            <div className="flex gap-3 items-center">
-              <button className="w-9 h-9 bg-orange-500 text-white">-</button>
-              <span>1</span>
-              <button className="w-9 h-9 bg-orange-500 text-white">+</button>
-            </div>
+            <CartProductQuantity id={id} />
             <div>
-              <button className="bg-orange-500 w-fit p-3 rounded-full">
+              <button
+                onClick={handleAddToCart}
+                className="bg-orange-500 w-fit p-3 rounded-full"
+              >
                 Add to cart
               </button>
             </div>
