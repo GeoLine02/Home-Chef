@@ -8,11 +8,15 @@ const HeaderButtons = () => {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const setCart = useSelector((state: any) => state.cart.isCartOpen);
 
+  const localCart = localStorage.getItem("cart");
+  const parsedCart = localCart ? JSON.parse(localCart) : [];
+  console.log("", parsedCart);
   return (
     <div className="hidden lg:flex lg:gap-6">
       <LanguageBtn />
       <div className="relative z-20">
         <CartBtn />
+
         <div
           className={
             setCart
