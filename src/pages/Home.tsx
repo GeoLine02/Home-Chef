@@ -59,14 +59,32 @@ const Home = () => {
           <div className="lg:hidden">
             <Search />
           </div>
-          <div className="lg:hidden flex md:flex-row md:gap-20 flex-col justify-center items-center gap-4 mt-6">
-            <Location />
-            <div
-              onClick={() => {
-                dispatch(focuseSearch());
-              }}
-            >
-              <SearchBar />
+          <div className="col-span-4">
+            <div className="lg:hidden">
+              <Search />
+            </div>
+            <div className="lg:hidden flex md:flex-row md:gap-20 flex-col justify-center items-center gap-4 mt-6">
+              <Location />
+              <div
+                onClick={() => {
+                  dispatch(focuseSearch());
+                }}
+              >
+                <SearchBar />
+              </div>
+            </div>
+            <div>
+              <SaleList />
+            </div>
+            <div className="mt-6 relative">
+              <FilteredRestaurantCategoryList />
+            </div>
+            <div className="mt-6">
+              {filteredRestaurants ? (
+                <FilteredRestaurants />
+              ) : (
+                <AllRestaurants />
+              )}
             </div>
           </div>
           <div>

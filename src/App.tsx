@@ -6,10 +6,16 @@ import Header from "./components/blocks/Header/Header";
 import "./App.css";
 import Footer from "./components/blocks/Footer/Footer";
 import CheckOut from "./pages/CheckOut";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "./store/state/rootReducers";
+import Social from "./pages/Social";
+import { useEffect } from "react";
+import { getUserByToken } from "./helpers/http";
+import { handleFetchUserVkInfo } from "./store/actions/actionCreator";
+import FavouriteRestaurants from "./pages/FavouriteRestaurants";
 
 function App() {
+  const dispatch = useDispatch();
   const isCartOpen = useSelector((state: RootState) => state.cart.isCartOpen);
   const isSideBarOpen = useSelector(
     (state: RootState) => state.sideBar.isSideBarOpen
@@ -19,15 +25,31 @@ function App() {
   );
   const isAuthOpen = useSelector((state: RootState) => state.auth.isAuthOpen);
 
+  // const isProfileOpen = useSelector(
+  //   (state: RootState) => state.auth.isProfileOpen
+  // );
+
   const isProductOpen = useSelector(
     (state: RootState) => state.products.toggleProductModal
   );
+
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+
+    if (token) {
+      getUserByToken(token).then((user) => {
+        if (user) {
+          dispatch(handleFetchUserVkInfo(user));
+        }
+      });
+    }
+  }, [dispatch]);
 
   return (
     <div
       className={
         isCartOpen || isSideBarOpen || isAuthOpen || isProductOpen
-          ? " blur-xl bg-gray-400 bg-opacity-70"
+          ? "blur-sm bg-[#000000]/[0.5]"
           : ""
       }
     >
@@ -39,6 +61,11 @@ function App() {
             <Route path={routes.home} element={<Home />} />
             <Route path={routes.checkOut} element={<CheckOut />} />
             <Route path={`${routes.home}/:id`} element={<RestaurantByID />} />
+            <Route path={routes.social} element={<Social />} />
+            <Route
+              path={routes.favouriteRestaurants}
+              element={<FavouriteRestaurants />}
+            />
           </Routes>
         </div>
         {isSearchFocused ? null : <Footer />}
