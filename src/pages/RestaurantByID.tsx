@@ -1,10 +1,11 @@
 import ProductList from "../components/blocks/ProductList/ProductList";
-import menu from "../constants/menu";
 import { useNavigate } from "react-router-dom";
 import { FaArrowLeft } from "react-icons/fa6";
 import ProductModal from "../components/blocks/ProductModal/ProductModal";
 import { RootState } from "../store/state/rootReducers";
 import { useSelector } from "react-redux";
+import Menu from "../components/elements/Menu";
+import SideCart from "../components/blocks/sideCart/SideCart";
 const RestaurantByID = () => {
   const navigate = useNavigate();
 
@@ -12,8 +13,8 @@ const RestaurantByID = () => {
     (state: RootState) => state.products.toggleProductModal
   );
   return (
-    <div className="grid grid-flow-col mt-9 relative">
-      <div className="pr-12 col-span-1">
+    <div className="grid lg:grid-cols-repeat-5-18 mt-9 relative gap-6 justify-center">
+      <div className="flex flex-col items-center">
         <div
           onClick={() => {
             navigate(-1);
@@ -23,17 +24,12 @@ const RestaurantByID = () => {
           <FaArrowLeft size={20} />
           <button>All Restaurants</button>
         </div>
-        <div className="hidden lg:block">
-          <h1 className="font-medium text-3xl">Menu</h1>
-
-          {menu.map((category) => (
-            <ul key={category}>
-              <li className="py-2">{category}</li>
-            </ul>
-          ))}
+        <div className="flex flex-col items-cneter">
+          <h1 className="font-medium text-3xl hidden lg:block">Menu</h1>
+          <Menu />
         </div>
       </div>
-      <div className="col-span-4 place-items-center">
+      <div className="col-span-3 place-items-center">
         <h1 className="font-medium text-3xl mb-6">Dynamic Category</h1>
         <ProductList />
       </div>
@@ -42,6 +38,9 @@ const RestaurantByID = () => {
           <ProductModal children />
         </div>
       )}
+      <div className="hidden lg:block">
+        <SideCart />
+      </div>
     </div>
   );
 };
