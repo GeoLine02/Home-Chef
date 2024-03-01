@@ -39,7 +39,7 @@ const Filter = () => {
     filterRestaurantsData();
   }, [selectedCategoryId, dispatch]);
   return (
-    <div className="hidden lg:flex lg:flex-col gap-6 lg:mt-6">
+    <div className="hidden gap-6 lg:flex lg:flex-col lg:mt-6 lg:sticky lg:left-0 lg:top-5 w-fit">
       <form className="flex flex-col gap-6">
         <div className="flex gap-6">
           <input type="radio" value="delivery" name="delivery" />

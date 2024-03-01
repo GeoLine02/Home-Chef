@@ -1,7 +1,7 @@
 import item from "../../assets/item.jpg";
 import { IoMdStar } from "react-icons/io";
 
-const Item = () => {
+const SaleCard = () => {
   return (
     <div>
       <div>
@@ -24,4 +24,4 @@ const Item = () => {
   );
 };
 
-export default Item;
+export default SaleCard;

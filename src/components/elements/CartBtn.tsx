@@ -1,11 +1,11 @@
-import { useState } from "react";
 import { FiShoppingCart } from "react-icons/fi";
 import { useDispatch } from "react-redux";
 import { toggleCart } from "../../store/actions/actionCreator";
 
 const CartBtn = () => {
   const dispatch = useDispatch();
-  const [itemCounter] = useState<number>(0);
+  const localCart = localStorage.getItem("cart");
+  const parsedCart = localCart ? JSON.parse(localCart) : [];
   const handleToggleCart = () => {
     dispatch(toggleCart());
   };
@@ -17,7 +17,7 @@ const CartBtn = () => {
     >
       <FiShoppingCart />
       <div className="flex">
-        ({itemCounter})<p>Cart</p>
+        ({parsedCart.length})<p>Cart</p>
       </div>
     </div>
   );

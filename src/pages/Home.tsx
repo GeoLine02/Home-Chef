@@ -12,6 +12,7 @@ import AllRestaurants from "../components/blocks/AllRestaurants/AllRestaurants";
 import FilteredRestaurants from "../components/blocks/FilteredRestaurants/FilteredRestaurants";
 import FilteredRestaurantCategoryList from "../components/blocks/RestaurantFilterCategories/FilteredRestaurantCategoryList";
 import { RootState } from "../store/state/rootReducers";
+
 const Home = () => {
   const dispatch = useDispatch();
   const filteredRestaurants = useSelector(
@@ -47,13 +48,16 @@ const Home = () => {
 
   return (
     <div>
-      <div>
-        <div className="hidden bg-[#EEEEEE] px-32 py-6 lg:flex justify-center">
-          <Slogan />
+      <div className="hidden bg-[#EEEEEE] px-32 py-6 lg:flex justify-center">
+        <Slogan />
+      </div>
+      <div className="lg:grid lg:grid-cols-repeat-4-20 gap-6 lg:py-14 justify-center">
+        <div className="relative">
+          <Filter />
         </div>
-        <div className="lg:grid lg:grid-flow-col gap-6 lg:px-14">
-          <div className="lg:col-span-1">
-            <Filter />
+        <div className="col-span-3">
+          <div className="lg:hidden">
+            <Search />
           </div>
           <div className="col-span-4">
             <div className="lg:hidden">
@@ -82,6 +86,15 @@ const Home = () => {
                 <AllRestaurants />
               )}
             </div>
+          </div>
+          <div>
+            <SaleList />
+          </div>
+          <div className="mt-6">
+            <FilteredRestaurantCategoryList />
+          </div>
+          <div className="mt-6">
+            {filteredRestaurants ? <FilteredRestaurants /> : <AllRestaurants />}
           </div>
         </div>
       </div>

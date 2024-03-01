@@ -8,7 +8,7 @@ const RestaurantCard = ({ id, name }: RestaurantResultType) => {
   return (
     <div>
       <img
-        className="cursor-pointer"
+        className="cursor-pointer w-full"
         onClick={() => {
           navigate(`${routes.home}${id}`);
         }}

@@ -1,3 +1,4 @@
+import { ProductType } from "../../components/blocks/ProductList/ProductList";
 import appActions from "./actions";
 
 export const toggleCart = () => {
@@ -100,5 +101,41 @@ export const selectProduct = (payload: any) => {
 export const toggleProductModal = () => {
   return {
     type: appActions.TOGGLE_PRODUCT_MODAL,
+  };
+};
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export const addCartItem = (product: ProductType, quantity?: number) => {
+  return {
+    type: appActions.ADD_CART_ITEM,
+    product,
+    quantity,
+  };
+};
+
+export const clearCart = () => {
+  return {
+    type: appActions.CLEAR_CART,
+  };
+};
+
+export const incrementCartItemQuantity = (
+  product: ProductType,
+  quantity: number
+) => {
+  return {
+    type: appActions.INCREMENT_CART_ITEM_QUANTITY,
+    product,
+    quantity,
+  };
+};
+export const decrementCartItemQuantity = (
+  product: ProductType,
+  quantity: number
+) => {
+  return {
+    type: appActions.DECREMENT_CART_ITEM_QUANTITY,
+    product,
+    quantity,
   };
 };

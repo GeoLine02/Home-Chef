@@ -1,19 +1,10 @@
 import { ProductType } from "../../components/blocks/ProductList/ProductList";
 import appActions from "../actions/actions";
 
-export type ProductsObjectType = {
-  id: number;
-  address: string;
-  city: string;
-  name: string;
-  ownerId: number;
-  phoneNumber: string;
-  products: ProductType[];
-};
-
 export type InitialStateType = {
-  products: [] | ProductsObjectType;
-  selectedProduct: undefined | ProductType[];
+  products: [] | ProductType[];
+  toggleProductModal: boolean;
+  selectedProduct: undefined | ProductType;
 };
 
 export const initialState = {
@@ -39,9 +30,8 @@ export const productsRedcuer = (state = initialState, action: any) => {
     }
     // stores choosen product
     case appActions.SELECT_PRODUCT: {
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      const products = state.products as any;
-      const filteredProducts = products?.products.find(
+      const products = state.products;
+      const filteredProducts = products.find(
         (product: ProductType) => product.id === action.payload
       );
       return {
