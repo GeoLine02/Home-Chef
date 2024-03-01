@@ -12,7 +12,6 @@ import AllRestaurants from "../components/blocks/AllRestaurants/AllRestaurants";
 import FilteredRestaurants from "../components/blocks/FilteredRestaurants/FilteredRestaurants";
 import FilteredRestaurantCategoryList from "../components/blocks/RestaurantFilterCategories/FilteredRestaurantCategoryList";
 import { RootState } from "../store/state/rootReducers";
-import SideCart from "../components/blocks/sideCart/SideCart";
 
 const Home = () => {
   const dispatch = useDispatch();
