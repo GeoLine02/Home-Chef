@@ -30,7 +30,7 @@ const FilteredRestaurantCategoryList = () => {
   return (
     <div>
       <h1>All Restourants</h1>
-      <div className="flex gap-3 whitespace-nowrap overflow-x-auto relative lg:w-[79vw] lg:mx-auto lg:overflow-x-hidden">
+      <div className="flex gap-3 whitespace-nowrap overflow-x-auto relative lg:w-full lg:mx-auto lg:overflow-x-hidden">
         {restaurantCategoreis?.map(
           (restaurantCategory: restaurantCategoryType) => {
             return (
