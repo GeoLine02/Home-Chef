@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { createPortal } from "react-dom";
+import { text } from "../../../helpers/functions";
 
 const apiKey = "pk.84af2804b0fb860d1278e33a10c9c678";
 
@@ -88,7 +89,8 @@ const AdressConfirmationModal = () => {
     <div className="fixed top-0 left-0 right-0 z-[1000] flex justify-center items-center lg:top-[100px] lg:fixed lg:w-[234px] lg:left-[147px]">
       <div className="bg-white p-6 rounded-lg shadow-md w-full max-w-sm mx-auto font-lora">
         <h3 className="text-center text-[14px] text-[#666666] font-semibold">
-          Заказ на этот адрес?
+          {/* {text("HEADER_LOCATION_QUESTION")} */}
+          QUESTION
         </h3>
         <p className="text-center mb-4 text-[16px] tracking-0.5">
           {adress.adress || adress.errorMessage}
@@ -98,13 +100,15 @@ const AdressConfirmationModal = () => {
             onClick={() => setIsVisible(false)}
             className="w-[85px] h-10 bg-transparent border border-[#85736C] text-[#964900] text-[14px] font-medium py-[10px] px-6 rounded-[100px]"
           >
-            Нет
+            {/* {text("COMMON_NO")} */}
+            NO
           </button>
           <button
             // onClick={saveLocationHandler}
             className="w-[85px] h-10 bg-[#FF9939] text-[#201A18] text-[14px] font-medium py-[10px] px-6 rounded-[100px]"
           >
-            Да
+            {/* {text("COMMON_YES")} */}
+            YES
           </button>
         </div>
       </div>

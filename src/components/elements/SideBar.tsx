@@ -9,6 +9,7 @@ import { SlLogout } from "react-icons/sl";
 import { PiSignIn } from "react-icons/pi";
 import { useDispatch, useSelector } from "react-redux";
 import { toggleBurger } from "../../store/actions/actionCreator";
+import { text } from "../../helpers/functions";
 
 const SideBar = () => {
   const dispatch = useDispatch();
@@ -34,31 +35,31 @@ const SideBar = () => {
           </div>
           <div className="flex items-center gap-2 py-3">
             <FaBars size={20} />
-            <p>Order</p>
+            <p>{text("SIDEBAR_ORDER")}</p>
           </div>
           <div className="flex items-center gap-2 py-3">
             <TiLocationOutline size={20} />
-            <p>Address</p>
+            <p>{text("SIDEBAR_ADDRESS")}</p>
           </div>
           <div className="flex items-center gap-2 py-3">
             <FaRegCreditCard size={20} />
-            <p>Credit Card</p>
+            <p>{text("SIDEBAR_CREDIT_CARD")}</p>
           </div>
           <div className="flex items-center gap-2 py-3">
             <FaRegHeart size={20} />
-            <p>Wish list</p>
+            <p>{text("SIDEBAR_WISH_LIST")}</p>
           </div>
           <div className="flex items-center gap-2 py-3">
             <FaRegQuestionCircle size={20} />
-            <p>Need help?</p>
+            <p>{text("SIDEBAR_NEED_HELP_QUESTION")}</p>
           </div>
           <div className="flex items-center gap-2 py-3">
             <GrLanguage size={20} />
-            <p>Language</p>
+            <p>{text("SIDEBAR_LANGUAGE")}</p>
           </div>
           <div className="flex items-center gap-2 py-3">
             <SlLogout size={20} />
-            <p>Sign Out</p>
+            <p>{text("SIDEBAR_SIGN_OUT")}</p>
           </div>
         </div>
       ) : (
@@ -68,15 +69,15 @@ const SideBar = () => {
           </div>
           <div className="flex items-center gap-2 py-3">
             <PiSignIn size={20} />
-            <p>Sign In</p>
+            <p>{text("SIDEBAR_SIGN_IN")}</p>
           </div>
           <div className="flex items-center gap-2 py-3">
             <FaRegQuestionCircle size={20} />
-            <p>Need help?</p>
+            <p>{text("SIDEBAR_NEED_HELP_QUESTION")}</p>
           </div>
           <div className="flex items-center gap-2 py-3">
             <GrLanguage size={20} />
-            <p>Language</p>
+            <p>{text("SIDEBAR_LANGUAGE")}</p>
           </div>
         </div>
       )}

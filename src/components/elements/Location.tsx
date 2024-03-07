@@ -1,5 +1,6 @@
 import LocationImage from "../../assets/location.svg";
 import { ChangeEvent, useState } from "react";
+import { text } from "../../helpers/functions";
 const Location = () => {
   const [address, setAddress] = useState("");
   const handleAddressChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -13,7 +14,7 @@ const Location = () => {
         value={address}
         className="outline-none bg-transparent w-full"
         type="text"
-        placeholder="Location"
+        placeholder={text("HEADER_LOCATION_PH")}
       />
     </div>
   );

@@ -6,6 +6,7 @@ import { RootState } from "../store/state/rootReducers";
 import { useSelector } from "react-redux";
 import Menu from "../components/elements/Menu";
 import SideCart from "../components/blocks/sideCart/SideCart";
+import { text } from "../helpers/functions";
 const RestaurantByID = () => {
   const navigate = useNavigate();
 
@@ -22,15 +23,17 @@ const RestaurantByID = () => {
           className="hidden lg:flex lg:border-2 lg:border-gray-400 lg:rounded-full lg:p-3 lg:w-fit"
         >
           <FaArrowLeft size={20} />
-          <button>All Restaurants</button>
+          <button>{text("RESTAURANT_BY_ID_BTN")}</button>
         </div>
         <div className="flex flex-col items-cneter">
-          <h1 className="font-medium text-3xl hidden lg:block">Menu</h1>
+          <h1 className="font-medium text-3xl hidden lg:block">
+            {text("COMMON_MENU")}
+          </h1>
           <Menu />
         </div>
       </div>
       <div className="col-span-3 place-items-center">
-        <h1 className="font-medium text-3xl mb-6">Dynamic Category</h1>
+        <h1 className="font-medium text-3xl mb-6">*Dynamic Category*</h1>
         <ProductList />
       </div>
       {toggleProductModal && (
