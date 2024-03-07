@@ -55,10 +55,10 @@ function App() {
     >
       <Router>
         {isSearchFocused ? null : <Header />}
-
         <div>
           <Routes>
             <Route path={routes.home} element={<Home />} />
+
             <Route path={routes.checkOut} element={<CheckOut />} />
             <Route path={`${routes.home}/:id`} element={<RestaurantByID />} />
             <Route path={routes.social} element={<Social />} />
