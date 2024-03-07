@@ -1,3 +1,4 @@
+import { text } from "../../../helpers/functions";
 import Logo from "../../elements/Logo";
 import DownloadApp from "../DownloadApp/DownloadApp";
 import FooterNav from "../FooterNav/FooterNav";
@@ -15,7 +16,7 @@ const Footer = () => {
         <DownloadApp />
       </div>
       <div className="flex justify-center">
-        <p>Copyright © 2023 Company name</p>
+        <p>{text("FOOTER_COPYRIGHT")}</p>
       </div>
     </div>
   );

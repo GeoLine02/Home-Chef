@@ -9,6 +9,7 @@ import {
 import { RootState } from "../../store/state/rootReducers";
 import CartProductQuantity from "./CartProductQuantity";
 import { ProductQuantity } from "../../types";
+import { text } from "../../helpers/functions";
 const ProductCard = ({
   id,
   productPhoto,
@@ -59,7 +60,7 @@ const ProductCard = ({
             className="border-2 border-gray-400 p-3 mt-1 rounded-full flex justify-center items-center gap-2  cursor-pointer w-fit"
           >
             <FaPlus size={20} />
-            <button>Add to cart</button>
+            <button>{text("COMMON_ADD_TO_CART")}</button>
           </div>
         )}
       </div>

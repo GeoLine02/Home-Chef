@@ -1,3 +1,5 @@
+import { text } from "../helpers/functions";
+
 const favouriteRestorantsData = [
   {
     address: "6074 Tomasa Meadows",
@@ -21,7 +23,9 @@ const FavouriteRestaurants = () => {
   return (
     <div>
       <div className="hidden bg-[#EEEEEE] px-32 py-6 lg:flex justify-start">
-        <h1 className="font-bold text-[32px]">Favourite Restaurants</h1>
+        <h1 className="font-bold text-[32px]">
+          {text("COMMON_FAVOURITE_RESTS")}
+        </h1>
       </div>
       {favouriteRestorantsData.map((item) => (
         <div>{item.name}</div>

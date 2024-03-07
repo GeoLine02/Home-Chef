@@ -8,6 +8,7 @@ import {
 } from "../store/actions/actionCreator";
 import routes from "../constants/routes";
 import { useNavigate } from "react-router-dom";
+import { text } from "../helpers/functions";
 
 const Social = () => {
   const searchParams = useQuery();
@@ -51,14 +52,14 @@ const Social = () => {
           </svg>
         </div>
         <div className="alert-popup-title text-[30px] font-bold text-[#4CAF50] mx-[15px] ">
-          Success!
+          {text("COMMON_SUCCESS")}!
         </div>
       </div>
       <button
         className="flex mx-auto mb-12 px-6 py-3 font-semibold text-[20px] cursor-pointer bg-orange-400 border border-transparent rounded-full"
         onClick={() => navigate(routes.home)}
       >
-        Home Page
+        {text("COMMON_HOME_PAGE")}
       </button>
     </>
   );

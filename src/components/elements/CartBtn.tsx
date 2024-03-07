@@ -1,6 +1,7 @@
 import { FiShoppingCart } from "react-icons/fi";
 import { useDispatch } from "react-redux";
 import { toggleCart } from "../../store/actions/actionCreator";
+import { text } from "../../helpers/functions";
 
 const CartBtn = () => {
   const dispatch = useDispatch();
@@ -17,7 +18,7 @@ const CartBtn = () => {
     >
       <FiShoppingCart />
       <div className="flex">
-        ({parsedCart.length})<p>Cart</p>
+        ({parsedCart.length})<p>{text("HEADER_CART")}</p>
       </div>
     </div>
   );

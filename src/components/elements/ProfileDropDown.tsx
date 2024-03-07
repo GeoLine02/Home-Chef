@@ -8,6 +8,7 @@ import { PiQuestion } from "react-icons/pi";
 import { GrLanguage } from "react-icons/gr";
 import { Link, useNavigate } from "react-router-dom";
 import routes from "../../constants/routes";
+import { text } from "../../helpers/functions";
 
 const ProfileDropDown = () => {
   const dispatch = useDispatch();
@@ -38,19 +39,19 @@ const ProfileDropDown = () => {
         <li className="flex gap-[8px] items-center py-[8px] px-[16px]">
           <FaListUl className="text-[18px]" />
           <span className="text-[14px] leading-[20px] font-medium text-[#3D3D3D] hover:cursor-pointer">
-            Orders
+            {text("COMMON_ORDERS")}
           </span>
         </li>
         <li className="flex gap-[8px] items-center py-[8px] px-[16px]">
           <SlLocationPin className="text-[18px]" />
           <span className="text-[14px] leading-[20px] font-medium text-[#3D3D3D] hover:cursor-pointer">
-            Address
+            {text("SIDEBAR_ADDRESS")}
           </span>
         </li>
         <li className="flex gap-[8px] items-center py-[8px] px-[16px]">
           <SlCreditCard className="text-[18px]" />
           <span className="text-[14px] leading-[20px] font-medium text-[#3D3D3D] hover:cursor-pointer">
-            Cards
+            {text("COMMON_CARDS")}
           </span>
         </li>
         <Link
@@ -60,19 +61,19 @@ const ProfileDropDown = () => {
         >
           <GoHeart className="text-[18px]" />
           <span className="text-[14px] leading-[20px] font-medium text-[#3D3D3D] hover:cursor-pointer">
-            Favourite restaurants
+            {text("COMMON_FAVOURITE_RESTS")}
           </span>
         </Link>
         <li className="flex gap-[8px] items-center py-[8px] px-[16px]">
           <PiQuestion className="text-[18px]" />
           <span className="text-[14px] leading-[20px] font-medium text-[#3D3D3D] hover:cursor-pointer">
-            Need help?
+            {text("SIDEBAR_NEED_HELP_QUESTION")}
           </span>
         </li>
         <li className="flex gap-[8px] items-center py-[8px] px-[16px]">
           <GrLanguage className="text-[18px]" />
           <span className="text-[14px] leading-[20px] font-medium text-[#3D3D3D] hover:cursor-pointer">
-            Language
+            {text("SIDEBAR_LANGUAGE")}
           </span>
         </li>
         <li
@@ -81,7 +82,7 @@ const ProfileDropDown = () => {
         >
           <SlLogout className="text-[18px]" />
           <span className="text-[14px] leading-[20px] font-medium text-[#3D3D3D] hover:cursor-pointer">
-            Logout
+            {text("COMMON_LOG_OUT")}
           </span>
         </li>
       </ul>
