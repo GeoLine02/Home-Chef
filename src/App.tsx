@@ -11,11 +11,21 @@ import { RootState } from "./store/state/rootReducers";
 import Social from "./pages/Social";
 import { useEffect } from "react";
 import { getUserByToken } from "./helpers/http";
-import { handleFetchUserVkInfo } from "./store/actions/actionCreator";
+import {
+  getCartItems,
+  handleFetchUserVkInfo,
+} from "./store/actions/actionCreator";
 import FavouriteRestaurants from "./pages/FavouriteRestaurants";
 
 function App() {
   const dispatch = useDispatch();
+  const localCart = localStorage.getItem("cart");
+  useEffect(() => {
+    if (localCart) {
+      dispatch(getCartItems(JSON.parse(localCart)));
+    }
+  }, [dispatch, localCart]);
+
   const isCartOpen = useSelector((state: RootState) => state.cart.isCartOpen);
   const isSideBarOpen = useSelector(
     (state: RootState) => state.sideBar.isSideBarOpen
@@ -24,10 +34,6 @@ function App() {
     (state: RootState) => state.search.isSearchFocused
   );
   const isAuthOpen = useSelector((state: RootState) => state.auth.isAuthOpen);
-
-  // const isProfileOpen = useSelector(
-  //   (state: RootState) => state.auth.isProfileOpen
-  // );
 
   const isProductOpen = useSelector(
     (state: RootState) => state.products.toggleProductModal
