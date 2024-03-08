@@ -3,12 +3,14 @@ import { ProductType } from "../blocks/ProductList/ProductList";
 import { FaPlus } from "react-icons/fa6";
 import {
   addCartItem,
+  getCartItems,
   selectProduct,
   toggleProductModal,
 } from "../../store/actions/actionCreator";
 import { RootState } from "../../store/state/rootReducers";
 import CartProductQuantity from "./CartProductQuantity";
 import { ProductQuantity } from "../../types";
+import { useEffect } from "react";
 const ProductCard = ({
   id,
   productPhoto,
@@ -27,11 +29,18 @@ const ProductCard = ({
     dispatch(addCartItem(product, quantity));
   };
 
-  const cart = localStorage.getItem("cart");
-  const parsedCart = cart ? JSON.parse(cart) : [];
+  const localCart = localStorage.getItem("cart");
+
+  useEffect(() => {
+    if (localCart !== null) {
+      dispatch(getCartItems(JSON.parse(localCart)));
+    }
+  }, [localCart, dispatch]);
+
+  const cart = useSelector((state: RootState) => state.cart.cart);
 
   // checks if item is added or not in cart
-  const isProductAdded = parsedCart?.find(
+  const isProductAdded = cart?.find(
     (item: ProductQuantity) => item.product.id === product.id
   );
   const handleOpenModal = () => {
