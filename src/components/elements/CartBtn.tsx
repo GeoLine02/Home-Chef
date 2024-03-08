@@ -1,11 +1,12 @@
 import { FiShoppingCart } from "react-icons/fi";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { toggleCart } from "../../store/actions/actionCreator";
+import { RootState } from "../../store/state/rootReducers";
 
 const CartBtn = () => {
   const dispatch = useDispatch();
-  const localCart = localStorage.getItem("cart");
-  const parsedCart = localCart ? JSON.parse(localCart) : [];
+
+  const cart = useSelector((state: RootState) => state.cart.cart);
   const handleToggleCart = () => {
     dispatch(toggleCart());
   };
@@ -17,7 +18,7 @@ const CartBtn = () => {
     >
       <FiShoppingCart />
       <div className="flex">
-        ({parsedCart.length})<p>Cart</p>
+        ({cart.length})<p>Cart</p>
       </div>
     </div>
   );
