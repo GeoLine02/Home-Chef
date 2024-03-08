@@ -87,15 +87,6 @@ const Home = () => {
               )}
             </div>
           </div>
-          <div>
-            <SaleList />
-          </div>
-          <div className="mt-6">
-            <FilteredRestaurantCategoryList />
-          </div>
-          <div className="mt-6">
-            {filteredRestaurants ? <FilteredRestaurants /> : <AllRestaurants />}
-          </div>
         </div>
       </div>
     </div>
