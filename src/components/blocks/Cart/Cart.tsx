@@ -5,6 +5,7 @@ import CheckOutBtn from "../../elements/CheckOutBtn";
 import ClearCart from "../../elements/ClearCart";
 import CartList from "../../CartList/CartList";
 import { RootState } from "../../../store/state/rootReducers";
+import { text } from "../../../helpers/functions";
 
 const Cart = () => {
   const dispatch = useDispatch();
@@ -29,7 +30,7 @@ const Cart = () => {
           <AiOutlineClose size={20} />
         </div>
         <div className="flex  lg:w-96 justify-between mt-5">
-          <h1 className="text-2xl">Cart</h1>
+          <h1 className="text-2xl">{text("HEADER_CART")}</h1>
           <ClearCart />
         </div>
       </div>

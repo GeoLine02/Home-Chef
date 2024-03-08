@@ -12,6 +12,7 @@ import AllRestaurants from "../components/blocks/AllRestaurants/AllRestaurants";
 import FilteredRestaurants from "../components/blocks/FilteredRestaurants/FilteredRestaurants";
 import FilteredRestaurantCategoryList from "../components/blocks/RestaurantFilterCategories/FilteredRestaurantCategoryList";
 import { RootState } from "../store/state/rootReducers";
+import AdressConfirmationModal from "../components/blocks/AdressConfirmationModal/AdressConfirmationModal";
 
 const Home = () => {
   const dispatch = useDispatch();
@@ -48,6 +49,7 @@ const Home = () => {
 
   return (
     <div>
+      <AdressConfirmationModal />
       <div className="hidden bg-[#EEEEEE] px-32 py-6 lg:flex justify-center">
         <Slogan />
       </div>

@@ -1,10 +1,9 @@
+import { text } from "../../helpers/functions";
+
 const Slogan = () => {
   return (
     <div>
-      <p className="text-center max-w-[960px] font-medium">
-        Find dishes that you like. Delivery or self-collection. Support
-        independent sellers. Only in the Virtual Restaurant.
-      </p>
+      <p className="text-center max-w-[960px] font-medium">{text("SLOGAN")}</p>
     </div>
   );
 };

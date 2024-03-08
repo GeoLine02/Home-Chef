@@ -12,6 +12,7 @@ import foodList from "../../../constants/FoodList";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Controller } from "swiper/modules";
 import "swiper/css";
+import { text } from "../../../helpers/functions";
 
 const FilteredRestaurantCategoryList = () => {
   const dispatch = useDispatch();
@@ -65,7 +66,7 @@ const FilteredRestaurantCategoryList = () => {
 
   return (
     <div>
-      <h1>All Restourants</h1>
+      <h1>{text("FILTERED_RSTRNT_CTG_LST_HEADING")}</h1>
       <Swiper
         slidesPerView={slidesPerView}
         modules={[Controller]}

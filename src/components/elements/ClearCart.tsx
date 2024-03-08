@@ -1,5 +1,6 @@
 import { useDispatch } from "react-redux";
 import { clearCart } from "../../store/actions/actionCreator";
+import { text } from "../../helpers/functions";
 
 const ClearCart = () => {
   const dispatch = useDispatch();
@@ -9,7 +10,7 @@ const ClearCart = () => {
         dispatch(clearCart());
       }}
     >
-      Clear
+      {text("COMMON_CLEAR")}
     </button>
   );
 };
