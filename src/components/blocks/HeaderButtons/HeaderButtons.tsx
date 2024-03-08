@@ -10,9 +10,6 @@ const HeaderButtons = () => {
   const setCart = useSelector((state: any) => state.cart.isCartOpen);
   const token = localStorage.getItem("token");
 
-  const localCart = localStorage.getItem("cart");
-  const parsedCart = localCart ? JSON.parse(localCart) : [];
-  console.log("", parsedCart);
   return (
     <div className="hidden lg:flex lg:gap-6">
       <LanguageBtn />
