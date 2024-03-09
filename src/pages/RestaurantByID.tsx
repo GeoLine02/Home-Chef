@@ -11,12 +11,13 @@ import { http } from "../helpers/http";
 import routes from "../constants/routes";
 import UnfinishedOrderModal from "../components/blocks/UnfinishedOrderModal/UnfinishedOrderModal";
 import { text } from "../helpers/functions";
+import { RestaurantType } from "../types/restaurant";
 const RestaurantByID = () => {
   const navigate = useNavigate();
   const { id } = useParams();
 
   const cartState = useSelector((state: RootState) => state.cart.cart);
-  const [currentRestaurant, setCurrentRestaurant] = useState({});
+  const [currentRestaurant, setCurrentRestaurant] = useState<RestaurantType>();
   const [showUnfinishedOrderModal, setShowUnfinishedOrderModal] =
     useState<boolean>(false);
 
