@@ -4,6 +4,7 @@ import "./index.css";
 import { legacy_createStore as createStore } from "redux";
 import rootReducers from "./store/state/rootReducers";
 import { Provider } from "react-redux";
+import "./i18n.ts";
 
 const store = createStore(rootReducers);
 
