@@ -22,8 +22,12 @@ export const cartReducer = (state = initialState, action: any) => {
         isCartOpen: !state.isCartOpen,
       };
 
+    case appActions.GET_LOCAL_CART_ITEMS: {
+      return { ...state, cart: action.payload };
+    }
+
     case appActions.ADD_CART_ITEM: {
-      let cartArray = [];
+      let localCartArray = [];
       const existingCart = localStorage.getItem("cart");
       const product = action.product;
       const existedItem = state.productQuantity.find(
@@ -38,16 +42,16 @@ export const cartReducer = (state = initialState, action: any) => {
       }
 
       if (existingCart) {
-        cartArray = JSON.parse(existingCart);
+        localCartArray = JSON.parse(existingCart);
       }
 
       if (existedItem) {
-        cartArray.push({ product, quantity: existedItem.quantity });
+        localCartArray.push({ product, quantity: existedItem.quantity });
       } else {
-        cartArray.push({ product, quantity: 1 });
+        localCartArray.push({ product, quantity: 1 });
       }
 
-      localStorage.setItem("cart", JSON.stringify(cartArray));
+      localStorage.setItem("cart", JSON.stringify(localCartArray));
 
       if (existedItem) {
         return {
@@ -75,21 +79,21 @@ export const cartReducer = (state = initialState, action: any) => {
     case appActions.INCREMENT_CART_ITEM_QUANTITY: {
       const { product, quantity } = action;
 
-      let cartArray = [];
+      let localCartArray = [];
       const existingCart = localStorage.getItem("cart");
 
       if (existingCart) {
-        cartArray = JSON.parse(existingCart);
+        localCartArray = JSON.parse(existingCart);
       }
 
-      cartArray = cartArray.map((item: ProductQuantity) => {
-        if (item.product.id === product.id) {
+      localCartArray = localCartArray.map((item: ProductQuantity) => {
+        if (item.product.id === product?.id) {
           return { ...item, quantity: item.quantity + 1 };
         }
         return item;
       });
 
-      localStorage.setItem("cart", JSON.stringify(cartArray));
+      localStorage.setItem("cart", JSON.stringify(localCartArray));
       // searches existing item in productQuantityArray
       const existingQuantityItem = state.productQuantity.find(
         (item) => item.product?.id === product?.id
@@ -106,7 +110,7 @@ export const cartReducer = (state = initialState, action: any) => {
       }
 
       const existingCartItem = state.cart.find(
-        (item) => item.product.id === product.id
+        (item) => item.product.id === product?.id
       );
       if (existingCartItem) {
         return {
@@ -133,12 +137,12 @@ export const cartReducer = (state = initialState, action: any) => {
       return {
         ...state,
         cart: state.cart.map((item) =>
-          item.product.id === product.id
+          item.product.id === product?.id
             ? { ...item, quantity: item.quantity + 1 }
             : item
         ),
         productQuantity: state.productQuantity.map((item) =>
-          item.product.id === product.id
+          item.product.id === product?.id
             ? { ...item, quantity: item.quantity + 1 }
             : item
         ),
@@ -148,42 +152,28 @@ export const cartReducer = (state = initialState, action: any) => {
     case appActions.DECREMENT_CART_ITEM_QUANTITY: {
       const { product } = action;
 
-      let cartArray = [];
+      let localCartArray = [];
       const existingCart = localStorage.getItem("cart");
 
       if (existingCart) {
-        cartArray = JSON.parse(existingCart);
+        localCartArray = JSON.parse(existingCart);
       }
 
-      cartArray = cartArray.map((item: ProductQuantity) => {
-        if (item.product.id === product.id) {
+      localCartArray = localCartArray.map((item: ProductQuantity) => {
+        if (item.product.id === product?.id) {
           return { ...item, quantity: Math.max(0, item.quantity - 1) };
         }
         return item;
       });
 
-      cartArray = cartArray.filter(
+      localCartArray = localCartArray.filter(
         (item: ProductQuantity) => item.quantity > 0
       );
 
-      localStorage.setItem("cart", JSON.stringify(cartArray));
-      // searches existing item in productQuantityArray
-      // const existingQuantityItem = state.productQuantity.find(
-      //   (item) => item.product?.id === product?.id
-      // );
-      // // if no matches adds new product in productQuantity
-      // if (!existingQuantityItem) {
-      //   return {
-      //     ...state,
-      //     productQuantity: [
-      //       ...state.productQuantity,
-      //       { product: product, quantity: quantity - 1 },
-      //     ],
-      //   };
-      // }
+      localStorage.setItem("cart", JSON.stringify(localCartArray));
 
       const existingCartItem = state.cart.find(
-        (item) => item.product.id === product.id
+        (item) => item.product.id === product?.id
       );
       if (existingCartItem) {
         return {
@@ -191,7 +181,7 @@ export const cartReducer = (state = initialState, action: any) => {
           // addes new quantity to existing cart item
           cart: state.cart
             .map((item) =>
-              item.product.id === product.id
+              item.product.id === product?.id
                 ? {
                     ...item,
                     quantity: Math.max(0, item.quantity - 1),
@@ -202,7 +192,7 @@ export const cartReducer = (state = initialState, action: any) => {
           // addes nwe quantity to existing quantity item
           productQuantity: state.productQuantity
             .map((item) =>
-              item.product.id === product.id
+              item.product.id === product?.id
                 ? { ...item, quantity: Math.max(0, item.quantity - 1) }
                 : item
             )
@@ -214,13 +204,13 @@ export const cartReducer = (state = initialState, action: any) => {
       return {
         ...state,
         cart: state.cart.map((item) =>
-          item.product.id === product.id
+          item.product.id === product?.id
             ? { ...item, quantity: Math.max(0, item.quantity - 1) }
             : item
         ),
         productQuantity: state.productQuantity
           .map((item) =>
-            item.product.id === product.id
+            item.product.id === product?.id
               ? { ...item, quantity: Math.max(0, item.quantity - 1) }
               : item
           )

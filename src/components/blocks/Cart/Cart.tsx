@@ -4,6 +4,7 @@ import { toggleCart } from "../../../store/actions/actionCreator";
 import CheckOutBtn from "../../elements/CheckOutBtn";
 import ClearCart from "../../elements/ClearCart";
 import CartList from "../../CartList/CartList";
+import { RootState } from "../../../store/state/rootReducers";
 import { text } from "../../../helpers/functions";
 
 const Cart = () => {
@@ -13,6 +14,8 @@ const Cart = () => {
   const handleToggleCart = () => {
     dispatch(toggleCart());
   };
+
+  const cartState = useSelector((state: RootState) => state.cart.cart);
 
   return (
     <div
@@ -32,7 +35,9 @@ const Cart = () => {
         </div>
       </div>
       <CartList />
-      <CheckOutBtn handleToggleCart={handleToggleCart} />
+      {cartState.length ? (
+        <CheckOutBtn handleToggleCart={handleToggleCart} />
+      ) : null}
     </div>
   );
 };

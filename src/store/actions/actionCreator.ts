@@ -1,4 +1,5 @@
 import { ProductType } from "../../components/blocks/ProductList/ProductList";
+import { ProductQuantity } from "../../types";
 import appActions from "./actions";
 
 export const toggleCart = () => {
@@ -137,5 +138,12 @@ export const decrementCartItemQuantity = (
     type: appActions.DECREMENT_CART_ITEM_QUANTITY,
     product,
     quantity,
+  };
+};
+
+export const getCartItems = (payload: ProductQuantity[]) => {
+  return {
+    type: appActions.GET_LOCAL_CART_ITEMS,
+    payload,
   };
 };
