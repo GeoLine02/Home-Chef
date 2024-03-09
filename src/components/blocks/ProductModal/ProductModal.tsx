@@ -9,7 +9,7 @@ type ProductModalType = {
   handleQuantityDecrease: () => void;
 };
 
-const ProductModal = ({ children }: ProductModalType) => {
+const ProductModal = ({ children }: Partial<ProductModalType>) => {
   const productDetails = useSelector(
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     (state: any) => state.products.selectedProduct

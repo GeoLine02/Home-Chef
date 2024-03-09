@@ -17,7 +17,7 @@ const CartList = () => {
         )}
         {
           // eslint-disable-next-line @typescript-eslint/no-explicit-any
-          parsedCart?.map((item: any) => (
+          cartList?.map((item: any) => (
             <CartItem
               id={item.product.id}
               productComposition={item.product.productComposition}

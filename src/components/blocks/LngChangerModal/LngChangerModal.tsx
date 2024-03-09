@@ -1,6 +1,10 @@
 import { languageChanger, text } from "../../../helpers/functions";
 
-const LngChangerModal = ({ onClick }: any) => {
+interface ILngChangerModal {
+  lngToggler: () => void;
+}
+
+const LngChangerModal = ({ lngToggler }: ILngChangerModal) => {
   const staticStyle =
     "transition-transform duration-200 ease-in-out cursor-pointer hover:scale-110 rounded-md hover:rounded-lg w-full text-center p-2";
   const activeStyle = "bg-[#f97316] text-white";
@@ -12,7 +16,7 @@ const LngChangerModal = ({ onClick }: any) => {
     >
       <p
         onClick={() => {
-          onClick;
+          lngToggler;
           languageChanger("ru");
         }}
         className={`${staticStyle} ${
@@ -23,7 +27,7 @@ const LngChangerModal = ({ onClick }: any) => {
       </p>
       <p
         onClick={() => {
-          onClick;
+          lngToggler;
           languageChanger("en");
         }}
         className={`${staticStyle} ${
@@ -34,7 +38,7 @@ const LngChangerModal = ({ onClick }: any) => {
       </p>
       <p
         onClick={() => {
-          onClick;
+          lngToggler;
           languageChanger("ka");
         }}
         className={`${staticStyle} ${

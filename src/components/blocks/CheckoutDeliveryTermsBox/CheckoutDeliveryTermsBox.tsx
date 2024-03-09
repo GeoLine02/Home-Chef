@@ -24,7 +24,7 @@ const CheckoutDeliveryTermsBox = () => {
         <u className="opacity-70">{text("COMMON_CHANGE")}</u>
       </div>
       <h1 className="text-2xl font-bold">{text("CHECKOUT_DELIVERY_TIME")}</h1>
-      <div className="flex justify-between items-center rounded-lg border border-gray-400 px-5 py-3">
+      <div className="flex justify-between items-center rounded-xl border border-gray-400 px-5 py-3">
         <div className="flex justify-start items-center gap-3">
           <IoMdTime size={25} />
           <div>
@@ -34,7 +34,7 @@ const CheckoutDeliveryTermsBox = () => {
         </div>
         <IoIosArrowForward size={25} />
       </div>
-      <div className="flex justify-between items-center rounded-lg border border-gray-400 px-5 py-3">
+      <div className="flex justify-between items-center rounded-xl border border-gray-400 px-5 py-3">
         <div className="flex justify-start items-center gap-3">
           <FaRegCalendarAlt size={25} />
           <p className="font-medium text-lg">Thu, Dec 27, 10.00AM-10.25 AM</p>
