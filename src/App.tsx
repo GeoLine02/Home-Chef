@@ -15,7 +15,7 @@ import {
   getCartItems,
   handleFetchUserVkInfo,
 } from "./store/actions/actionCreator";
-import FavouriteRestaurants from "./pages/FavouriteRestaurants";
+import FavoriteRestaurants from "./pages/FavoriteRestaurants";
 
 function App() {
   const dispatch = useDispatch();
@@ -69,8 +69,8 @@ function App() {
             <Route path={`${routes.home}/:id`} element={<RestaurantByID />} />
             <Route path={routes.social} element={<Social />} />
             <Route
-              path={routes.favouriteRestaurants}
-              element={<FavouriteRestaurants />}
+              path={routes.favoriteRestaurants}
+              element={<FavoriteRestaurants />}
             />
           </Routes>
         </div>
