@@ -16,8 +16,9 @@ import {
   handleFetchUserVkInfo,
 } from "./store/actions/actionCreator";
 import FavoriteRestaurants from "./pages/FavoriteRestaurants";
+import { withTranslation } from "react-i18next";
 
-function App() {
+const App = withTranslation()(function App() {
   const dispatch = useDispatch();
   const localCart = localStorage.getItem("cart");
   useEffect(() => {
@@ -78,6 +79,6 @@ function App() {
       </Router>
     </div>
   );
-}
+});
 
 export default App;
