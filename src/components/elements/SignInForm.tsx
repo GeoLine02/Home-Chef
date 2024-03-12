@@ -11,6 +11,10 @@ const SignInForm = () => {
     window.open("http://localhost:4000/auth/vkontakte/callback", "_self");
   };
 
+  const handleGoogleSignIn = async () => {
+    window.open("http://localhost:4000/auth/google/callback", "_self");
+  };
+
   return (
     <div className="flex flex-col gap-[32px]">
       <div
@@ -40,7 +44,7 @@ const SignInForm = () => {
 
           <hr className="border-[1px] w-full border-[#847469]" />
         </div>
-        <div className="flex flex-col gap-4 mt-6">
+        <div onClick={handleGoogleSignIn} className="flex flex-col gap-4 mt-6">
           <div className="flex items-center justify-center gap-3 w-full p-3 border-2 border-[#847469] rounded-full cursor-pointer">
             <img src={Google} alt="Google" />
             <button>{text("HEADER_LOGIN_MODAL_GOOGLE")}</button>

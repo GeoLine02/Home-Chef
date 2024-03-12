@@ -22,7 +22,7 @@ const Cart = () => {
       className={
         isCartOpen
           ? "fixed flex flex-col justify-between w-screen h-screen p-6 left-0 top-0 md:absolute rounded-md md:left-auto md:top-20 md:right-52 md:w-fit md:h-auto ease-in-out duration-500 md:p-3 bg-white"
-          : "fixed left-0 -top-full md:absolute rounded-md md:top-[-400%] md:right-0 ease-in-out duration-500 md:p-3 bg-white"
+          : "fixed  -top-full md:absolute  rounded-md md:top-[-400%] md:right-0 ease-in-out duration-500 md:p-3 bg-white"
       }
     >
       <div>

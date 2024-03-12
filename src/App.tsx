@@ -13,9 +13,11 @@ import { useEffect } from "react";
 import { getUserByToken } from "./helpers/http";
 import {
   getCartItems,
+  handleFetchUserGoogleInfo,
   handleFetchUserVkInfo,
 } from "./store/actions/actionCreator";
-import FavouriteRestaurants from "./pages/FavouriteRestaurants";
+
+import FavoriteRestaurants from "./pages/FavoriteRestaurants";
 import { withTranslation } from "react-i18next";
 
 const App = withTranslation()(function App() {
@@ -42,11 +44,13 @@ const App = withTranslation()(function App() {
 
   useEffect(() => {
     const token = localStorage.getItem("token");
+    console.log(token);
 
     if (token) {
       getUserByToken(token).then((user) => {
         if (user) {
           dispatch(handleFetchUserVkInfo(user));
+          dispatch(handleFetchUserGoogleInfo(user));
         }
       });
     }
@@ -70,8 +74,8 @@ const App = withTranslation()(function App() {
             <Route path={`${routes.home}/:id`} element={<RestaurantByID />} />
             <Route path={routes.social} element={<Social />} />
             <Route
-              path={routes.favouriteRestaurants}
-              element={<FavouriteRestaurants />}
+              path={routes.favoriteRestaurants}
+              element={<FavoriteRestaurants />}
             />
           </Routes>
         </div>

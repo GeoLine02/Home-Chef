@@ -2,8 +2,8 @@ const home = "/";
 const products = "/products";
 const cart = "/cart";
 const checkOut = "/checkOut";
-const social = "/social"
-const favouriteRestaurants = '/favourite-restaurants'
+const social = "/social";
+const favoriteRestaurants = "/favorite-restaurants";
 
 const routes = {
   home,
@@ -11,7 +11,7 @@ const routes = {
   cart,
   checkOut,
   social,
-  favouriteRestaurants
+  favoriteRestaurants,
 };
 
 export default routes;

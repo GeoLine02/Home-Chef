@@ -105,6 +105,12 @@ export const toggleProductModal = () => {
   };
 };
 
+export const handleFetchUserGoogleInfo = (payload: []) => {
+  return {
+    type: appActions.FETCH_USER_GOOGLE_INFO,
+    payload,
+  };
+};
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const addCartItem = (product: ProductType, quantity?: number) => {
   return {
