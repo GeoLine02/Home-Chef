@@ -11,7 +11,10 @@ import { RootState } from "./store/state/rootReducers";
 import Social from "./pages/Social";
 import { useEffect } from "react";
 import { getUserByToken } from "./helpers/http";
-import { handleFetchUserVkInfo } from "./store/actions/actionCreator";
+import {
+  handleFetchUserGoogleInfo,
+  handleFetchUserVkInfo,
+} from "./store/actions/actionCreator";
 import FavouriteRestaurants from "./pages/FavouriteRestaurants";
 
 function App() {
@@ -35,11 +38,13 @@ function App() {
 
   useEffect(() => {
     const token = localStorage.getItem("token");
+    console.log(token);
 
     if (token) {
       getUserByToken(token).then((user) => {
         if (user) {
           dispatch(handleFetchUserVkInfo(user));
+          dispatch(handleFetchUserGoogleInfo(user));
         }
       });
     }
