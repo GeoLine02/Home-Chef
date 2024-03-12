@@ -12,13 +12,23 @@ import Social from "./pages/Social";
 import { useEffect } from "react";
 import { getUserByToken } from "./helpers/http";
 import {
+  getCartItems,
   handleFetchUserGoogleInfo,
   handleFetchUserVkInfo,
 } from "./store/actions/actionCreator";
-import FavouriteRestaurants from "./pages/FavouriteRestaurants";
 
-function App() {
+import FavoriteRestaurants from "./pages/FavoriteRestaurants";
+import { withTranslation } from "react-i18next";
+
+const App = withTranslation()(function App() {
   const dispatch = useDispatch();
+  const localCart = localStorage.getItem("cart");
+  useEffect(() => {
+    if (localCart) {
+      dispatch(getCartItems(JSON.parse(localCart)));
+    }
+  }, [dispatch, localCart]);
+
   const isCartOpen = useSelector((state: RootState) => state.cart.isCartOpen);
   const isSideBarOpen = useSelector(
     (state: RootState) => state.sideBar.isSideBarOpen
@@ -27,10 +37,6 @@ function App() {
     (state: RootState) => state.search.isSearchFocused
   );
   const isAuthOpen = useSelector((state: RootState) => state.auth.isAuthOpen);
-
-  // const isProfileOpen = useSelector(
-  //   (state: RootState) => state.auth.isProfileOpen
-  // );
 
   const isProductOpen = useSelector(
     (state: RootState) => state.products.toggleProductModal
@@ -60,16 +66,16 @@ function App() {
     >
       <Router>
         {isSearchFocused ? null : <Header />}
-
         <div>
           <Routes>
             <Route path={routes.home} element={<Home />} />
+
             <Route path={routes.checkOut} element={<CheckOut />} />
             <Route path={`${routes.home}/:id`} element={<RestaurantByID />} />
             <Route path={routes.social} element={<Social />} />
             <Route
-              path={routes.favouriteRestaurants}
-              element={<FavouriteRestaurants />}
+              path={routes.favoriteRestaurants}
+              element={<FavoriteRestaurants />}
             />
           </Routes>
         </div>
@@ -77,6 +83,6 @@ function App() {
       </Router>
     </div>
   );
-}
+});
 
 export default App;

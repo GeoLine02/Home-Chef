@@ -1,3 +1,5 @@
+import { ProductType } from "../../components/blocks/ProductList/ProductList";
+import { ProductQuantity } from "../../types";
 import appActions from "./actions";
 
 export const toggleCart = () => {
@@ -106,6 +108,48 @@ export const toggleProductModal = () => {
 export const handleFetchUserGoogleInfo = (payload: []) => {
   return {
     type: appActions.FETCH_USER_GOOGLE_INFO,
+    payload,
+  };
+};
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export const addCartItem = (product: ProductType, quantity?: number) => {
+  return {
+    type: appActions.ADD_CART_ITEM,
+    product,
+    quantity,
+  };
+};
+
+export const clearCart = () => {
+  return {
+    type: appActions.CLEAR_CART,
+  };
+};
+
+export const incrementCartItemQuantity = (
+  product: ProductType,
+  quantity: number
+) => {
+  return {
+    type: appActions.INCREMENT_CART_ITEM_QUANTITY,
+    product,
+    quantity,
+  };
+};
+export const decrementCartItemQuantity = (
+  product: ProductType,
+  quantity: number
+) => {
+  return {
+    type: appActions.DECREMENT_CART_ITEM_QUANTITY,
+    product,
+    quantity,
+  };
+};
+
+export const getCartItems = (payload: ProductQuantity[]) => {
+  return {
+    type: appActions.GET_LOCAL_CART_ITEMS,
     payload,
   };
 };

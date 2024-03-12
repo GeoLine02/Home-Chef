@@ -1,40 +1,86 @@
 import ProductList from "../components/blocks/ProductList/ProductList";
-import menu from "../constants/menu";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { FaArrowLeft } from "react-icons/fa6";
 import ProductModal from "../components/blocks/ProductModal/ProductModal";
 import { RootState } from "../store/state/rootReducers";
 import { useSelector } from "react-redux";
+import Menu from "../components/elements/Menu";
+import SideCart from "../components/blocks/sideCart/SideCart";
+import { useEffect, useState } from "react";
+import { http } from "../helpers/http";
+import routes from "../constants/routes";
+import UnfinishedOrderModal from "../components/blocks/UnfinishedOrderModal/UnfinishedOrderModal";
+import { text } from "../helpers/functions";
+import { RestaurantType } from "../types/restaurant";
 const RestaurantByID = () => {
   const navigate = useNavigate();
+  const { id } = useParams();
+
+  const cartState = useSelector((state: RootState) => state.cart.cart);
+  const [currentRestaurant, setCurrentRestaurant] = useState<RestaurantType>();
+  const [showUnfinishedOrderModal, setShowUnfinishedOrderModal] =
+    useState<boolean>(false);
+
+  useEffect(() => {
+    const test =
+      cartState?.length &&
+      cartState[0].product?.restaurantID !== currentRestaurant?.id;
+    setShowUnfinishedOrderModal(test);
+  }, [cartState, currentRestaurant?.id]);
+
+  useEffect(() => {
+    const getRestaurantById = async () => {
+      try {
+        const apiCallOptions = {
+          headers: {
+            "content-type": "application/json",
+          },
+          method: "GET",
+        };
+
+        const resp = await http(`/restaurant/${id}`, apiCallOptions);
+        if (resp.statusText === "OK") {
+          const data = await resp.json();
+          setCurrentRestaurant(data);
+        }
+      } catch (err) {
+        console.log("restaurantByID data fetching error!", err);
+      }
+    };
+    getRestaurantById();
+  }, [id]);
 
   const toggleProductModal = useSelector(
     (state: RootState) => state.products.toggleProductModal
   );
+
   return (
-    <div className="grid grid-flow-col mt-9 relative">
-      <div className="pr-12 col-span-1">
+    <div
+      className={
+        showUnfinishedOrderModal
+          ? "grid lg:grid-cols-repeat-5-18 mt-9 relative gap-6 justify-center blur-md"
+          : "grid lg:grid-cols-repeat-5-18 mt-9 relative gap-6 justify-center"
+      }
+    >
+      <div className="flex flex-col items-center">
         <div
           onClick={() => {
-            navigate(-1);
+            navigate(routes.home);
           }}
           className="hidden lg:flex lg:border-2 lg:border-gray-400 lg:rounded-full lg:p-3 lg:w-fit"
         >
           <FaArrowLeft size={20} />
-          <button>All Restaurants</button>
+          <button>{text("RESTAURANT_BY_ID_BTN")}</button>
         </div>
-        <div className="hidden lg:block">
-          <h1 className="font-medium text-3xl">Menu</h1>
-
-          {menu.map((category) => (
-            <ul key={category}>
-              <li className="py-2">{category}</li>
-            </ul>
-          ))}
+        <div className="flex flex-col items-cneter">
+          <h1 className="font-medium text-3xl hidden lg:block">
+            {text("COMMON_MENU")}
+          </h1>
+          <Menu />
         </div>
       </div>
-      <div className="col-span-4 place-items-center">
-        <h1 className="font-medium text-3xl mb-6">Dynamic Category</h1>
+      <div className="col-span-3 place-items-center">
+        <h1 className="font-medium text-3xl mb-6">*Dynamic Category*</h1>
         <ProductList />
       </div>
       {toggleProductModal && (
@@ -42,6 +88,10 @@ const RestaurantByID = () => {
           <ProductModal children />
         </div>
       )}
+      <div className="hidden lg:block">
+        <SideCart />
+      </div>
+      {showUnfinishedOrderModal ? <UnfinishedOrderModal children /> : null}
     </div>
   );
 };

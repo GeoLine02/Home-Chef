@@ -1,11 +1,13 @@
-import { useState } from "react";
 import { FiShoppingCart } from "react-icons/fi";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { toggleCart } from "../../store/actions/actionCreator";
+import { RootState } from "../../store/state/rootReducers";
+import { text } from "../../helpers/functions";
 
 const CartBtn = () => {
   const dispatch = useDispatch();
-  const [itemCounter] = useState<number>(0);
+
+  const cart = useSelector((state: RootState) => state.cart.cart);
   const handleToggleCart = () => {
     dispatch(toggleCart());
   };
@@ -17,7 +19,7 @@ const CartBtn = () => {
     >
       <FiShoppingCart />
       <div className="flex">
-        ({itemCounter})<p>Cart</p>
+        ({cart.length})<p>{text("HEADER_CART")}</p>
       </div>
     </div>
   );

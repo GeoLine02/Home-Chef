@@ -15,6 +15,7 @@ const HeaderButtons = () => {
       <LanguageBtn />
       <div className="relative z-20">
         <CartBtn />
+
         <div
           className={
             setCart

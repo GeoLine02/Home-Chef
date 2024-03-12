@@ -9,9 +9,12 @@ import { RootState } from "../../../store/state/rootReducers";
 export type ProductType = {
   id: number;
   productName: string;
+  productComposition: string;
+  restaurantID: number;
   productPhoto: string;
-  productPrice: string;
+  productPrice: number;
   productDescription: string;
+  cartItemQuantity?: number;
 };
 
 const ProductList = () => {
@@ -29,7 +32,7 @@ const ProductList = () => {
         };
         const res = await http(`/restaurant/${params.id}`, apiCallOptions);
         const data = await res.json();
-        dispatch(fetchRestaurantProducts(data));
+        dispatch(fetchRestaurantProducts(data.products));
       } catch (err) {
         console.log("Porducts fetching error!", err);
       }
@@ -38,9 +41,11 @@ const ProductList = () => {
   }, [params, dispatch]);
 
   return (
-    <div className="grid grid-cols-1 gap-8 place-items-center md:grid-cols-3">
-      {productsData?.products?.map((product: ProductType) => (
+    <div className="grid grid-cols-1 gap-8 justify-center md:grid-cols-2 lg:grid-cols-3 pb-11 px-4">
+      {productsData.map((product: ProductType) => (
         <Product
+          productComposition={product.productComposition}
+          restaurantID={product.restaurantID}
           id={product.id}
           key={product.id}
           productName={product.productName}
