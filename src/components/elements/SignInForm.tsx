@@ -5,19 +5,23 @@ import { useDispatch } from "react-redux";
 import { toggleAuthModal } from "../../store/actions/actionCreator";
 
 const SignInForm = () => {
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   const handleVKontakteSignIn = async () => {
     window.open("http://localhost:4000/auth/vkontakte/callback", "_self");
+  };
+
+  const handleGoogleSignIn = async () => {
+    window.open("http://localhost:4000/auth/google/callback", "_self");
   };
 
   return (
     <div className="flex flex-col gap-[32px]">
       <div
-          className="w-[48px] h-[48px] rounded-full absolute top-[-20px] right-[-20px] bg-white flex items-center justify-center  hover:cursor-pointer"
-          onClick={() => dispatch(toggleAuthModal())}
-        >
-          <IoCloseOutline className="text-[24px] text-[#847469] " />
-        </div>
+        className="w-[48px] h-[48px] rounded-full absolute top-[-20px] right-[-20px] bg-white flex items-center justify-center  hover:cursor-pointer"
+        onClick={() => dispatch(toggleAuthModal())}
+      >
+        <IoCloseOutline className="text-[24px] text-[#847469] " />
+      </div>
       <div>
         <h1 className="text-3xl font-medium w-full text-center">
           Enter your phone number or email address
@@ -37,7 +41,7 @@ const SignInForm = () => {
 
           <hr className="border-[1px] w-full border-[#847469]" />
         </div>
-        <div className="flex flex-col gap-4 mt-6">
+        <div onClick={handleGoogleSignIn} className="flex flex-col gap-4 mt-6">
           <div className="flex items-center justify-center gap-3 w-full p-3 border-2 border-[#847469] rounded-full cursor-pointer">
             <img src={Google} alt="Google" />
             <button>Sign in with Google</button>
