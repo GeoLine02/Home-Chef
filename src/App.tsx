@@ -14,9 +14,11 @@ import { getUserByToken } from "./helpers/http";
 import {
   getCartItems,
   handleFetchUserVkInfo,
+  saveUserData,
 } from "./store/actions/actionCreator";
 import FavoriteRestaurants from "./pages/FavoriteRestaurants";
 import { withTranslation } from "react-i18next";
+import { getUsersById } from "./api/index";
 
 const App = withTranslation()(function App() {
   const dispatch = useDispatch();
@@ -48,6 +50,11 @@ const App = withTranslation()(function App() {
         if (user) {
           dispatch(handleFetchUserVkInfo(user));
         }
+        getUsersById(user.id).then((user) => {
+          if (user) {
+            dispatch(saveUserData(user));
+          }
+        });
       });
     }
   }, [dispatch]);
