@@ -13,8 +13,10 @@ import { useEffect } from "react";
 import { getUserByToken } from "./helpers/http";
 import {
   getCartItems,
+  handleFetchUserGoogleInfo,
   handleFetchUserVkInfo,
 } from "./store/actions/actionCreator";
+
 import FavoriteRestaurants from "./pages/FavoriteRestaurants";
 import { withTranslation } from "react-i18next";
 
@@ -42,11 +44,13 @@ const App = withTranslation()(function App() {
 
   useEffect(() => {
     const token = localStorage.getItem("token");
+    console.log(token);
 
     if (token) {
       getUserByToken(token).then((user) => {
         if (user) {
           dispatch(handleFetchUserVkInfo(user));
+          dispatch(handleFetchUserGoogleInfo(user));
         }
       });
     }
