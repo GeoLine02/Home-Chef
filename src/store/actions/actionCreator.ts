@@ -147,3 +147,10 @@ export const getCartItems = (payload: ProductQuantity[]) => {
     payload,
   };
 };
+
+export const saveUserData = (payload: []) => {
+  return {
+    type: appActions.SAVE_USER_DATA,
+    payload,
+  };
+};
