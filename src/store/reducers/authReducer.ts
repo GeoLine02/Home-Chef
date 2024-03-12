@@ -5,12 +5,14 @@ export interface IRootState {
   isAuthOpen: boolean;
   isProfileOpen: boolean;
   authUserVkInfo: undefined | IVKUserProfileData;
+  userByID: undefined;
 }
 
 export const initialState: IRootState = {
   isAuthOpen: false,
   isProfileOpen: false,
   authUserVkInfo: undefined,
+  userByID: undefined,
 };
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -33,6 +35,13 @@ export const authReducer = (state = initialState, action: any) => {
         ...state,
         authUserVkInfo: action.payload,
       };
+
+    case appActions.SAVE_USER_DATA:
+      return {
+        ...state,
+        userByID: action.payload,
+      };
+
     default:
       return state;
   }
