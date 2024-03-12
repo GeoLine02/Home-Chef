@@ -102,3 +102,10 @@ export const toggleProductModal = () => {
     type: appActions.TOGGLE_PRODUCT_MODAL,
   };
 };
+
+export const handleFetchUserGoogleInfo = (payload: []) => {
+  return {
+    type: appActions.FETCH_USER_GOOGLE_INFO,
+    payload,
+  };
+};
