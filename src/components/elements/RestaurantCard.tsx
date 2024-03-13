@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import RestaurantPhoto from "../../assets/restaurantPhoto.png";
 import routes from "../../constants/routes";
-import { RestaurantResultType } from "../../store/reducers/restaurantReducer";
+import { RestaurantResultType } from "../../types/restaurant";
 
 const RestaurantCard = ({ id, name }: RestaurantResultType) => {
   const navigate = useNavigate();
