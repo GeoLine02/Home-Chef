@@ -55,7 +55,7 @@ const ProfileDropDown = () => {
           </span>
         </li>
         <Link
-          to={routes.favouriteRestaurants}
+          to={routes.favoriteRestaurants}
           onClick={() => dispatch(toggleProfileModal())}
           className="flex gap-[8px] items-center py-[8px] px-[16px]"
         >
