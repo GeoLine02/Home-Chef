@@ -105,6 +105,12 @@ export const toggleProductModal = () => {
   };
 };
 
+export const handleFetchUserGoogleInfo = (payload: []) => {
+  return {
+    type: appActions.FETCH_USER_GOOGLE_INFO,
+    payload,
+  };
+};
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const addCartItem = (product: ProductType, quantity?: number) => {
   return {
@@ -151,6 +157,36 @@ export const getCartItems = (payload: ProductQuantity[]) => {
 export const saveUserData = (payload: []) => {
   return {
     type: appActions.SAVE_USER_DATA,
+    payload,
+  };
+};
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export const saveFavoriteRestaurantsData = (payload: any) => {
+  return {
+    type: appActions.SAVE_FAVORITE_RESTAURANTS_DATA,
+    payload,
+  };
+};
+
+export const saveRestaurantByIdData = (payload: []) => {
+  return {
+    type: appActions.SAVE_RESTAURANT_BY_ID_DATA,
+    payload,
+  };
+};
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export const addToFavorites = (payload: any) => {
+  return {
+    type: appActions.ADD_FAVORITE_RESTAURANT,
+    payload,
+  };
+};
+
+export const removeFavoriteRestaurantAction = (payload: []) => {
+  return {
+    type: appActions.REMOVE_FAVORITE_RESTAURANT,
     payload,
   };
 };
