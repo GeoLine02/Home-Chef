@@ -1,11 +1,16 @@
-import { IVKUserProfileData } from "../../types/user";
+import {
+  IGoogleProfileData,
+  IUserById,
+  IVKUserProfileData,
+} from "../../types/user";
 import appActions from "../actions/actions";
 
 export interface IRootState {
   isAuthOpen: boolean;
   isProfileOpen: boolean;
   authUserVkInfo: undefined | IVKUserProfileData;
-  userByID: undefined;
+  userByID: undefined | IUserById;
+  authGoogleInfo: undefined | IGoogleProfileData;
 }
 
 export const initialState: IRootState = {
@@ -13,6 +18,7 @@ export const initialState: IRootState = {
   isProfileOpen: false,
   authUserVkInfo: undefined,
   userByID: undefined,
+  authGoogleInfo: undefined,
 };
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -41,6 +47,12 @@ export const authReducer = (state = initialState, action: any) => {
         ...state,
         userByID: action.payload,
       };
+    case appActions.FETCH_USER_GOOGLE_INFO: {
+      return {
+        ...state,
+        authGoogleInfo: action.payload,
+      };
+    }
 
     default:
       return state;
