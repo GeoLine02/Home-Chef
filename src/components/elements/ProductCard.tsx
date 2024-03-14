@@ -59,7 +59,7 @@ const ProductCard = ({
       />
       <h1 className="font-medium text-ellipsis">{productName}</h1>
       <div className="block md:flex justify-between items-center">
-        <h1 className="font-medium">{productPrice}</h1>
+        <h1 className="font-medium">${productPrice}</h1>
 
         {isProductAdded ? (
           <CartProductQuantity id={id} />
