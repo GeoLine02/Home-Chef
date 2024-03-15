@@ -63,7 +63,7 @@ const App = withTranslation()(function App() {
     <div
       className={
         isCartOpen || isSideBarOpen || isAuthOpen || isProductOpen
-          ? "blur-sm bg-[#000000]/[0.5]"
+          ? "blur-sm bg-[#000000]/[0.5] h-screen overflow-y-hidden"
           : ""
       }
     >
