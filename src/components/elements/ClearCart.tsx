@@ -5,13 +5,15 @@ import { text } from "../../helpers/functions";
 const ClearCart = () => {
   const dispatch = useDispatch();
   return (
-    <button
-      onClick={() => {
-        dispatch(clearCart());
-      }}
-    >
-      {text("COMMON_CLEAR")}
-    </button>
+    <div className="w-full text-right">
+      <button
+        onClick={() => {
+          dispatch(clearCart());
+        }}
+      >
+        {text("COMMON_CLEAR")}
+      </button>
+    </div>
   );
 };
 

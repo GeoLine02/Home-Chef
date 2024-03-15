@@ -7,6 +7,8 @@ import { RootState } from "../../../store/state/rootReducers";
 const AddToFavoritesBtn = () => {
   const dispatch = useDispatch();
   const userState = useSelector((state: RootState) => state.auth.userByID);
+  console.log(userState);
+  
   const userId = userState?.id;
   const restaurantByIdState = useSelector(
     (state: RootState) => state.restaurants.restaurantById

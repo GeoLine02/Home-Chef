@@ -69,10 +69,9 @@ const App = withTranslation()(function App() {
     >
       <Router>
         {isSearchFocused ? null : <Header />}
-        <div>
+        <main>
           <Routes>
             <Route path={routes.home} element={<Home />} />
-
             <Route path={routes.checkOut} element={<CheckOut />} />
             <Route path={`${routes.home}/:id`} element={<RestaurantByID />} />
             <Route path={routes.social} element={<Social />} />
@@ -81,7 +80,7 @@ const App = withTranslation()(function App() {
               element={<FavoriteRestaurants />}
             />
           </Routes>
-        </div>
+        </main>
         {isSearchFocused ? null : <Footer />}
       </Router>
     </div>
