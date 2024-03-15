@@ -13,6 +13,7 @@ import UnfinishedOrderModal from "../components/blocks/UnfinishedOrderModal/Unfi
 import { text } from "../helpers/functions";
 import { saveRestaurantByIdData } from "../store/actions/actionCreator";
 import RestaurantBanner from "../components/blocks/RestaurantBanner/RestaurantBanner";
+
 const RestaurantByID = () => {
   const navigate = useNavigate();
   const { id } = useParams();
@@ -60,21 +61,21 @@ const RestaurantByID = () => {
   );
 
   return (
-    <div>
+    <>
       <RestaurantBanner />
       <div
         className={
           showUnfinishedOrderModal
-            ? "grid lg:grid-cols-repeat-5-18 mt-9 relative gap-6 justify-center blur-md"
-            : "grid lg:grid-cols-repeat-5-18 mt-9 relative gap-6 justify-center"
+            ? "w-full max-w-screen-2xl mx-auto flex flex-col xl:flex-row my-9 px-3 gap-4 relative justify-between blur-md"
+            : "w-full max-w-screen-2xl mx-auto flex flex-col xl:flex-row my-9 px-3 gap-4 relative justify-between"
         }
       >
-        <div className="flex flex-col items-center">
+        <div className="flex flex-col items-center gap-4">
           <div
             onClick={() => {
               navigate(routes.home);
             }}
-            className="hidden lg:flex lg:border-2 lg:border-gray-400 lg:rounded-full lg:p-3 lg:w-fit"
+            className="hidden text-nowrap xl:flex items-center border-2 border-gray-400 rounded-full py-3 px-5 w-fit gap-2"
           >
             <FaArrowLeft size={20} />
             <button>{text("RESTAURANT_BY_ID_BTN")}</button>
@@ -86,7 +87,7 @@ const RestaurantByID = () => {
             <Menu />
           </div>
         </div>
-        <div className="col-span-3 place-items-center">
+        <div className="col-span-3 place-items-center xl:max-w-[70%]">
           <h1 className="font-medium text-3xl mb-6">*Dynamic Category*</h1>
           <ProductList />
         </div>
@@ -100,7 +101,7 @@ const RestaurantByID = () => {
         </div>
         {showUnfinishedOrderModal ? <UnfinishedOrderModal children /> : null}
       </div>
-    </div>
+    </>
   );
 };
 

@@ -7,8 +7,8 @@ import ContinueCheckoutBtn from "../components/elements/ContinueCheckoutBtn";
 
 const CheckOut = () => {
   return (
-    <main className="p-3 lg:px-14 lg:py-6 bg-[#EEEEEE]">
-      <div className="flex flex-col md:flex-row justify-center items-start gap-8">
+    <main className="p-3 lg:py-6 bg-[#EEEEEE]">
+      <div className="flex flex-col lg:flex-row justify-center items-start gap-8 w-full max-w-screen-2xl mx-auto">
         <div className="w-full">
           <CheckoutHead />
           <div className="flex flex-col gap-8 w-full mt-4">

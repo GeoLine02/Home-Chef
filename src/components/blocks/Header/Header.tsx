@@ -20,8 +20,8 @@ const Header = () => {
     dispatch(toggleBurger());
   };
   return (
-    <nav className="p-3 lg:px-14 lg:py-6 relative  shadow-gray-600 border-b-[1px] border-gray-300 shadow-sm">
-      <div className="flex w-[55vw] items-center justify-between lg:w-full">
+    <header className="p-3 lg:py-6 relative shadow-gray-600 border-b-[1px] border-gray-300 shadow-sm">
+      <nav className="flex w-full max-w-screen-2xl mx-auto items-center justify-between lg:w-full">
         <div onClick={handleToggleBurger} className="lg:hidden cursor-pointer">
           <FaBars size={20} />
         </div>
@@ -30,7 +30,7 @@ const Header = () => {
         <div className="lg:hidden">
           <Logo />
         </div>
-      </div>
+      </nav>
       <div
         className={
           sideBarState
@@ -42,7 +42,7 @@ const Header = () => {
       </div>
       {isAuthOpen && <AuthModal children />}
       {isProfileOpen && <ProfileModal children />}
-    </nav>
+    </header>
   );
 };
 

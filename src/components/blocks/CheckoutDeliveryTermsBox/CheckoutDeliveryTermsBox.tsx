@@ -3,17 +3,39 @@ import { IoMdTime } from "react-icons/io";
 import { FaRegCalendarAlt } from "react-icons/fa";
 import { IoIosArrowForward } from "react-icons/io";
 import { text } from "../../../helpers/functions";
+import { useState } from "react";
 
 const CheckoutDeliveryTermsBox = () => {
+  // design demonstration purposes
+  const [active, setActive] = useState(true);
+  const switchHandler = () => {
+    setActive((prev) => !prev);
+  };
+
   return (
     <div className="flex flex-col gap-4 rounded-lg bg-[#ffffff] w-full p-6">
-      <div className="flex justify-between">
+      <div className="flex justify-between items-center">
         <h1 className="text-2xl font-bold">
           {text("CHECKOUT_DELIVERY_TERMS")}
         </h1>
-        <div className="flex">
-          <p>{text("COMMON_DELIVERY")}</p>
-          <p>Self-collection</p>
+        <div
+          className="flex bg-[#EEEEEE] p-1 rounded-full cursor-pointer select-none "
+          onClick={switchHandler}
+        >
+          <div
+            className={`px-6 py-3 rounded-full ${
+              active && "bg-white transition-all"
+            }`}
+          >
+            <p>{text("COMMON_DELIVERY")}</p>
+          </div>
+          <div
+            className={`px-6 py-3 rounded-full ${
+              !active && "bg-white transition-all"
+            }`}
+          >
+            <p>{text("FILTER_SELF_COL")}</p>
+          </div>
         </div>
       </div>
       <div className="flex justify-between mb-5 mt-3">
