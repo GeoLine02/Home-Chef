@@ -22,6 +22,7 @@ const Home = () => {
   const isSearchFocused = useSelector(
     (state: RootState) => state.search.isSearchFocused
   );
+
   if (isSearchFocused) {
     return (
       <div className="px-6 lg:hidden">
@@ -35,7 +36,7 @@ const Home = () => {
           </div>
           <h1 className="text-xl font-medium">Search</h1>
         </div>
-        <div className="mt-6 flex flex-col items-center gap-4">
+        <div className="mt-6 flex flex-col gap-4">
           <div>
             <SearchBar />
           </div>
