@@ -21,7 +21,7 @@ const AdressConfirmationModal = () => {
     try {
       const response = await fetch(url);
       const data = await response.json();
-
+      
       const location = [
         data?.address?.quarter,
         data?.address?.house_number,

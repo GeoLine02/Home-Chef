@@ -12,7 +12,7 @@ const CartList = () => {
       <div className="mt-3">
         {parsedCart?.length === 0 && (
           <h1 className="font-medium text-3xl text-gray-400 text-center">
-            {text("CART_IS_EMPTY")} :(
+            {text("CART_IS_EMPTY")}
           </h1>
         )}
         {

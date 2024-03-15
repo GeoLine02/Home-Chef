@@ -5,6 +5,7 @@ import { RootState } from "../../../store/state/rootReducers";
 import { removeFavoriteRestaurantAction } from "../../../store/actions/actionCreator";
 import { Slide, ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { IFavoriteRestaurants } from "../../../types/restaurant";
 
 type RemoveFromFavoriesPropsType = {
   restaurantID: number;
@@ -17,7 +18,6 @@ const RemoveFromFavorites = ({ restaurantID }: RemoveFromFavoriesPropsType) => {
   const favoriteRestaurants = useSelector(
     (state: RootState) => state.restaurants.favoriteRestaurants
   );
-  console.log(favoriteRestaurants);
   const notification = () => toast.success("Restaurant removed successfully!");
   const handleRemoveFromFavorites = () => {
     removeFavoriteRestaurant(userID, restaurantID).then((removedRestaurant) => {
@@ -25,7 +25,8 @@ const RemoveFromFavorites = ({ restaurantID }: RemoveFromFavoriesPropsType) => {
         dispatch(
           removeFavoriteRestaurantAction(
             favoriteRestaurants.filter(
-              (restaurant: any) => restaurant.restaurantID !== restaurantID
+              (restaurant: IFavoriteRestaurants) =>
+                restaurant.restaurantID !== restaurantID
             )
           )
         );

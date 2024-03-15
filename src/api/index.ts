@@ -39,7 +39,7 @@ export const addFavoriteRestaurants = (
   };
   return http(`/profile/favorites/${userId}/${restaurantId}`, apiCallOptions)
     .then((jsonFavoriteRestaurants) => {
-      if (jsonFavoriteRestaurants.statusText === "OK") {
+      if (jsonFavoriteRestaurants.statusText === "Created") {
         return jsonFavoriteRestaurants.json();
       }
     })
