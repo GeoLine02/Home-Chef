@@ -53,6 +53,12 @@ export const authReducer = (state = initialState, action: any) => {
         authGoogleInfo: action.payload,
       };
     }
+    case appActions.LOG_OUT: {
+      return {
+        ...state,
+        authUserVkInfo: undefined,
+      };
+    }
 
     default:
       return state;
