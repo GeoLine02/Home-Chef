@@ -48,14 +48,13 @@ const FilteredRestaurantCategoryList = () => {
   );
 
   useEffect(() => {
+    const handleSlideChange = () => {
+      setActiveIndex(controlledSwiper.activeIndex);
+    };
     if (controlledSwiper) {
       controlledSwiper.on("slideChange", handleSlideChange);
     }
   }, [controlledSwiper]);
-
-  const handleSlideChange = () => {
-    setActiveIndex(controlledSwiper.activeIndex);
-  };
 
   const handleClickPrev = () => controlledSwiper.slidePrev();
   const handleClickNext = () => controlledSwiper.slideNext();
@@ -72,7 +71,7 @@ const FilteredRestaurantCategoryList = () => {
         modules={[Controller]}
         controller={{ control: controlledSwiper }}
         onSwiper={setControlledSwiper}
-        className="flex gap-3 whitespace-nowrap overflow-x-auto lg:w-full lg:mx-auto lg:overflow-x-hidden"
+        className="flex gap-3 whitespace-nowrap overflow-x-auto lg:w-full lg:mx-auto lg:overflow-x-hidden md:min-w-[768px]"
       >
         {newRestaurantCategories?.map((food: any, index: number) => {
           return (
@@ -81,7 +80,7 @@ const FilteredRestaurantCategoryList = () => {
               className="flex flex-col justify-center items-center cursor-pointer"
             >
               <img
-                className="w-16 h-16"
+                className="min-w-16 min-h-16"
                 src={food.icon}
                 alt={food.typeName}
                 onClick={() => dispatch(selectCategoryID(food.id))}
