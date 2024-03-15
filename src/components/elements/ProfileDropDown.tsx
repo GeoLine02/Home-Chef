@@ -1,6 +1,9 @@
 import { IoCloseOutline } from "react-icons/io5";
 import { useDispatch, useSelector } from "react-redux";
-import { toggleProfileModal } from "../../store/actions/actionCreator";
+import {
+  toggleProfileModal,
+  userLogOutAction,
+} from "../../store/actions/actionCreator";
 import { FaListUl } from "react-icons/fa6";
 import { SlCreditCard, SlLocationPin, SlLogout } from "react-icons/sl";
 import { GoHeart } from "react-icons/go";
@@ -19,6 +22,7 @@ const ProfileDropDown = () => {
 
   const onLogoutClickHandler = () => {
     localStorage.removeItem("token");
+    dispatch(userLogOutAction());
     dispatch(toggleProfileModal());
     navigate(routes.home);
   };
