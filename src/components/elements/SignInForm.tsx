@@ -1,23 +1,17 @@
 import { IoCloseOutline } from "react-icons/io5";
-import Google from "../../assets/Google.svg";
-import Vk from "../../assets/Vk.svg";
 import { useDispatch } from "react-redux";
 import { toggleAuthModal } from "../../store/actions/actionCreator";
 import { text } from "../../helpers/functions";
+import GoogleSignInBtn from "./buttons/GoogleSignInBtn";
+import VKSignInBtn from "./buttons/VKSignInBtn";
 
 const SignInForm = () => {
   const dispatch = useDispatch();
-  const handleVKontakteSignIn = async () => {
-    window.open("http://localhost:4000/auth/vkontakte/callback", "_self");
-  };
-  const handleGoogleSignIn = async () => {
-    window.open("http://localhost:4000/auth/google/callback", "_self");
-  };
 
   return (
     <div className="flex flex-col gap-[32px]">
       <div
-        className="w-[48px] h-[48px] rounded-full absolute top-[-20px] right-[-20px] bg-white flex items-center justify-center  hover:cursor-pointer"
+        className="top-4 right-4 bg-transparent w-[48px] h-[48px] rounded-full absolute md:top-[-20px] md:right-[-20px] md:bg-white flex items-center justify-center  hover:cursor-pointer"
         onClick={() => dispatch(toggleAuthModal())}
       >
         <IoCloseOutline className="text-[24px] text-[#847469] " />
@@ -44,20 +38,8 @@ const SignInForm = () => {
           <hr className="border-[1px] w-full border-[#847469]" />
         </div>
         <div className="flex flex-col gap-4 mt-6">
-          <div
-            onClick={handleGoogleSignIn}
-            className="flex items-center justify-center gap-3 w-full p-3 border-2 border-[#847469] rounded-full cursor-pointer"
-          >
-            <img src={Google} alt="Google" />
-            <button>{text("HEADER_LOGIN_MODAL_GOOGLE")}</button>
-          </div>
-          <div
-            className="flex items-center justify-center gap-3 w-full p-3 border-2 border-[#847469] rounded-full cursor-pointer"
-            onClick={handleVKontakteSignIn}
-          >
-            <img src={Vk} alt="Vkontakte" />
-            <button>{text("HEADER_LOGIN_MODAL_VK")}</button>
-          </div>
+          <GoogleSignInBtn />
+          <VKSignInBtn />
         </div>
       </div>
       <div>
