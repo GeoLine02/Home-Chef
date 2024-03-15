@@ -190,3 +190,9 @@ export const removeFavoriteRestaurantAction = (payload: []) => {
     payload,
   };
 };
+
+export const userLogOutAction = () => {
+  return {
+    type: appActions.LOG_OUT,
+  };
+};
