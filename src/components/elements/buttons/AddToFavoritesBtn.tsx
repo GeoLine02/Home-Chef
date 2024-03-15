@@ -11,23 +11,19 @@ const AddToFavoritesBtn = () => {
   const restaurantByIdState = useSelector(
     (state: RootState) => state.restaurants.restaurantById
   );
-  console.log(userId);
-  const test = useSelector(
-    (state: RootState) => state.restaurants.favoriteRestaurants
-  );
+
   const restaurantId = restaurantByIdState.id;
   const handleAddFavoriteRestaurants = () => {
     addFavoriteRestaurants(userId, restaurantId).then((favoriteRestaurants) => {
       if (favoriteRestaurants) {
         dispatch(addToFavorites(favoriteRestaurants));
-        console.log("favoritesState", test);
       }
     });
   };
   return (
     <button
       onClick={handleAddFavoriteRestaurants}
-      className="bg-white p-3 rounded-full cursor-pointer"
+      className="bg-white p-3 rounded-full"
     >
       <FaRegHeart size={20} />
     </button>
