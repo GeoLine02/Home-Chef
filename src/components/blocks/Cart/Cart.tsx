@@ -35,9 +35,7 @@ const Cart = () => {
         </div>
       </div>
       <CartList />
-      {cartState.length ? (
-        <CheckOutBtn handleToggleCart={handleToggleCart} />
-      ) : null}
+      {cartState.length ? <CheckOutBtn /> : null}
     </div>
   );
 };
