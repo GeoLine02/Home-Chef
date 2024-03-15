@@ -8,6 +8,8 @@ export interface searchStateType {
   restaurantCategories: null | number[];
   selectedCategoryID: null | number;
   favoriteRestaurants: RestaurantType[];
+  addedFavoriteRestaurantStatus: undefined;
+  removedRestaurantId: undefined | number;
 }
 
 export const initialState = {
@@ -15,7 +17,9 @@ export const initialState = {
   filteredRestaurants: null,
   restaurantCategories: null,
   selectedCategoryID: null,
-  favoriteRestaurants: undefined,
+  favoriteRestaurants: [],
+  addedFavoriteRestaurantStatus: undefined,
+  removedRestaurantId: undefined,
   restaurantById: [],
 };
 
@@ -65,10 +69,15 @@ export const restaurantReducer = (state = initialState, action: any) => {
     case appActions.ADD_FAVORITE_RESTAURANT: {
       return {
         ...state,
+        favoriteRestaurants: [...state.favoriteRestaurants, action.payload],
+      };
+    }
+    case appActions.REMOVE_FAVORITE_RESTAURANT: {
+      return {
+        ...state,
         favoriteRestaurants: action.payload,
       };
     }
-
     default:
       return state;
   }

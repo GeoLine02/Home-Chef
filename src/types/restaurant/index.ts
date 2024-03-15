@@ -25,3 +25,8 @@ export interface IFavoriteRestaurants extends RestaurantResultType {
   updatedAt: string;
   userID: number;
 }
+
+export interface addedFavoriteRestaurantStatusType {
+  message: string;
+  status: string;
+}

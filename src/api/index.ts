@@ -38,7 +38,11 @@ export const addFavoriteRestaurants = (
     method: "POST",
   };
   return http(`/profile/favorites/${userId}/${restaurantId}`, apiCallOptions)
-    .then((jsonFavoriteRestaurants) => jsonFavoriteRestaurants.json())
+    .then((jsonFavoriteRestaurants) => {
+      if (jsonFavoriteRestaurants.statusText === "OK") {
+        return jsonFavoriteRestaurants.json();
+      }
+    })
     .then((favoriteRestaurants) => {
       if (favoriteRestaurants) {
         console.log("messageWrong", favoriteRestaurants);
