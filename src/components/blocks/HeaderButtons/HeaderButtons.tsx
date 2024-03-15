@@ -4,11 +4,15 @@ import LanguageBtn from "../../elements/LanguageBtn";
 import LogInBtn from "../../elements/LogInBtn";
 import CartModal from "../CartModal/CartModal";
 import ProfileBtn from "../../elements/ProfileBtn";
+import { RootState } from "../../../store/state/rootReducers";
 
 const HeaderButtons = () => {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const setCart = useSelector((state: any) => state.cart.isCartOpen);
-  const token = localStorage.getItem("token");
+  const isUserLoggedIn = useSelector(
+    (state: RootState) => state.auth.authUserVkInfo
+  );
+  // const token = localStorage.getItem("token");
 
   return (
     <div className="hidden lg:flex lg:gap-6">
@@ -25,7 +29,7 @@ const HeaderButtons = () => {
           <CartModal children />
         </div>
       </div>
-      {token ? <ProfileBtn /> : <LogInBtn />}
+      {isUserLoggedIn ? <ProfileBtn /> : <LogInBtn />}
     </div>
   );
 };
