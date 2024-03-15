@@ -8,7 +8,7 @@ type ProfileModalProps = {
 
 const ProfileModal = ({ children }: ProfileModalProps) => {
   return createPortal(
-    <div className="w-screen h-screen">
+    <div>
       <ProfileDropDown />
       <div>{children}</div>
     </div>,
