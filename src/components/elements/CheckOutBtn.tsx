@@ -1,12 +1,11 @@
 import { useNavigate } from "react-router-dom";
 import routes from "../../constants/routes";
-import { CheckOutBtnProps } from "../../types/buttons";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../store/state/rootReducers";
-import { toggleAuthModal } from "../../store/actions/actionCreator";
 import { ProductQuantity } from "../../types";
+import { toggleAuthModal, toggleCart } from "../../store/actions/actionCreator";
 
-const CheckOutBtn = ({ handleToggleCart }: CheckOutBtnProps) => {
+const CheckOutBtn = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const userVKinfo = useSelector(
@@ -19,16 +18,14 @@ const CheckOutBtn = ({ handleToggleCart }: CheckOutBtnProps) => {
   const cartState = useSelector((state: RootState) => state.cart.cart);
 
   const handleCheckOut = () => {
-    if (userVKinfo && !toggleCartModal) {
+    if (toggleCartModal) {
+      dispatch(toggleCart());
+    }
+
+    if (userVKinfo) {
       navigate(routes.checkOut);
-    } else if (userVKinfo && toggleCartModal) {
-      navigate(routes.checkOut);
-      handleToggleCart;
-    } else if (!userVKinfo && !toggleCartModal) {
+    } else {
       dispatch(toggleAuthModal());
-    } else if (!userVKinfo && toggleCartModal) {
-      dispatch(toggleAuthModal());
-      handleToggleCart;
     }
   };
 
