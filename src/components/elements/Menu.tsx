@@ -6,7 +6,7 @@ const Menu = () => {
     <div className="block gap-3">
       {menu.map((category, index) => (
         <ul key={index}>
-          <li className="py-2 cursor-pointer">
+          <li className="py-2 cursor-pointer text-nowrap">
             {text(`MENU_ITEM_${category}`)}
           </li>
         </ul>

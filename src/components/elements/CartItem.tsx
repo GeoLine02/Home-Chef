@@ -6,7 +6,7 @@ const CartItem = ({ id, productName, productPrice }: ProductType) => {
     <div className="flex justify-between items-center">
       <div>
         <h1>{productName}</h1>
-        <h1 className="font-medium">{productPrice}</h1>
+        <h1 className="font-medium">$ {productPrice}</h1>
       </div>
       <div>
         <CartProductQuantity id={id} />
