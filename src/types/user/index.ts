@@ -1,5 +1,8 @@
+import { RestaurantType } from "../restaurant";
+
 export interface IVKUserProfileData {
   email: string;
+  favoriteRestaurants: RestaurantType[];
   firstName: string;
   lastName: string;
   role: string;
