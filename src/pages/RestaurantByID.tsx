@@ -11,8 +11,12 @@ import { http } from "../helpers/http";
 import routes from "../constants/routes";
 import UnfinishedOrderModal from "../components/blocks/UnfinishedOrderModal/UnfinishedOrderModal";
 import { text } from "../helpers/functions";
-import { saveRestaurantByIdData } from "../store/actions/actionCreator";
+import {
+  saveFavoriteRestaurantsData,
+  saveRestaurantByIdData,
+} from "../store/actions/actionCreator";
 import RestaurantBanner from "../components/blocks/RestaurantBanner/RestaurantBanner";
+import { getFavoriteRestaurants } from "../api";
 
 const RestaurantByID = () => {
   const navigate = useNavigate();
@@ -21,7 +25,7 @@ const RestaurantByID = () => {
   const cartState = useSelector((state: RootState) => state.cart.cart);
   const dispatch = useDispatch();
   const restaurantById = useSelector(
-    (state: RootState) => state.restaurants.restaurantById
+    (state: RootState) => state.restaurants?.restaurantById
   );
 
   const [showUnfinishedOrderModal, setShowUnfinishedOrderModal] =
@@ -55,6 +59,19 @@ const RestaurantByID = () => {
     };
     getRestaurantById();
   }, [id, dispatch]);
+
+  const userState = useSelector((state: RootState) => state.auth?.userByID);
+  const userID = userState?.id;
+  useEffect(() => {
+    const handleFetchingFavoriteRestaurants = () => {
+      getFavoriteRestaurants(userID).then((favoriteRestaurants) => {
+        dispatch(saveFavoriteRestaurantsData(favoriteRestaurants));
+      });
+    };
+    if (userID) {
+      handleFetchingFavoriteRestaurants();
+    }
+  }, [userID, dispatch]);
 
   const toggleProductModal = useSelector(
     (state: RootState) => state.products.toggleProductModal
@@ -96,7 +113,7 @@ const RestaurantByID = () => {
             <ProductModal children />
           </div>
         )}
-        <div className="hidden lg:block">
+        <div className="hidden xl:block">
           <SideCart />
         </div>
         {showUnfinishedOrderModal ? <UnfinishedOrderModal children /> : null}
