@@ -1,13 +1,9 @@
 import { text } from "../../../helpers/functions";
 import Google from "../../../assets/Google.svg";
-import { useDispatch } from "react-redux";
-import { clearCart } from "../../../store/actions/actionCreator";
 
 const GoogleSignInBtn = () => {
-  const dispatch = useDispatch();
   const handleGoogleSignIn = async () => {
     window.open("http://localhost:4000/auth/google/callback", "_self");
-    dispatch(clearCart());
   };
 
   return (
