@@ -9,8 +9,7 @@ import { text } from "../../../helpers/functions";
 
 const Cart = () => {
   const dispatch = useDispatch();
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const isCartOpen = useSelector((state: any) => state.cart.isCartOpen);
+  const isCartOpen = useSelector((state: RootState) => state.cart.isCartOpen);
   const handleToggleCart = () => {
     dispatch(toggleCart());
   };
