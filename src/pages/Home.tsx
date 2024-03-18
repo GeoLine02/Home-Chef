@@ -17,7 +17,7 @@ import AdressConfirmationModal from "../components/blocks/AdressConfirmationModa
 const Home = () => {
   const dispatch = useDispatch();
   const filteredRestaurants = useSelector(
-    (state: RootState) => state.restaurants.filteredRestaurants
+    (state: RootState) => state.restaurants?.filteredRestaurants
   );
   const isSearchFocused = useSelector(
     (state: RootState) => state.search.isSearchFocused
