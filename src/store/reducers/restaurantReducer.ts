@@ -1,4 +1,8 @@
-import { RestaurantResultType, RestaurantType } from "../../types/restaurant";
+import {
+  IFavoriteRestaurants,
+  RestaurantResultType,
+  RestaurantType,
+} from "../../types/restaurant";
 import appActions from "../actions/actions";
 
 export interface searchStateType {
@@ -7,9 +11,7 @@ export interface searchStateType {
   restaurantById: undefined | RestaurantType;
   restaurantCategories: null | number[];
   selectedCategoryID: null | number;
-  favoriteRestaurants: RestaurantType[];
-  addedFavoriteRestaurantStatus: undefined;
-  removedRestaurantId: undefined | number;
+  favoriteRestaurants: undefined | IFavoriteRestaurants[];
 }
 
 export const initialState = {
@@ -17,10 +19,8 @@ export const initialState = {
   filteredRestaurants: null,
   restaurantCategories: null,
   selectedCategoryID: null,
-  favoriteRestaurants: [],
-  addedFavoriteRestaurantStatus: undefined,
-  removedRestaurantId: undefined,
   restaurantById: [],
+  favoriteRestaurants: undefined,
 };
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -67,10 +67,13 @@ export const restaurantReducer = (state = initialState, action: any) => {
     }
 
     case appActions.ADD_FAVORITE_RESTAURANT: {
-      return {
-        ...state,
-        favoriteRestaurants: [...state.favoriteRestaurants, action.payload],
-      };
+      if (state.favoriteRestaurants) {
+        return {
+          ...state,
+          favoriteRestaurants: [...state.favoriteRestaurants, action.payload],
+        };
+      }
+      break;
     }
     case appActions.REMOVE_FAVORITE_RESTAURANT: {
       return {
@@ -78,6 +81,7 @@ export const restaurantReducer = (state = initialState, action: any) => {
         favoriteRestaurants: action.payload,
       };
     }
+
     default:
       return state;
   }
