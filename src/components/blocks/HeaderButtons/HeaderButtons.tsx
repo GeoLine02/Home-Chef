@@ -7,12 +7,10 @@ import ProfileBtn from "../../elements/ProfileBtn";
 import { RootState } from "../../../store/state/rootReducers";
 
 const HeaderButtons = () => {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const setCart = useSelector((state: any) => state.cart.isCartOpen);
+  const setCart = useSelector((state: RootState) => state.cart.isCartOpen);
   const isUserLoggedIn = useSelector(
-    (state: RootState) => state.auth.authUserVkInfo
+    (state: RootState) => state.auth?.authUserVkInfo
   );
-  // const token = localStorage.getItem("token");
 
   return (
     <div className="hidden lg:flex lg:gap-6">
