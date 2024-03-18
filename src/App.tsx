@@ -36,7 +36,7 @@ const App = withTranslation()(function App() {
   const isSearchFocused = useSelector(
     (state: RootState) => state.search.isSearchFocused
   );
-  const isAuthOpen = useSelector((state: RootState) => state.auth.isAuthOpen);
+  const isAuthOpen = useSelector((state: RootState) => state.auth?.isAuthOpen);
 
   const isProductOpen = useSelector(
     (state: RootState) => state.products.toggleProductModal
