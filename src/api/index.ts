@@ -45,7 +45,6 @@ export const addFavoriteRestaurants = (
     })
     .then((favoriteRestaurants) => {
       if (favoriteRestaurants) {
-        console.log("messageWrong", favoriteRestaurants);
         return favoriteRestaurants;
       }
     })
@@ -73,7 +72,7 @@ export const getFavoriteRestaurants = (userId: number) => {
       }
     })
     .catch((error) => {
-      console.log(error);
+      console.log("favorite restaurants fetching error", error);
     });
 };
 
