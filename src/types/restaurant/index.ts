@@ -17,6 +17,7 @@ export interface RestaurantResultType {
   name: string;
   ownerId: number;
   phoneNumber: string;
+  restaurantID: number;
 }
 
 export interface IFavoriteRestaurants extends RestaurantResultType {
