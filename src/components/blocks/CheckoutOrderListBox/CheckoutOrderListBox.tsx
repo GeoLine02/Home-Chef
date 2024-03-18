@@ -4,6 +4,7 @@ import { text } from "../../../helpers/functions";
 import { useSelector } from "react-redux";
 import { RootState } from "../../../store/state/rootReducers";
 import CartItem from "../../elements/CartItem";
+import { ProductType } from "../ProductList/ProductList";
 
 const CheckoutOrderListBox = () => {
   const cartList = useSelector((state: RootState) => state.cart.cart);
@@ -11,22 +12,24 @@ const CheckoutOrderListBox = () => {
   return (
     <div className="rounded-lg bg-[#ffffff] w-full p-6">
       <div className="flex justify-between items-center">
-        <h1 className="text-2xl font-bold mb-6">{text("CHECKOUT_YOUR_ORDER")}</h1>
+        <h1 className="text-2xl font-bold mb-6">
+          {text("CHECKOUT_YOUR_ORDER")}
+        </h1>
         <div className="flex items-center gap-2 opacity-70">
           <u>{text("COMMON_CLEAR_ALL")}</u>
           <RiDeleteBin6Line size={20} opacity={0.7} />
         </div>
       </div>
-      {cartList.map((item: any) => (
+      {cartList.map((item: ProductType) => (
         <CartItem
-          id={item.product.id}
-          productComposition={item.product.productComposition}
-          productDescription={item.product.productDescription}
-          productName={item.product.productName}
-          productPhoto={item.product.productPhoto}
-          productPrice={item.product.productPrice}
-          restaurantID={item.product.restaurantID}
-          key={item.product.id}
+          id={item.id}
+          productComposition={item.productComposition}
+          productDescription={item.productDescription}
+          productName={item.productName}
+          productPhoto={item.productPhoto}
+          productPrice={item.productPrice}
+          restaurantID={item.restaurantID}
+          key={item.id}
         />
       ))}
       <div className="flex items-center gap-2 max-w-160 border border-solid border-[#964900] rounded-full py-3 px-4 my-3">
