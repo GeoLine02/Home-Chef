@@ -8,7 +8,7 @@ const FilteredRestaurants = () => {
     (state: RootState) => state.restaurants.filteredRestaurants
   );
   return (
-    <div className="flex flex-wrap gap-6 justify-center">
+    <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
       {filteredRestaurants?.map((restaurant: RestaurantResultType) => (
         <RestaurantCard
           id={restaurant.id}

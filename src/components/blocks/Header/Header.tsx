@@ -6,18 +6,22 @@ import { useDispatch, useSelector } from "react-redux";
 import { toggleBurger } from "../../../store/actions/actionCreator";
 import SideBarModal from "../SideBarModal/SideBarModal";
 import AuthModal from "../AuthModal/AuthModal";
+import ProfileModal from "../ProfileModal/ProfileModal.tsx";
+
 const Header = () => {
   const dispatch = useDispatch();
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const isAuthOpen = useSelector((state: any) => state.auth.isAuthOpen);
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const isProfileOpen = useSelector((state: any) => state.auth.isProfileOpen);
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const sideBarState = useSelector((state: any) => state.sideBar.isSideBarOpen);
   const handleToggleBurger = () => {
     dispatch(toggleBurger());
   };
   return (
-    <nav className="p-3 lg:px-14 lg:py-6 relative  shadow-gray-600 border-b-[1px] border-gray-300 shadow-sm">
-      <div className="flex w-[55vw] items-center justify-between lg:w-full">
+    <header className="p-3 lg:py-6 relative shadow-gray-600 border-b-[1px] border-gray-300 shadow-sm">
+      <nav className="flex w-full max-w-screen-2xl mx-auto items-center justify-between lg:w-full">
         <div onClick={handleToggleBurger} className="lg:hidden cursor-pointer">
           <FaBars size={20} />
         </div>
@@ -26,7 +30,7 @@ const Header = () => {
         <div className="lg:hidden">
           <Logo />
         </div>
-      </div>
+      </nav>
       <div
         className={
           sideBarState
@@ -37,7 +41,8 @@ const Header = () => {
         <SideBarModal children />
       </div>
       {isAuthOpen && <AuthModal children />}
-    </nav>
+      {isProfileOpen && <ProfileModal children />}
+    </header>
   );
 };
 

@@ -1,19 +1,17 @@
+import {
+  IFavoriteRestaurants,
+  RestaurantResultType,
+  RestaurantType,
+} from "../../types/restaurant";
 import appActions from "../actions/actions";
-
-export interface RestaurantResultType {
-  address: string;
-  city: string;
-  id: number;
-  name: string;
-  ownerId: number;
-  phoneNumber: string;
-}
 
 export interface searchStateType {
   restaurants: [] | RestaurantResultType[];
   filteredRestaurants: null | RestaurantResultType[];
+  restaurantById: undefined | RestaurantType;
   restaurantCategories: null | number[];
   selectedCategoryID: null | number;
+  favoriteRestaurants: undefined | IFavoriteRestaurants[];
 }
 
 export const initialState = {
@@ -21,6 +19,8 @@ export const initialState = {
   filteredRestaurants: null,
   restaurantCategories: null,
   selectedCategoryID: null,
+  restaurantById: [],
+  favoriteRestaurants: undefined,
 };
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -31,13 +31,20 @@ export const restaurantReducer = (state = initialState, action: any) => {
         ...state,
         restaurants: [...state.restaurants, ...action.payload],
       };
-
     case appActions.FILTER_RESTAURANTS: {
       return {
         ...state,
         filteredRestaurants: action.payload,
       };
     }
+
+    case appActions.SAVE_RESTAURANT_BY_ID_DATA: {
+      return {
+        ...state,
+        restaurantById: action.payload,
+      };
+    }
+
     case appActions.FETCH_RESTAURANT_CATEGORIES: {
       return {
         ...state,
@@ -51,6 +58,30 @@ export const restaurantReducer = (state = initialState, action: any) => {
         selectedCategoryID: action.payload,
       };
     }
+
+    case appActions.SAVE_FAVORITE_RESTAURANTS_DATA: {
+      return {
+        ...state,
+        favoriteRestaurants: action.payload,
+      };
+    }
+
+    case appActions.ADD_FAVORITE_RESTAURANT: {
+      if (state.favoriteRestaurants) {
+        return {
+          ...state,
+          favoriteRestaurants: [...state.favoriteRestaurants, action.payload],
+        };
+      }
+      break;
+    }
+    case appActions.REMOVE_FAVORITE_RESTAURANT: {
+      return {
+        ...state,
+        favoriteRestaurants: action.payload,
+      };
+    }
+
     default:
       return state;
   }

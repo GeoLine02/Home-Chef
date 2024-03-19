@@ -4,12 +4,12 @@ import { useDispatch, useSelector } from "react-redux";
 import { handleFetchRestaurants } from "../../../store/actions/actionCreator";
 import RestaurantCard from "../../elements/RestaurantCard";
 import { RootState } from "../../../store/state/rootReducers";
-import { RestaurantResultType } from "../../../store/reducers/restaurantReducer";
+import { RestaurantResultType } from "../../../types/restaurant";
 
 const AllRestaurants = () => {
   const dispatch = useDispatch();
   const restaurantsState = useSelector(
-    (state: RootState) => state.restaurants.restaurants
+    (state: RootState) => state.restaurants?.restaurants
   );
   const [offSet, setOffSet] = useState<number>(0);
 
@@ -48,20 +48,21 @@ const AllRestaurants = () => {
   }, [handleScroll]);
 
   return (
-    <div className="flex flex-wrap justify-center gap-6">
-      {restaurantsState.map(
-        (restaurant: RestaurantResultType, index: number) => (
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      {restaurantsState?.map((restaurant: RestaurantResultType) => {
+        return (
           <RestaurantCard
+            restaurantID={restaurant.id}
             address={restaurant.address}
             city={restaurant.city}
             ownerId={restaurant.ownerId}
             phoneNumber={restaurant.phoneNumber}
-            key={index}
+            key={restaurant.ownerId}
             id={restaurant.id}
             name={restaurant.name}
           />
-        )
-      )}
+        );
+      })}
     </div>
   );
 };

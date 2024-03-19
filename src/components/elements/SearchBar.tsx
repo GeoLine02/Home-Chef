@@ -3,6 +3,7 @@ import { useDispatch } from "react-redux";
 import { clearSearch } from "../../store/actions/actionCreator";
 import { AiOutlineClose } from "react-icons/ai";
 import useSearch from "../../hooks/useSearch";
+import { text } from "../../helpers/functions";
 
 const SearchBar = () => {
   const dispatch = useDispatch();
@@ -18,7 +19,7 @@ const SearchBar = () => {
         }}
         onChange={handleChange}
         className="outline-none bg-transparent w-full"
-        placeholder="Search"
+        placeholder={text("COMMON_SEARCH")}
         type="text"
         value={search}
       />

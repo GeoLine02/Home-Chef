@@ -12,14 +12,17 @@ import AllRestaurants from "../components/blocks/AllRestaurants/AllRestaurants";
 import FilteredRestaurants from "../components/blocks/FilteredRestaurants/FilteredRestaurants";
 import FilteredRestaurantCategoryList from "../components/blocks/RestaurantFilterCategories/FilteredRestaurantCategoryList";
 import { RootState } from "../store/state/rootReducers";
+import AdressConfirmationModal from "../components/blocks/AdressConfirmationModal/AdressConfirmationModal";
+
 const Home = () => {
   const dispatch = useDispatch();
   const filteredRestaurants = useSelector(
-    (state: RootState) => state.restaurants.filteredRestaurants
+    (state: RootState) => state.restaurants?.filteredRestaurants
   );
   const isSearchFocused = useSelector(
     (state: RootState) => state.search.isSearchFocused
   );
+
   if (isSearchFocused) {
     return (
       <div className="px-6 lg:hidden">
@@ -33,7 +36,7 @@ const Home = () => {
           </div>
           <h1 className="text-xl font-medium">Search</h1>
         </div>
-        <div className="mt-6 flex flex-col items-center gap-4">
+        <div className="mt-6 flex flex-col gap-4">
           <div>
             <SearchBar />
           </div>
@@ -47,13 +50,17 @@ const Home = () => {
 
   return (
     <div>
-      <div>
-        <div className="hidden bg-[#EEEEEE] px-32 py-6 lg:flex justify-center">
-          <Slogan />
+      <AdressConfirmationModal />
+      <div className="hidden bg-[#EEEEEE] px-32 py-6 lg:flex justify-center">
+        <Slogan />
+      </div>
+      <div className="lg:grid lg:grid-cols-repeat-4-20 gap-6 lg:py-14 justify-center">
+        <div className="relative">
+          <Filter />
         </div>
-        <div className="lg:grid lg:grid-flow-col gap-6 lg:px-14">
-          <div className="lg:col-span-1">
-            <Filter />
+        <div className="col-span-3">
+          <div className="lg:hidden">
+            <Search />
           </div>
           <div className="col-span-4">
             <div className="lg:hidden">
@@ -72,7 +79,7 @@ const Home = () => {
             <div>
               <SaleList />
             </div>
-            <div className="mt-6">
+            <div className="mt-6 relative">
               <FilteredRestaurantCategoryList />
             </div>
             <div className="mt-6">

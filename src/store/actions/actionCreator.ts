@@ -1,3 +1,5 @@
+import { ProductType } from "../../components/blocks/ProductList/ProductList";
+import { ProductQuantity } from "../../types";
 import appActions from "./actions";
 
 export const toggleCart = () => {
@@ -39,9 +41,22 @@ export const handleFetchRestaurants = (payload: any) => {
   };
 };
 
+export const handleFetchUserVkInfo = (payload: []) => {
+  return {
+    type: appActions.FETCH_USER_VK_INFO,
+    payload,
+  };
+};
+
 export const toggleAuthModal = () => {
   return {
     type: appActions.TOGGLE_AUTH_MODAL,
+  };
+};
+
+export const toggleProfileModal = () => {
+  return {
+    type: appActions.TOGGLE_PROFILE_MODAL,
   };
 };
 
@@ -87,5 +102,97 @@ export const selectProduct = (payload: any) => {
 export const toggleProductModal = () => {
   return {
     type: appActions.TOGGLE_PRODUCT_MODAL,
+  };
+};
+
+export const handleFetchUserGoogleInfo = (payload: []) => {
+  return {
+    type: appActions.FETCH_USER_GOOGLE_INFO,
+    payload,
+  };
+};
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export const addCartItem = (product: ProductType, quantity?: number) => {
+  return {
+    type: appActions.ADD_CART_ITEM,
+    product,
+    quantity,
+  };
+};
+
+export const clearCart = () => {
+  return {
+    type: appActions.CLEAR_CART,
+  };
+};
+
+export const incrementCartItemQuantity = (
+  product: ProductType,
+  quantity: number
+) => {
+  return {
+    type: appActions.INCREMENT_CART_ITEM_QUANTITY,
+    product,
+    quantity,
+  };
+};
+export const decrementCartItemQuantity = (
+  product: ProductType,
+  quantity: number
+) => {
+  return {
+    type: appActions.DECREMENT_CART_ITEM_QUANTITY,
+    product,
+    quantity,
+  };
+};
+
+export const getCartItems = (payload: ProductQuantity[]) => {
+  return {
+    type: appActions.GET_LOCAL_CART_ITEMS,
+    payload,
+  };
+};
+
+export const saveUserData = (payload: []) => {
+  return {
+    type: appActions.SAVE_USER_DATA,
+    payload,
+  };
+};
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export const saveFavoriteRestaurantsData = (payload: any) => {
+  return {
+    type: appActions.SAVE_FAVORITE_RESTAURANTS_DATA,
+    payload,
+  };
+};
+
+export const saveRestaurantByIdData = (payload: []) => {
+  return {
+    type: appActions.SAVE_RESTAURANT_BY_ID_DATA,
+    payload,
+  };
+};
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export const addToFavorites = (payload: any) => {
+  return {
+    type: appActions.ADD_FAVORITE_RESTAURANT,
+    payload,
+  };
+};
+
+export const removeFavoriteRestaurantAction = (payload: []) => {
+  return {
+    type: appActions.REMOVE_FAVORITE_RESTAURANT,
+    payload,
+  };
+};
+
+export const userLogOutAction = () => {
+  return {
+    type: appActions.LOG_OUT,
   };
 };
