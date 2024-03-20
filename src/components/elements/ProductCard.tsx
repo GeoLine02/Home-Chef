@@ -19,12 +19,14 @@ const ProductCard = ({
   productPrice,
 }: ProductType) => {
   const dispatch = useDispatch();
-  const productState = useSelector(
-    (state: RootState) => state.products.products
+  const restaurantById = useSelector(
+    (state: RootState) => state.restaurants?.restaurantById
   );
 
   // gets clicked product
-  const product = productState.find((item: ProductType) => item.id === id);
+  const product = restaurantById.products?.find(
+    (item: ProductType) => item.id === id
+  );
   const handleAddToCart = () => {
     const quantity = 1;
     dispatch(addCartItem(product, quantity));
@@ -44,8 +46,14 @@ const ProductCard = ({
   const isProductAdded = cart?.find(
     (item: ProductQuantity) => item.product.id === product.id
   );
+  const restaurantByID = useSelector(
+    (state: RootState) => state.restaurants?.restaurantById
+  );
+  const selectedProduct = restaurantByID.products?.find(
+    (product: ProductType) => product.id === id
+  );
   const handleOpenModal = () => {
-    dispatch(selectProduct(id));
+    dispatch(selectProduct(selectedProduct));
     dispatch(toggleProductModal());
   };
 
