@@ -18,12 +18,14 @@ const ProductDetails = ({
 }: ProductType) => {
   const dispatch = useDispatch();
 
-  const productState = useSelector(
-    (state: RootState) => state.products.products
+  const restaurantByID = useSelector(
+    (state: RootState) => state.restaurants?.restaurantById
   );
 
   const handleAddToCart = () => {
-    const product = productState.find((item: ProductType) => item.id === id);
+    const product = restaurantByID.products?.find(
+      (item: ProductType) => item.id === id
+    );
     const quantity = 1;
     dispatch(addCartItem(product, quantity));
   };
