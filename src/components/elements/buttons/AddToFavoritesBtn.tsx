@@ -1,10 +1,15 @@
 import { FaRegHeart } from "react-icons/fa6";
 import { useDispatch, useSelector } from "react-redux";
-import { addFavoriteRestaurants } from "../../../api";
-import { addToFavorites } from "../../../store/actions/actionCreator";
+import { addFavoriteRestaurants, getFavoriteRestaurants } from "../../../api";
+import {
+  addToFavorites,
+  saveFavoriteRestaurantsData,
+  toggleAuthModal,
+} from "../../../store/actions/actionCreator";
 import { RootState } from "../../../store/state/rootReducers";
 import { IFavoriteRestaurants } from "../../../types/restaurant";
 import { GoHeartFill } from "react-icons/go";
+import { useEffect } from "react";
 
 const AddToFavoritesBtn = () => {
   const dispatch = useDispatch();
@@ -21,13 +26,20 @@ const AddToFavoritesBtn = () => {
   const userId = userState?.id;
   const restaurantId = restaurantByIdState.id;
 
+  useEffect(() => {
+    if (!favoriteRestaurants?.length && userId)
+      getFavoriteRestaurants(userId).then((favoriteRestaurants) => {
+        dispatch(saveFavoriteRestaurantsData(favoriteRestaurants));
+      });
+  }, [dispatch, userId, favoriteRestaurants?.length]);
+
   const isRestaurantAdded = favoriteRestaurants?.some(
     (restaurant: IFavoriteRestaurants) =>
       restaurant.restaurantID === restaurantId
   );
 
   const handleAddFavoriteRestaurants = () => {
-    if (!isRestaurantAdded) {
+    if (!isRestaurantAdded && userId) {
       addFavoriteRestaurants(userId, restaurantId).then(
         (favoriteRestaurants) => {
           if (favoriteRestaurants) {
@@ -35,6 +47,8 @@ const AddToFavoritesBtn = () => {
           }
         }
       );
+    } else if (!userId) {
+      dispatch(toggleAuthModal());
     }
   };
   return (
