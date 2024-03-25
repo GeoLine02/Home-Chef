@@ -20,14 +20,14 @@ const CartProductQuantity = ({ id }: CartProductQuantityType) => {
     (state: RootState) => state.cart?.productQuantity
   );
 
-  const productState = useSelector(
-    (state: RootState) => state.products.products
+  const restaurantByID = useSelector(
+    (state: RootState) => state.restaurants?.restaurantById
   );
 
   // const product = productState.find((item: ProductType) => item.id === id);
   const product = useMemo(() => {
-    return productState.find((item: ProductType) => item.id === id);
-  }, [productState, id]);
+    return restaurantByID.products?.find((item: ProductType) => item.id === id);
+  }, [restaurantByID.products, id]);
   const cart = localStorage.getItem("cart");
   const parsedCart = cart ? JSON.parse(cart) : [];
 

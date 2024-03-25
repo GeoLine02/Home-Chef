@@ -106,7 +106,7 @@ const RestaurantByID = () => {
         </div>
         <div className="col-span-3 place-items-center xl:max-w-[70%]">
           <h1 className="font-medium text-3xl mb-6">*Dynamic Category*</h1>
-          <ProductList />
+          <ProductList products={restaurantById?.products} />
         </div>
         {toggleProductModal && (
           <div className="fixed top-0 left-0">
