@@ -20,18 +20,14 @@ const AllRestaurants = () => {
       },
       method: "GET",
     };
-    http("/restaurant", apiCallOptions)
+    http(`/restaurant?offset=${offSet}`, apiCallOptions)
       .then((jsonRestaurantList) => jsonRestaurantList.json())
-      .then((restaurantList) =>
-        dispatch(handleFetchRestaurants(restaurantList))
-      );
-  }, [dispatch]);
-
-  useEffect(() => {
-    if (offSet === 0) {
-      fetchRestaurants();
-    }
-  }, [fetchRestaurants, offSet]);
+      .then((restaurantList) => {
+        setOffSet((prev) => prev + 15);
+        console.log("fetch", offSet);
+        dispatch(handleFetchRestaurants(restaurantList));
+      });
+  }, [dispatch, offSet]);
 
   const handleScroll = useCallback(() => {
     if (
@@ -43,10 +39,19 @@ const AllRestaurants = () => {
   }, [fetchRestaurants]);
 
   useEffect(() => {
-    window.addEventListener("scroll", handleScroll);
-    setOffSet((prev) => (prev = prev + 1));
-  }, [handleScroll]);
+    if (offSet === 0) {
+      fetchRestaurants();
+    }
+  }, [fetchRestaurants, offSet]);
 
+  useEffect(() => {
+    if (restaurantsState?.length) {
+      window.addEventListener("scroll", handleScroll);
+    }
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, [handleScroll, restaurantsState?.length]);
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
       {restaurantsState?.map((restaurant: RestaurantResultType) => {
@@ -57,7 +62,7 @@ const AllRestaurants = () => {
             city={restaurant.city}
             ownerId={restaurant.ownerId}
             phoneNumber={restaurant.phoneNumber}
-            key={restaurant.ownerId}
+            key={restaurant.id * Math.random()}
             id={restaurant.id}
             name={restaurant.name}
           />
