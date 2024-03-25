@@ -84,7 +84,7 @@ const RestaurantByID = () => {
         className={
           showUnfinishedOrderModal
             ? "w-full max-w-screen-2xl mx-auto flex flex-col xl:flex-row my-9 px-3 gap-4 relative justify-between blur-md"
-            : "w-full max-w-screen-2xl mx-auto flex flex-col xl:flex-row my-9 px-3 gap-4 relative justify-between"
+            : "w-full max-w-screen-2xl mx-auto flex flex-col xl:flex-row my-9 px-3 gap-4 relative"
         }
       >
         <div className="flex flex-col items-center gap-4">
