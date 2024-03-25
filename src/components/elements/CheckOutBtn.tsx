@@ -2,8 +2,8 @@ import { useNavigate } from "react-router-dom";
 import routes from "../../constants/routes";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../store/state/rootReducers";
-import { ProductQuantity } from "../../types";
 import { toggleAuthModal, toggleCart } from "../../store/actions/actionCreator";
+import { calculateItemTotalCost } from "../../helpers/totalCartCost";
 
 const CheckOutBtn = () => {
   const navigate = useNavigate();
@@ -14,7 +14,6 @@ const CheckOutBtn = () => {
   const toggleCartModal = useSelector(
     (state: RootState) => state.cart.isCartOpen
   );
-
   const cartState = useSelector((state: RootState) => state.cart.cart);
 
   const handleCheckOut = () => {
@@ -29,16 +28,12 @@ const CheckOutBtn = () => {
     }
   };
 
-  const itemTotalCost = cartState
-    .map((item: ProductQuantity) => item.product.productPrice * item.quantity)
-    .reduce((current: number, accumulator: number) => current + accumulator);
-
   return (
     <button
       onClick={handleCheckOut}
       className="bg-orange-500 rounded-full w-full py-2 mt-6"
     >
-      Check out {itemTotalCost}
+      Check out {calculateItemTotalCost(cartState)}
     </button>
   );
 };
