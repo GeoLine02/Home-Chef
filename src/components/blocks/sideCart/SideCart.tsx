@@ -11,7 +11,7 @@ const SideCart = () => {
   return (
     <div className="hidden min-w-72 lg:flex flex-col justify-between min-h-[95vh] sticky left-0 top-5 bottom-5 border-2 border-gray-200 rounded-3xl p-4">
       <div>
-        <div className="flex justify-between flex-col gap-2">
+        <div className="flex justify-between gap-2">
           <h1 className="text-3xl text-nowrap">{text("COMMON_CART")}</h1>
           <ClearCart />
         </div>
