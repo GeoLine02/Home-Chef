@@ -69,10 +69,11 @@ export const cartReducer = (state = initialState, action: any) => {
     }
 
     case appActions.CLEAR_CART: {
-      localStorage.clear();
+      localStorage.removeItem("cart");
       return {
         ...state,
         cart: [],
+        productQuantity: [],
       };
     }
 

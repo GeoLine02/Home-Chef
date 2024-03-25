@@ -12,7 +12,10 @@ const FavoriteRestaurants = () => {
   const favoriteRestaurants = useSelector(
     (state: RootState) => state.restaurants?.favoriteRestaurants
   );
-  const userState = useSelector((state: RootState) => state.auth.userByID);
+  const userState = useSelector(
+    (state: RootState) => state.auth.authUserVkInfo
+  );
+
   const userId = userState?.id;
   useEffect(() => {
     if (!favoriteRestaurants?.length && userId) {

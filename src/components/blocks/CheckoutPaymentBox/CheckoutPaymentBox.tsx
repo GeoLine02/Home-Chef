@@ -1,6 +1,7 @@
 import { LuTag } from "react-icons/lu";
 import { IoMdCard } from "react-icons/io";
 import { text } from "../../../helpers/functions";
+import ChangePaymentMethodBtn from "../../elements/buttons/ChangePaymentMethodBtn";
 
 const CheckoutPaymentBox = () => {
   return (
@@ -13,7 +14,8 @@ const CheckoutPaymentBox = () => {
             {text("CHECKOUT_PAYMENT_METHOD")}
           </h1>
         </div>
-        <u className="opacity-70">{text("COMMON_CHANGE")}</u>
+        {/* TODO: conditionally render payment buttons */}
+        <ChangePaymentMethodBtn />
       </div>
       <div className="flex w-full my-3">
         <div className="flex gap-3">
