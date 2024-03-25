@@ -1,7 +1,5 @@
-// import { useTranslation } from "react-i18next";
 import i18next from "i18next";
 import i18n from "../i18n";
-
 
 export function getBrowserPreferredLng(): string {
   const browserLng = navigator.language.split("-")[0].toLowerCase();

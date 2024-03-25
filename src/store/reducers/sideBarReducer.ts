@@ -8,7 +8,8 @@ export const initialState: InitialStateType = {
   isSideBarOpen: false,
 };
 
-export const sideBarReducer = (state = initialState, action) => {
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export const sideBarReducer = (state = initialState, action: any) => {
   switch (action.type) {
     case appActions.TOGGLE_BURGER: {
       return {

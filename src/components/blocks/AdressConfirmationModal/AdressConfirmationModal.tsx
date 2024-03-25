@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import { createPortal } from "react-dom";
-import { text } from "../../../helpers/functions";
 
 const apiKey = "pk.84af2804b0fb860d1278e33a10c9c678";
 
@@ -21,7 +20,7 @@ const AdressConfirmationModal = () => {
     try {
       const response = await fetch(url);
       const data = await response.json();
-      
+
       const location = [
         data?.address?.quarter,
         data?.address?.house_number,

@@ -9,7 +9,7 @@ import { text } from "../../../helpers/functions";
 const Filter = () => {
   const dispatch = useDispatch();
   const selectedCategoryId = useSelector(
-    (state: RootState) => state.restaurants.selectedCategoryID
+    (state: RootState) => state.restaurants?.selectedCategoryID
   );
   useEffect(() => {
     const filterRestaurantsData = async () => {
