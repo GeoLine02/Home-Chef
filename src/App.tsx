@@ -19,6 +19,7 @@ import {
 import FavoriteRestaurants from "./pages/FavoriteRestaurants";
 import { withTranslation } from "react-i18next";
 import { getUsersById } from "./api/index";
+import AuthGuard from "./guard/AuthGuard";
 
 const App = withTranslation()(function App() {
   const dispatch = useDispatch();
@@ -71,14 +72,16 @@ const App = withTranslation()(function App() {
         {isSearchFocused ? null : <Header />}
         <main>
           <Routes>
+            <Route element={<AuthGuard />}>
+              <Route path={routes.checkOut} element={<CheckOut />} />
+              <Route
+                path={routes.favoriteRestaurants}
+                element={<FavoriteRestaurants />}
+              />
+            </Route>
             <Route path={routes.home} element={<Home />} />
-            <Route path={routes.checkOut} element={<CheckOut />} />
             <Route path={`${routes.home}/:id`} element={<RestaurantByID />} />
             <Route path={routes.social} element={<Social />} />
-            <Route
-              path={routes.favoriteRestaurants}
-              element={<FavoriteRestaurants />}
-            />
           </Routes>
         </main>
         {isSearchFocused ? null : <Footer />}
