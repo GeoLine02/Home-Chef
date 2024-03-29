@@ -8,6 +8,7 @@ import { getUserAddressList } from "../../../store/actions/actionCreator";
 import ConfirmAddressBtn from "../../elements/buttons/ConfirmAddressBtn";
 import DeclineAddressBtn from "../../elements/buttons/DeclineAddressBtn";
 
+
 const apiKey = "pk.84af2804b0fb860d1278e33a10c9c678";
 
 const AdressConfirmationModal = () => {

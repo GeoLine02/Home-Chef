@@ -13,6 +13,8 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Controller } from "swiper/modules";
 import "swiper/css";
 import { text } from "../../../helpers/functions";
+import { ToastContainer, toast } from 'react-toastify';
+import i18n from "../../../i18n";
 
 const FilteredRestaurantCategoryList = () => {
   const dispatch = useDispatch();
@@ -24,8 +26,14 @@ const FilteredRestaurantCategoryList = () => {
   const [controlledSwiper, setControlledSwiper] = useState<any>(null);
   const [activeIndex, setActiveIndex] = useState(0);
 
+  const showToastError= () => {
+    toast.error("Restaurant categories fetching error");
+    
+  }
+ 
   useEffect(() => {
     const fetchRestaurantCategoriesData = async () => {
+      
       try {
         const apiCallOptions = {
           headers: { "content-type": "application/json" },
@@ -34,8 +42,9 @@ const FilteredRestaurantCategoryList = () => {
         const res = await http("/restaurant-categories", apiCallOptions);
         const data = await res.json();
         dispatch(fetchRestaurantCategories(data));
+        
       } catch (err) {
-        console.log("Restaurant categories fetching error", err);
+        showToastError();
       }
     };
     fetchRestaurantCategoriesData();
@@ -73,6 +82,14 @@ const FilteredRestaurantCategoryList = () => {
         onSwiper={setControlledSwiper}
         className="flex gap-3 whitespace-nowrap overflow-x-auto lg:w-full lg:mx-auto lg:overflow-x-hidden md:min-w-[768px]"
       >
+         <ToastContainer
+        position="top-left"
+        autoClose={3000}
+        closeOnClick
+        draggable
+        theme="light"
+        
+      />
         {newRestaurantCategories?.map((food: any, index: number) => {
           return (
             <SwiperSlide
