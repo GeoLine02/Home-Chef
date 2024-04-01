@@ -17,6 +17,7 @@ import {
 } from "../store/actions/actionCreator";
 import RestaurantBanner from "../components/blocks/RestaurantBanner/RestaurantBanner";
 import { getFavoriteRestaurants } from "../api";
+import { ToastContainer, toast } from "react-toastify";
 
 const RestaurantByID = () => {
   const navigate = useNavigate();
@@ -27,6 +28,10 @@ const RestaurantByID = () => {
   const restaurantById = useSelector(
     (state: RootState) => state.restaurants?.restaurantById
   );
+  const showToastError= () => {
+    toast .error(text("ERROR_RESTAURANTID"));
+
+  }
 
   const [showUnfinishedOrderModal, setShowUnfinishedOrderModal] =
     useState<boolean>(false);
@@ -41,6 +46,7 @@ const RestaurantByID = () => {
   useEffect(() => {
     const getRestaurantById = async () => {
       try {
+        
         const apiCallOptions = {
           headers: {
             "content-type": "application/json",
@@ -54,7 +60,8 @@ const RestaurantByID = () => {
           dispatch(saveRestaurantByIdData(data));
         }
       } catch (err) {
-        console.log("restaurantByID data fetching error!", err);
+        showToastError()
+        
       }
     };
     getRestaurantById();
@@ -87,6 +94,13 @@ const RestaurantByID = () => {
             : "w-full max-w-screen-2xl mx-auto flex flex-col xl:flex-row my-9 px-3 gap-4 relative"
         }
       >
+         <ToastContainer
+        position="top-left"
+        autoClose={3000}
+        closeOnClick
+        draggable
+        theme="light"
+    />
         <div className="flex flex-col items-center gap-4">
           <div
             onClick={() => {

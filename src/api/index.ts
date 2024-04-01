@@ -1,9 +1,16 @@
+import { toast } from "react-toastify";
 import { http } from "../helpers/http";
+import { text } from "../helpers/functions";
 
 // ***************************
 // User by ID
 // ***************************
 export const getUsersById = (userId: number) => {
+  const userIDError= () => {
+    toast.error(text("ERROR_USERID"));
+  }
+  
+
   const apiCallOptions = {
     headers: {
       "content-type": "application/json",
@@ -11,15 +18,18 @@ export const getUsersById = (userId: number) => {
     method: "GET",
   };
   return http(`/user/${userId}`, apiCallOptions)
+  
     .then((jsonUser) => jsonUser.json())
     .then((user) => {
+      
       if (user) {
         return user;
       }
       return null;
+      
     })
     .catch((error) => {
-      console.log("failed to fetch user data", error);
+      userIDError()
     });
 };
 
@@ -37,6 +47,9 @@ export const addFavoriteRestaurants = (
     },
     method: "POST",
   };
+  const favRestaurantDataError = () =>{
+    toast.error(text("ERROR_FAVRESTAURANT_DATA_FETCHING"))
+  }
   return http(`/profile/favorites/${userId}/${restaurantId}`, apiCallOptions)
     .then((jsonFavoriteRestaurants) => {
       if (jsonFavoriteRestaurants.statusText === "Created") {
@@ -49,7 +62,7 @@ export const addFavoriteRestaurants = (
       }
     })
     .catch((error) => {
-      console.log("Favorite restaurants data fetching error", error);
+      favRestaurantDataError()
     });
 };
 
@@ -64,6 +77,9 @@ export const getFavoriteRestaurants = (userId: number) => {
     },
     method: "GET",
   };
+  const favRestaurantError= () => {
+    toast.error(text("ERROR_FAVRESTAURANT_ID"));
+  }
   return http(`/profile/favorites/${userId}`, apiCallOptions)
     .then((jsonFavoriteRestaurants) => jsonFavoriteRestaurants.json())
     .then((favoriteRestaurantsList) => {
@@ -72,7 +88,7 @@ export const getFavoriteRestaurants = (userId: number) => {
       }
     })
     .catch((error) => {
-      console.log("favorite restaurants fetching error", error);
+      favRestaurantError()
     });
 };
 
@@ -84,12 +100,16 @@ export const removeFavoriteRestaurant = (
   userId: number,
   restaurantId: number
 ) => {
+  const removeFavRestaurant= () => {
+    toast.error(text("ERROR_DELETE_FAVOURITE_RESTAURANT"));
+  }
   const apiCallOptions = {
     headers: {
       "content-type": "application/json",
     },
     method: "DELETE",
   };
+  
   return http(
     `/profile/favorites/remove/${userId}/${restaurantId}`,
     apiCallOptions
@@ -99,6 +119,6 @@ export const removeFavoriteRestaurant = (
       return removedRestaurant;
     })
     .catch((error) => {
-      console.log("remove favorite restaurants error!", error);
+      removeFavRestaurant()
     });
 };

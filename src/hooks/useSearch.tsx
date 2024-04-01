@@ -2,11 +2,18 @@ import { useState, useEffect, ChangeEvent } from "react";
 import { useDispatch } from "react-redux";
 import { http } from "../helpers/http";
 import { clearSearch, handleSearch } from "../store/actions/actionCreator";
+import { ToastContainer, toast } from "react-toastify";
+import { text } from "../helpers/functions";
 
 const useSearch = () => {
   const [search, setSearch] = useState<string>("");
   const dispatch = useDispatch();
   const [isSearchFocused, setIsSearchFocused] = useState<boolean>(false);
+
+  const showToastError= () => {
+    toast.error(text("ERROR_SEARCHDATA"));
+
+  }
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     setSearch(e.target.value);
@@ -37,19 +44,26 @@ const useSearch = () => {
           dispatch(clearSearch());
         }
       } catch (error) {
-        console.error("Error fetching data:", error);
+        showToastError()
       }
     };
     fetchData();
   }, [search, dispatch]);
 
-  return [
+  return [ 
     search,
     setSearch,
     isSearchFocused,
     setIsSearchFocused,
     handleChange,
-  ] as const;
+    <ToastContainer
+        position="top-left"
+        autoClose={3000}
+        closeOnClick
+        draggable
+        theme="light"
+    />
+] as const;
 };
 
 export default useSearch;

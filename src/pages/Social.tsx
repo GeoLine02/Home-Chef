@@ -6,6 +6,7 @@ import { handleFetchUserVkInfo } from "../store/actions/actionCreator";
 import routes from "../constants/routes";
 import { useNavigate } from "react-router-dom";
 import { text } from "../helpers/functions";
+import { ToastContainer } from "react-toastify";
 
 const Social = () => {
   const searchParams = useQuery();
@@ -42,6 +43,13 @@ const Social = () => {
             strokeLinecap="round"
             strokeLinejoin="round"
           >
+          <ToastContainer
+            position="top-left"
+            autoClose={3000}
+            closeOnClick
+            draggable
+            theme="light"
+          />
             {" "}
             <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />{" "}
             <polyline points="22 4 12 14.01 9 11.01" />

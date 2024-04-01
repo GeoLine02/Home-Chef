@@ -13,15 +13,15 @@ const Filter = () => {
   const selectedCategoryId = useSelector(
     (state: RootState) => state.restaurants?.selectedCategoryID
   );
-
-  const showToastError= () => {
-    toast.error("Restaurants filter error");
-  }
   
+  const showToastError= () => {
+    toast.error(text("ERROR_FILTER"));
+  }
   
   useEffect(() => {
     const filterRestaurantsData = async () => {
       try {
+        
         if (selectedCategoryId) {
           const apiCallOptions = {
             headers: {

@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import ScrollBtn from "../../elements/ScrollBtn";
 import { http } from "../../../helpers/http";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useTransition } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   fetchRestaurantCategories,
@@ -14,7 +14,7 @@ import { Controller } from "swiper/modules";
 import "swiper/css";
 import { text } from "../../../helpers/functions";
 import { ToastContainer, toast } from 'react-toastify';
-import i18n from "../../../i18n";
+
 
 const FilteredRestaurantCategoryList = () => {
   const dispatch = useDispatch();
@@ -25,11 +25,13 @@ const FilteredRestaurantCategoryList = () => {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const [controlledSwiper, setControlledSwiper] = useState<any>(null);
   const [activeIndex, setActiveIndex] = useState(0);
-
+  
+  
   const showToastError= () => {
-    toast.error("Restaurant categories fetching error");
+    toast.error(text("ERROR_CATEGORIES"));
     
   }
+  
  
   useEffect(() => {
     const fetchRestaurantCategoriesData = async () => {

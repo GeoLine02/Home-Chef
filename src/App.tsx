@@ -20,6 +20,7 @@ import FavoriteRestaurants from "./pages/FavoriteRestaurants";
 import { withTranslation } from "react-i18next";
 import { getUsersById } from "./api/index";
 import AuthGuard from "./guard/AuthGuard";
+import { ToastContainer } from "react-toastify";
 
 const App = withTranslation()(function App() {
   const dispatch = useDispatch();
@@ -68,6 +69,13 @@ const App = withTranslation()(function App() {
           : ""
       }
     >
+        <ToastContainer
+        position="top-left"
+        autoClose={3000}
+        closeOnClick
+        draggable
+        theme="light"
+    />
       <Router>
         {isSearchFocused ? null : <Header />}
         <main>

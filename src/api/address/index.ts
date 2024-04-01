@@ -1,10 +1,16 @@
+import { toast } from "react-toastify";
 import { http } from "../../helpers/http";
+import { text } from "../../helpers/functions";
 
 // *********************
 // new address
 // *********************
 
 export const fetchNewAddress = (userID: number, newAddress: string) => {
+  const showToastError= () => {
+    toast.error(text("ERROR_NEW_ADDRESS"));
+
+  }
   const apiCallOptions = {
     headers: {
       "content-type": "application/json",
@@ -19,7 +25,7 @@ export const fetchNewAddress = (userID: number, newAddress: string) => {
     .then((newAddress) => {
       return newAddress;
     })
-    .catch((err) => console.log("new address fetching error!", err));
+    .catch((err) =>showToastError());
 };
 
 // *********************
@@ -27,6 +33,9 @@ export const fetchNewAddress = (userID: number, newAddress: string) => {
 // *********************
 
 export const fetchUserAddressList = (userID: number) => {
+  const showToastError= () => {
+    toast.error(text("USERADDRESS_ERROR"));
+  }
   const apiCallOptions = {
     headers: {
       "content-type": "application/json",
@@ -40,7 +49,7 @@ export const fetchUserAddressList = (userID: number) => {
     .then((userAddress) => {
       return userAddress;
     })
-    .catch((err) => console.log("userAddressList fetching error!", err));
+    .catch((err) =>  showToastError() );
 };
 
 // *************************
@@ -57,6 +66,9 @@ export const fetchSingleUserAddress = (
     },
     method: "GET",
   };
+  const showToastError= () => {
+    toast.error(text("SINGLEUSER_ERROR"));
+  }
   http(`/profile/address/${userID}/${userAddressID}`, apiCallOptions)
     .then((singleUserAddressJson) => {
       return singleUserAddressJson.json();
@@ -64,7 +76,7 @@ export const fetchSingleUserAddress = (
     .then((singleUserAddress) => {
       return singleUserAddress;
     })
-    .catch((err) => console.log("single user address fetching error!", err));
+    .catch((err) => showToastError());
 };
 
 // ***********************
@@ -72,17 +84,23 @@ export const fetchSingleUserAddress = (
 // ***********************
 
 export const fetchUpdateMyAddress = (
+  
   userID: number,
   userAddressID: number,
   updatedAddress: string
 ) => {
+  const showToastError= () => {
+    toast.error(text("UPDATE_ADDRESS_ERROR"));
+  }
   const apiCallOptions = {
     headers: {
       "content-type": "application/json",
     },
+    
     method: "PATCH",
     body: JSON.stringify({ updateAddress: updatedAddress }),
   };
+  
   http(`/profile/update-address/${userID}/${userAddressID}`, apiCallOptions)
     .then((updatedAddressJson) => {
       return updatedAddressJson.json();
@@ -90,7 +108,7 @@ export const fetchUpdateMyAddress = (
     .then((updatedAddress) => {
       return updatedAddress;
     })
-    .catch((err) => console.log("updating address error!", err));
+    .catch((err) => showToastError());
 };
 
 // ********************
@@ -98,6 +116,9 @@ export const fetchUpdateMyAddress = (
 // ********************
 
 export const fetchRemoveMyAddress = (userID: number, userAddressID: number) => {
+  const showToastError= () => {
+    toast.error(text("REMOVE_ADDRESS_FETCHING_ERROR"));
+  }
   const apiCallOptions = {
     headers: {
       "content-type": "application/json",
@@ -111,5 +132,5 @@ export const fetchRemoveMyAddress = (userID: number, userAddressID: number) => {
     .then((removedAddress) => {
       return removedAddress;
     })
-    .catch((err) => console.log("remove address fetching error!", err));
+    .catch((err) => showToastError());
 };

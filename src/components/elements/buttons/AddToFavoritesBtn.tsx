@@ -10,6 +10,7 @@ import { RootState } from "../../../store/state/rootReducers";
 import { IFavoriteRestaurants } from "../../../types/restaurant";
 import { GoHeartFill } from "react-icons/go";
 import { useEffect } from "react";
+import { ToastContainer } from "react-toastify";
 
 const AddToFavoritesBtn = () => {
   const dispatch = useDispatch();
@@ -56,6 +57,13 @@ const AddToFavoritesBtn = () => {
       onClick={handleAddFavoriteRestaurants}
       className="bg-white p-3 rounded-full"
     >
+      <ToastContainer
+        position="top-left"
+        autoClose={3000}
+        closeOnClick
+        draggable
+        theme="light"
+    />
       {isRestaurantAdded ? (
         <GoHeartFill size={20} color="red" />
       ) : (

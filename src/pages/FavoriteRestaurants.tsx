@@ -6,6 +6,7 @@ import RemoveFromFavorites from "../components/elements/buttons/RemoveFromFavori
 import { useEffect } from "react";
 import { getFavoriteRestaurants } from "../api";
 import { saveFavoriteRestaurantsData } from "../store/actions/actionCreator";
+import { ToastContainer } from "react-toastify";
 
 const FavoriteRestaurants = () => {
   const dispatch = useDispatch();
@@ -41,7 +42,14 @@ const FavoriteRestaurants = () => {
                 ownerId={restaurant.ownerId}
                 phoneNumber={restaurant.phoneNumber}
               />
-              <div className="absolute -top-3 -right-3">
+               <ToastContainer
+                position="top-left"
+                autoClose={3000}
+                closeOnClick
+                draggable
+                theme="light"
+              />
+                  <div className="absolute -top-3 -right-3">
                 <RemoveFromFavorites restaurantID={restaurant.restaurantID} />
               </div>
             </div>

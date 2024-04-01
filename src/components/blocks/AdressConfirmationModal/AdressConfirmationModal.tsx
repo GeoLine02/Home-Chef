@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 import { createPortal } from "react-dom";
+import { text } from "../../../helpers/functions";
+import { ToastContainer, toast } from "react-toastify";
 
 
 const apiKey = "pk.84af2804b0fb860d1278e33a10c9c678";
@@ -17,6 +19,7 @@ const AdressConfirmationModal = () => {
   });
 
   const fetchAdress = async (lat: number, lon: number) => {
+   
     const url = `https://us1.locationiq.com/v1/reverse.php?key=${apiKey}&lat=${lat}&lon=${lon}&format=json`;
     try {
       const response = await fetch(url);
@@ -30,7 +33,6 @@ const AdressConfirmationModal = () => {
       ]
         .filter(Boolean)
         .join(", ");
-
       setAdress((prevState) => ({
         ...prevState,
         adress: location,
@@ -40,10 +42,12 @@ const AdressConfirmationModal = () => {
     } catch (error) {
       setAdress((prevState) => ({
         ...prevState,
-        errorMessage: "Unable to fetch address",
+        errorMessage:text(""),
       }));
+      toast.error(text("ERROR_FETCH_ADDRESS"));
     }
   };
+  
   const scrollHandler = () => {
     const scrollY = window.scrollY;
     const scrollThreshold = 150;
@@ -68,15 +72,17 @@ const AdressConfirmationModal = () => {
         () => {
           setAdress((prevState) => ({
             ...prevState,
-            errorMessage: "Unable to retrieve location",
+            errorMessage: text(""),
           }));
+          toast.error(text("ERROR_RETRIVAL_LOCATION"))
         }
       );
     } else {
       setAdress((prevState) => ({
         ...prevState,
-        errorMessage: "Geolocation is not supported by your browser.",
+        errorMessage: text(""),
       }));
+      toast.error(text("ERROR_GEOLOCATION"))
     }
   }, []);
 
@@ -110,6 +116,13 @@ const AdressConfirmationModal = () => {
             {/* {text("COMMON_YES")} */}
             YES
           </button>
+          <ToastContainer
+        position="top-left"
+        autoClose={3000}
+        closeOnClick
+        draggable
+        theme="light"
+    />
         </div>
       </div>
     </div>,
