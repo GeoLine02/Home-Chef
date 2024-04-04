@@ -30,3 +30,20 @@ export interface IUserById {
   isAccountActive: boolean;
   role: string;
 }
+
+export type AdressState = {
+  address: { city: string; neighbourhood: string; suburb: string };
+  display_name: string;
+  lat: number;
+  lon: number;
+} | null;
+
+export type AddressListType = {
+  city: string;
+  street: string;
+  neighborhood: string;
+  id: number;
+  lat: string;
+  lng: string;
+  userID: number;
+};
