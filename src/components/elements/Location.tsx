@@ -1,7 +1,6 @@
 import LocationImage from "../../assets/location.svg";
 import { ChangeEvent, useEffect, useState } from "react";
 import { text } from "../../helpers/functions";
-// import { fetchNewAddress } from "../../api/address";
 import { useSelector } from "react-redux";
 import { RootState } from "../../store/state/rootReducers";
 import { IoIosArrowUp } from "react-icons/io";
