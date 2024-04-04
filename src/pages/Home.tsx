@@ -1,5 +1,4 @@
 import Search from "../components/blocks/Search/Search";
-import Location from "../components/elements/Location";
 import SearchBar from "../components/elements/SearchBar";
 import Slogan from "../components/elements/Slogan";
 import SearchResults from "../components/elements/SearchResults";
@@ -12,7 +11,6 @@ import AllRestaurants from "../components/blocks/AllRestaurants/AllRestaurants";
 import FilteredRestaurants from "../components/blocks/FilteredRestaurants/FilteredRestaurants";
 import FilteredRestaurantCategoryList from "../components/blocks/RestaurantFilterCategories/FilteredRestaurantCategoryList";
 import { RootState } from "../store/state/rootReducers";
-import AdressConfirmationModal from "../components/blocks/AdressConfirmationModal/AdressConfirmationModal";
 
 const Home = () => {
   const dispatch = useDispatch();
@@ -50,7 +48,6 @@ const Home = () => {
 
   return (
     <div>
-      <AdressConfirmationModal />
       <div className="hidden bg-[#EEEEEE] px-32 py-6 lg:flex justify-center">
         <Slogan />
       </div>
@@ -67,7 +64,6 @@ const Home = () => {
               <Search />
             </div>
             <div className="lg:hidden flex md:flex-row md:gap-20 flex-col justify-center items-center gap-4 mt-6">
-              <Location />
               <div
                 onClick={() => {
                   dispatch(focuseSearch());
