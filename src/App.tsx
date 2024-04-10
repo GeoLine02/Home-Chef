@@ -20,6 +20,7 @@ import FavoriteRestaurants from "./pages/FavoriteRestaurants";
 import { withTranslation } from "react-i18next";
 import { getUsersById } from "./api/index";
 import AuthGuard from "./guard/AuthGuard";
+import AdressConfirmationModal from "./components/blocks/AdressConfirmationModal/AdressConfirmationModal";
 
 const App = withTranslation()(function App() {
   const dispatch = useDispatch();
@@ -38,7 +39,12 @@ const App = withTranslation()(function App() {
     (state: RootState) => state.search.isSearchFocused
   );
   const isAuthOpen = useSelector((state: RootState) => state.auth?.isAuthOpen);
-
+  const isChangeAddressOpen = useSelector(
+    (state: RootState) => state.auth.toggleChangeAddressModal
+  );
+  const isNewAddressModalOpen = useSelector(
+    (state: RootState) => state.auth.toggleAddNewAddressModal
+  );
   const isProductOpen = useSelector(
     (state: RootState) => state.products.toggleProductModal
   );
@@ -63,13 +69,19 @@ const App = withTranslation()(function App() {
   return (
     <div
       className={
-        isCartOpen || isSideBarOpen || isAuthOpen || isProductOpen
+        isCartOpen ||
+        isSideBarOpen ||
+        isAuthOpen ||
+        isProductOpen ||
+        isChangeAddressOpen ||
+        isNewAddressModalOpen
           ? "blur-sm bg-[#000000]/[0.5] h-screen overflow-y-hidden"
           : ""
       }
     >
       <Router>
         {isSearchFocused ? null : <Header />}
+        <AdressConfirmationModal />
         <main>
           <Routes>
             <Route element={<AuthGuard />}>

@@ -1,18 +1,20 @@
+import { IoCloseCircleOutline } from "react-icons/io5";
 import { useDispatch } from "react-redux";
 import { toggleAddNewAddressModalAction } from "../../../store/actions/actionCreator";
 
-const AddNewAddressBtn = () => {
+const CloseNewAddressModalBtn = () => {
   const dispatch = useDispatch();
 
   return (
-    <button
+    <div
+      className="flex w-full justify-end cursor-pointer"
       onClick={() => {
         dispatch(toggleAddNewAddressModalAction());
       }}
     >
-      <u className="opacity-70">add new address</u>
-    </button>
+      <IoCloseCircleOutline size={25} />
+    </div>
   );
 };
 
-export default AddNewAddressBtn;
+export default CloseNewAddressModalBtn;
