@@ -21,6 +21,9 @@ export const initialState: IRootState = {
   authGoogleInfo: undefined,
 };
 
+
+
+
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const authReducer = (state = initialState, action: any) => {
   switch (action.type) {

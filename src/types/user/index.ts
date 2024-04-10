@@ -1,3 +1,4 @@
+import { ProductQuantity } from "..";
 import { RestaurantType } from "../restaurant";
 
 export interface IVKUserProfileData {
@@ -29,4 +30,11 @@ export interface IUserById {
   id: number;
   isAccountActive: boolean;
   role: string;
+}
+
+export  interface IOrderList {
+ status : "completed" | "canceled" | "preparing";
+ productInfo: ProductQuantity
+ nameRestaurant: string;
+ date: any;
 }

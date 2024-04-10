@@ -12,17 +12,20 @@ import CartProductQuantity from "./CartProductQuantity";
 import { ProductQuantity } from "../../types";
 import { useEffect } from "react";
 import { text } from "../../helpers/functions";
+import { useLocation } from "react-router-dom";
 const ProductCard = ({
+
   id,
   productPhoto,
   productName,
   productPrice,
 }: ProductType) => {
   const dispatch = useDispatch();
+  const location = useLocation();
   const restaurantById = useSelector(
     (state: RootState) => state.restaurants?.restaurantById
   );
-
+console.log(location.pathname,"pathname")
   // gets clicked product
   const product = restaurantById.products?.find(
     (item: ProductType) => item.id === id
@@ -69,7 +72,7 @@ const ProductCard = ({
       <div className="block md:flex justify-between items-center">
         <h1 className="font-medium">${productPrice}</h1>
 
-        {isProductAdded ? (
+        {isProductAdded && location.pathname !== "/OrderList" ? (
           <CartProductQuantity id={id} />
         ) : (
           <div

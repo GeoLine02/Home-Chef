@@ -11,6 +11,7 @@ import { RootState } from "./store/state/rootReducers";
 import Social from "./pages/Social";
 import { useEffect } from "react";
 import { getUserByToken } from "./helpers/http";
+import OrderList from "./components/blocks/OrderList/Orderlist";
 import {
   getCartItems,
   handleFetchUserVkInfo,
@@ -79,6 +80,10 @@ const App = withTranslation()(function App() {
                 element={<FavoriteRestaurants />}
               />
             </Route>
+            
+              <Route path={routes.orderList} element={<OrderList />} />
+           
+            
             <Route path={routes.home} element={<Home />} />
             <Route path={`${routes.home}/:id`} element={<RestaurantByID />} />
             <Route path={routes.social} element={<Social />} />
