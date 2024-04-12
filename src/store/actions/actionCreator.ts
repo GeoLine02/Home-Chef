@@ -196,3 +196,31 @@ export const userLogOutAction = () => {
     type: appActions.LOG_OUT,
   };
 };
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export const fetchUserAddressAction = (payload: any) => {
+  return {
+    type: appActions.FETCH_USER_ADDRESS,
+    payload,
+  };
+};
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export const getUserAddressList = (payload: any) => {
+  return {
+    type: appActions.GET_USER_ADDRESS_LIST,
+    payload,
+  };
+};
+
+export const toggleAddNewAddressModalAction = () => {
+  return {
+    type: appActions.TOGGLE_ADD_NEW_ADDRESS_MODAL,
+  };
+};
+
+export const toggleChangeAddressModalAction = () => {
+  return {
+    type: appActions.TOGGLE_CHANGE_ADDRESS_MODAL,
+  };
+};

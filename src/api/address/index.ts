@@ -4,15 +4,16 @@ import { http } from "../../helpers/http";
 // new address
 // *********************
 
-export const fetchNewAddress = (userID: number, newAddress: string) => {
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export const fetchNewAddress = (userID: number, newAddress: any) => {
   const apiCallOptions = {
     headers: {
       "content-type": "application/json",
     },
     method: "POST",
-    body: JSON.stringify({ newAddrss: newAddress }),
+    body: JSON.stringify(newAddress),
   };
-  http(`/profile/new-address/${userID}`, apiCallOptions)
+  const resp = http(`/profile/new-address/${userID}`, apiCallOptions)
     .then((newAddressJson) => {
       return newAddressJson.json();
     })
@@ -20,6 +21,7 @@ export const fetchNewAddress = (userID: number, newAddress: string) => {
       return newAddress;
     })
     .catch((err) => console.log("new address fetching error!", err));
+  return resp;
 };
 
 // *********************
@@ -33,14 +35,15 @@ export const fetchUserAddressList = (userID: number) => {
     },
     method: "GET",
   };
-  http(`/profile/list/${userID}`, apiCallOptions)
+  const resp = http(`/profile/address/list/${userID}`, apiCallOptions)
     .then((userAddressListJson) => {
-      return userAddressListJson;
+      return userAddressListJson.json();
     })
     .then((userAddress) => {
       return userAddress;
     })
     .catch((err) => console.log("userAddressList fetching error!", err));
+  return resp;
 };
 
 // *************************

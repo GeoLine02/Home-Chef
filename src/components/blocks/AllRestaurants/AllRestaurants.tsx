@@ -24,7 +24,6 @@ const AllRestaurants = () => {
       .then((jsonRestaurantList) => jsonRestaurantList.json())
       .then((restaurantList) => {
         setOffSet((prev) => prev + 15);
-        console.log("fetch", offSet);
         dispatch(handleFetchRestaurants(restaurantList));
       });
   }, [dispatch, offSet]);

@@ -1,4 +1,5 @@
 import {
+  AdressState,
   IGoogleProfileData,
   IUserById,
   IVKUserProfileData,
@@ -11,6 +12,9 @@ export interface IRootState {
   authUserVkInfo: undefined | IVKUserProfileData;
   userByID: undefined | IUserById;
   authGoogleInfo: undefined | IGoogleProfileData;
+  userAddress: [] | AdressState[];
+  toggleAddNewAddressModal: boolean;
+  toggleChangeAddressModal: boolean;
 }
 
 export const initialState: IRootState = {
@@ -19,6 +23,9 @@ export const initialState: IRootState = {
   authUserVkInfo: undefined,
   userByID: undefined,
   authGoogleInfo: undefined,
+  userAddress: [],
+  toggleAddNewAddressModal: false,
+  toggleChangeAddressModal: false,
 };
 
 
@@ -60,6 +67,32 @@ export const authReducer = (state = initialState, action: any) => {
       return {
         ...state,
         authUserVkInfo: undefined,
+      };
+    }
+    case appActions.FETCH_USER_ADDRESS: {
+      return {
+        ...state,
+        userAddress: [...state.userAddress, action.payload],
+      };
+    }
+
+    case appActions.GET_USER_ADDRESS_LIST: {
+      return {
+        ...state,
+        userAddress: action.payload,
+      };
+    }
+    case appActions.TOGGLE_ADD_NEW_ADDRESS_MODAL: {
+      return {
+        ...state,
+        toggleAddNewAddressModal: !state.toggleAddNewAddressModal,
+      };
+    }
+
+    case appActions.TOGGLE_CHANGE_ADDRESS_MODAL: {
+      return {
+        ...state,
+        toggleChangeAddressModal: !state.toggleChangeAddressModal,
       };
     }
 

@@ -14,7 +14,6 @@ import { useEffect } from "react";
 import { text } from "../../helpers/functions";
 import { useLocation } from "react-router-dom";
 const ProductCard = ({
-
   id,
   productPhoto,
   productName,

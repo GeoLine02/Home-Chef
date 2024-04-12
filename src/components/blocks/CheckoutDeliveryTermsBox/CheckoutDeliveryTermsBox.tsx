@@ -4,6 +4,8 @@ import { useState } from "react";
 import AddNewAddressBtn from "../../elements/buttons/AddNewAddressBtn";
 import ChangeAddressBtn from "../../elements/buttons/ChangeAddressBtn";
 import DeliveryTimeWrapper from "../DeliveryTimeWrapper/DeliveryTimeWrapper";
+import { useSelector } from "react-redux";
+import { RootState } from "../../../store/state/rootReducers";
 
 const CheckoutDeliveryTermsBox = () => {
   // design demonstration purposes
@@ -12,7 +14,11 @@ const CheckoutDeliveryTermsBox = () => {
     setActive((prev) => !prev);
   };
 
-  const localUserAddress = localStorage.getItem("userAddress");
+  const userAddress = useSelector(
+    (state: RootState) => state?.auth?.userAddress
+  );
+
+  const lastAddress = userAddress.reverse()[0];
 
   return (
     <div className="flex flex-col gap-4 rounded-lg bg-[#ffffff] w-full p-6">
@@ -43,9 +49,13 @@ const CheckoutDeliveryTermsBox = () => {
       <div className="flex justify-between items-center mb-5 mt-3">
         <div className="flex justify-start items-center gap-3">
           <img src={LocationImage} alt="location" />
-          <p className="font-medium text-lg">THE DYNAMIC ADDRESS</p>
+          {userAddress.length ? (
+            <p className="font-medium text-lg">{`${lastAddress?.city}, ${lastAddress?.neighborhood}, ${lastAddress?.street}`}</p>
+          ) : (
+            <p className="font-medium text-lg">Address</p>
+          )}
         </div>
-        {localUserAddress ? <ChangeAddressBtn /> : <AddNewAddressBtn />}
+        {userAddress ? <ChangeAddressBtn /> : <AddNewAddressBtn />}
       </div>
       <h1 className="text-2xl font-bold">{text("CHECKOUT_DELIVERY_TIME")}</h1>
       <DeliveryTimeWrapper />
