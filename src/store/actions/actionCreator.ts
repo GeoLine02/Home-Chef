@@ -112,7 +112,10 @@ export const handleFetchUserGoogleInfo = (payload: []) => {
   };
 };
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-export const addCartItem = (product: ProductType, quantity?: number) => {
+export const addCartItem = (
+  product: ProductType | ProductType[],
+  quantity?: number
+) => {
   return {
     type: appActions.ADD_CART_ITEM,
     product,
@@ -222,5 +225,11 @@ export const toggleAddNewAddressModalAction = () => {
 export const toggleChangeAddressModalAction = () => {
   return {
     type: appActions.TOGGLE_CHANGE_ADDRESS_MODAL,
+  };
+};
+export const saveOrdersListAction = (payload: any) => {
+  return {
+    type: appActions.SAVE_ORDERS_LIST,
+    payload,
   };
 };

@@ -1,3 +1,4 @@
+import { IOrder } from "../../types/orders";
 import {
   AdressState,
   IGoogleProfileData,
@@ -15,6 +16,7 @@ export interface IRootState {
   userAddress: [] | AdressState[];
   toggleAddNewAddressModal: boolean;
   toggleChangeAddressModal: boolean;
+  userOrderList: IOrder[];
 }
 
 export const initialState: IRootState = {
@@ -26,10 +28,8 @@ export const initialState: IRootState = {
   userAddress: [],
   toggleAddNewAddressModal: false,
   toggleChangeAddressModal: false,
+  userOrderList: [],
 };
-
-
-
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const authReducer = (state = initialState, action: any) => {
@@ -93,6 +93,12 @@ export const authReducer = (state = initialState, action: any) => {
       return {
         ...state,
         toggleChangeAddressModal: !state.toggleChangeAddressModal,
+      };
+    }
+    case appActions.SAVE_ORDERS_LIST: {
+      return {
+        ...state,
+        userOrderList: action.payload,
       };
     }
 

@@ -1,16 +1,16 @@
-import React, { useEffect, useState } from 'react'
+import  { useEffect } from 'react'
 import RecentOrderList from '../components/blocks/RecentOrderList/RecentOrderlist'
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../store/state/rootReducers';
-import { useNavigate } from 'react-router-dom';
-import { IOrder } from '../types/orders';
 import { http } from '../helpers/http';
-import OrderSummeryList from '../components/blocks/OrderSummery/OrderSummeryList';
 import OrderhistoryList from '../components/blocks/OrderHistoryList/OrderhistoryList';
+import { saveOrdersListAction } from '../store/actions/actionCreator';
+
 
 export default function Orders() {
     const userID = useSelector((state: RootState) => state.auth.authUserVkInfo);
-    const [orders, setOrders] = useState<IOrder[]>([]);
+    const orderList = useSelector((state: RootState) => state.auth.userOrderList);
+    const dispatch = useDispatch();
     
     useEffect(() => {
       const fetchGetAllOrders = async () => {
@@ -25,10 +25,9 @@ export default function Orders() {
             `/orders?userID=${userID?.id}&offset=10`,
             apiCallOptions
           );
-          // const url = "http://localhost:4000/orders?userID=5&offset=1";
           if (resp.ok) {
             const data = await resp.json();
-            setOrders(data);
+            dispatch(saveOrdersListAction(data));
           }
         } catch (error) {
           console.log(error);
@@ -41,8 +40,8 @@ export default function Orders() {
     }, [userID]);
   return (
     <div>
-        <RecentOrderList orders={orders}/>
-        <OrderhistoryList orders={orders}/>
+        <RecentOrderList orders={orderList}/>
+        <OrderhistoryList orders={orderList}/>
         
     </div>
     

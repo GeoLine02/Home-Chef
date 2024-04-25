@@ -16,5 +16,5 @@ export interface IOrder {
   userID: number;
   userPaymentMethodID: null;
   length: number;
-  
+  order: object;
 }

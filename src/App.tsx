@@ -23,8 +23,7 @@ import { getUsersById } from "./api/index";
 import AuthGuard from "./guard/AuthGuard";
 import AdressConfirmationModal from "./components/blocks/AdressConfirmationModal/AdressConfirmationModal";
 import Orders from "./pages/Orders";
-import OrderSummery from "./components/elements/OrderSummery";
-import SummeryPage from "./pages/SummeryPage";
+import SummeryOrder from "./components/elements/SummeryOrder";
 
 const App = withTranslation()(function App() {
   const dispatch = useDispatch();
@@ -94,10 +93,9 @@ const App = withTranslation()(function App() {
                 path={routes.favoriteRestaurants}
                 element={<FavoriteRestaurants />}
               />
+               <Route path={`${routes.summeryorder}/:id`} element={<SummeryOrder/>}/>
+               <Route path={routes.orderList}element={<Orders/>} />
             </Route>
-            
-              <Route path={routes.orderList}element={<Orders/>} />
-              <Route  path={`${routes.orderList}/:id`} element={<SummeryPage/>}/>
             <Route path={routes.home} element={<Home />} />
             <Route path={`${routes.home}/:id`} element={<RestaurantByID />} />
             <Route path={routes.social} element={<Social />} />

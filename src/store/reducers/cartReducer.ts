@@ -1,5 +1,6 @@
 import appActions from "../actions/actions";
 import { CartType, ProductQuantity } from "../../types";
+import { IOrder } from "../../types/orders";
 
 interface InitialStateType {
   cart: [] | CartType[];
@@ -27,7 +28,8 @@ export const cartReducer = (state = initialState, action: any) => {
     }
 
     case appActions.ADD_CART_ITEM: {
-      let localCartArray = [];
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      let localCartArray: any = [];
       const existingCart = localStorage.getItem("cart");
       const product = action.product;
       const existedItem = state.productQuantity.find(
@@ -43,6 +45,23 @@ export const cartReducer = (state = initialState, action: any) => {
 
       if (existingCart) {
         localCartArray = JSON.parse(existingCart);
+      }
+
+      if (Array.isArray(action.product)) {
+        return {
+          ...state,
+          cart: action.product.map((item: IOrder) => {
+            localCartArray.push({
+              product: item,
+              quantity: 1,
+            });
+            localStorage.setItem("cart", JSON.stringify(localCartArray));
+            return {
+              product: item,
+              quantity: 1,
+            };
+          }),
+        };
       }
 
       if (existedItem) {

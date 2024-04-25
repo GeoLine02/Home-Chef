@@ -27,6 +27,10 @@ const CartList = () => {
               productPrice={item.product.productPrice}
               restaurantID={item.product.restaurantID}
               key={item.product.id}
+              createdAt={item.product.createdAt}
+              orderSequence={item.product.orderSequence}
+              status={item.product.status}
+              order={item.order}
             />
           ))
         }

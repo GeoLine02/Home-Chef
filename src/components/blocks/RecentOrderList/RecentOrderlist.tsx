@@ -1,24 +1,20 @@
-import { useEffect, useState } from "react";
-import { http } from "../../../helpers/http";
-import { useSelector } from "react-redux";
-import { RootState } from "../../../store/state/rootReducers";
 import { IOrder } from "../../../types/orders";
 import { FaArrowLeftLong } from "react-icons/fa6"
 import { useNavigate } from "react-router-dom";
 import RecentOrder from "../../elements/RecentOrder";
+
 interface RecentOrderListProps {
   orders: IOrder[]
 }
 const RecentOrderList = ({orders}: RecentOrderListProps) => {
   const navigate = useNavigate();
-
   return (
     <>
     <div className="flex gap-4 items-center lg:hidden">
     <FaArrowLeftLong  size={20} onClick={()=> navigate(-1)}/>
     <span>My orders</span>
     </div>
-     <h1 className="text-2xl">Recent orders</h1>
+     <h1 className="text-2xl my-3">Recent orders</h1>
       <div className="flex gap-4 overflow-x-auto max-w-80s">
        
         {orders?.map((order: IOrder,index) => (
@@ -34,6 +30,7 @@ const RecentOrderList = ({orders}: RecentOrderListProps) => {
             createdAt = {orders[0]?.createdAt}
             orderSequence={index}
             status={orders[0].status}
+            order={order}
           />
         ))}
         

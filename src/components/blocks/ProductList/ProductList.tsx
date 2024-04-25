@@ -11,6 +11,7 @@ export type ProductType = {
   createdAt:  string;
   orderSequence: number;
   status: string
+  order: object;
 };
 
 type ProductListProps = {
@@ -33,6 +34,7 @@ const ProductList = ({ products }: ProductListProps) => {
           createdAt = {product.createdAt}
           orderSequence={product.orderSequence}
           status={product.status}
+          order={product.order}
         />
       ))}
     </div>

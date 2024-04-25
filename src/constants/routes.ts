@@ -1,11 +1,11 @@
 const home = "/";
 const products = "/products";
 const cart = "/cart";
-const checkOut = "/checkOut";
+const checkOut = "/checkout";
 const social = "/social";
 const favoriteRestaurants = "/favorite-restaurants";
-const orderList = "/OrderList";
-const orderSummery = "/OrderSummery";
+const orderList = "/orderlist";
+const summeryorder = "/orderlist/summery";
 const routes = {
   home,
   products,
@@ -14,7 +14,7 @@ const routes = {
   social,
   favoriteRestaurants,
   orderList,
-  orderSummery,
+  summeryorder,
 };
 
 export default routes;

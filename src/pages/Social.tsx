@@ -3,7 +3,6 @@ import { getUserByToken } from "../helpers/http";
 import { useQuery } from "../hooks/useQuery";
 import { useDispatch } from "react-redux";
 import { handleFetchUserVkInfo } from "../store/actions/actionCreator";
-import routes from "../constants/routes";
 import { useNavigate } from "react-router-dom";
 import { text } from "../helpers/functions";
 
