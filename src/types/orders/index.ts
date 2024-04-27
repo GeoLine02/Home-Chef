@@ -17,4 +17,8 @@ export interface IOrder {
   userPaymentMethodID: null;
   length: number;
   order: object;
+  productName: string;
+  productPrice: number;
+  restaurantID: number;
+  orderSequence: number;
 }

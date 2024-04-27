@@ -1,5 +1,4 @@
 import  { useEffect } from 'react'
-import RecentOrderList from '../components/blocks/RecentOrderList/RecentOrderlist'
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../store/state/rootReducers';
 import { http } from '../helpers/http';
@@ -40,7 +39,6 @@ export default function Orders() {
     }, [userID]);
   return (
     <div>
-        <RecentOrderList orders={orderList}/>
         <OrderhistoryList orders={orderList}/>
         
     </div>

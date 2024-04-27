@@ -7,15 +7,17 @@ interface OrderHistoryListProps {
     orders: IOrder[];
 }
 export default function OrderhistoryList({orders}:OrderHistoryListProps) {
+  console.log(orders,"orders")
   return (
-    <div className="flex gap-4 overflow-x-auto max-w-80s" >
+    <div className=" max-w-80s" >
+           
          {orders?.map((order: IOrder) => {
             return<SingleOrderCard
               key={order.id}
               productName={order?.products[0]?.productName}
-              productPhoto={order?.products[0]?.productPhoto}
-              productComposition={order?.products[0]?.productComposition}
-              productDescription={order?.products[0]?.productDescription}
+              // productPhoto={order?.products[0]?.productPhoto}
+              // productComposition={order?.products[0]?.productComposition}
+              // productDescription={order?.products[0]?.productDescription}
               productPrice={+order?.totalAmount}
               id={order.id}
               restaurantID={order?.products[0]?.restaurantID}
