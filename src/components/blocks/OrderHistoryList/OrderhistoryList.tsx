@@ -1,36 +1,44 @@
 import { IOrder } from '../../../types/orders'
-
+import { v4 as uuidv4 } from 'uuid';
 import SingleOrderCard from '../../elements/SingleOrderCard';
+import { ProductType } from '../ProductList/ProductList';
 
 
 interface OrderHistoryListProps {
     orders: IOrder[];
 }
 export default function OrderhistoryList({orders}:OrderHistoryListProps) {
-  console.log(orders,"orders")
+  
   return (
-    <div className=" max-w-80s" >
-           
-         {orders?.map((order: IOrder) => {
-            return<SingleOrderCard
-              key={order.id}
-              productName={order?.products[0]?.productName}
-              // productPhoto={order?.products[0]?.productPhoto}
-              // productComposition={order?.products[0]?.productComposition}
-              // productDescription={order?.products[0]?.productDescription}
-              productPrice={+order?.totalAmount}
-              id={order.id}
-              restaurantID={order?.products[0]?.restaurantID}
-              createdAt = {orders[0]?.createdAt}
-              orderSequence={orders.length}
-              status={orders[0].status}
-              order={order}
-           /> 
+   <>
+        {orders.map((order:IOrder)=> {
+          const {products} = order
           
-          })}
-          
-        
-    </div>
+        return products.map((product:ProductType)=>{
+             return<SingleOrderCard
+                key={uuidv4()}
+                amount= {order.amount}
+                createdAt= {order.createdAt}
+                deletedAt= {order.deletedAt}
+                deliveryAmount= {order.deliveryAmount}
+                id= {order.id}
+                products= {order.products}
+                status={order.status}
+                totalAmount= {order.totalAmount}
+                updatedAt= {order.updatedAt}
+                userAddress= {order.userAddress}
+                userAddressID={order.userAddressID}
+                userID= {order.userID}
+                userPaymentMethodID={order.userPaymentMethodID}
+                order={order}
+                productName= {product.productName}
+                productPrice = {product.productPrice}
+                restaurantID={product.restaurantID}
+                orderSequence={product.orderSequence}
+              />    
+            })
+        })}
+    </>
     
   )
 }

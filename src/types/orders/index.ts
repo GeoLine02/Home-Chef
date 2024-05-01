@@ -2,7 +2,7 @@ import { ProductType } from "../../components/blocks/ProductList/ProductList";
 import { AddressListType } from "../user";
 
 export interface IOrder {
-  amount: string;
+  amount: number;
   createdAt: string;
   deletedAt: null;
   deliveryAmount: string;
@@ -15,7 +15,6 @@ export interface IOrder {
   userAddressID: number;
   userID: number;
   userPaymentMethodID: null;
-  length: number;
   order: object;
   productName: string;
   productPrice: number;
