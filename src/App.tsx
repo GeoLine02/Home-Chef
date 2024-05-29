@@ -22,6 +22,8 @@ import { getUsersById } from "./api/index";
 import AuthGuard from "./guard/AuthGuard";
 import AdressConfirmationModal from "./components/blocks/AdressConfirmationModal/AdressConfirmationModal";
 import Orders from "./pages/Orders";
+
+
 const App = withTranslation()(function App() {
   const dispatch = useDispatch();
   const localCart = localStorage.getItem("cart");

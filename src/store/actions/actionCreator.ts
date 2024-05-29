@@ -227,6 +227,7 @@ export const toggleChangeAddressModalAction = () => {
     type: appActions.TOGGLE_CHANGE_ADDRESS_MODAL,
   };
 };
+
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const saveOrdersListAction = (payload: any) => {
   return {
@@ -234,3 +235,4 @@ export const saveOrdersListAction = (payload: any) => {
     payload,
   };
 };
+

@@ -26,7 +26,7 @@ export const initialState: IRootState = {
   userAddress: [],
   toggleAddNewAddressModal: false,
   toggleChangeAddressModal: false,
-  userOrderList:[],
+  userOrderList: [],
 };
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const authReducer = (state = initialState, action: any) => {
