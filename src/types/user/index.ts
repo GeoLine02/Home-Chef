@@ -32,11 +32,11 @@ export interface IUserById {
   role: string;
 }
 
-export  interface IOrderList {
- status : "completed" | "canceled" | "preparing";
- productInfo: ProductQuantity
- nameRestaurant: string;
- date: any;
+export interface IOrderList {
+  status: "completed" | "canceled" | "preparing";
+  productInfo: ProductQuantity;
+  nameRestaurant: string;
+  date: number;
 }
 export type AdressState = {
   address: { city: string; neighbourhood: string; suburb: string };

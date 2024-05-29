@@ -6,7 +6,6 @@ import {
   IVKUserProfileData,
 } from "../../types/user";
 import appActions from "../actions/actions";
-
 export interface IRootState {
   isAuthOpen: boolean;
   isProfileOpen: boolean;
@@ -18,7 +17,6 @@ export interface IRootState {
   toggleChangeAddressModal: boolean;
   userOrderList: IOrder[];
 }
-
 export const initialState: IRootState = {
   isAuthOpen: false,
   isProfileOpen: false,
@@ -28,9 +26,8 @@ export const initialState: IRootState = {
   userAddress: [],
   toggleAddNewAddressModal: false,
   toggleChangeAddressModal: false,
-  userOrderList: [],
+  userOrderList:[],
 };
-
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const authReducer = (state = initialState, action: any) => {
   switch (action.type) {

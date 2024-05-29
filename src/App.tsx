@@ -11,7 +11,6 @@ import { RootState } from "./store/state/rootReducers";
 import Social from "./pages/Social";
 import { useEffect } from "react";
 import { getUserByToken } from "./helpers/http";
-
 import {
   getCartItems,
   handleFetchUserVkInfo,
@@ -23,8 +22,6 @@ import { getUsersById } from "./api/index";
 import AuthGuard from "./guard/AuthGuard";
 import AdressConfirmationModal from "./components/blocks/AdressConfirmationModal/AdressConfirmationModal";
 import Orders from "./pages/Orders";
-// import SummeryOrder from "./components/elements/SummeryOrder";
-
 const App = withTranslation()(function App() {
   const dispatch = useDispatch();
   const localCart = localStorage.getItem("cart");
