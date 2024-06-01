@@ -1,43 +1,43 @@
-import { FaRegCalendarAlt } from "react-icons/fa";
-import { IoIosArrowForward, IoMdTime } from "react-icons/io";
+import * as React from 'react';
+import { DemoContainer } from '@mui/x-date-pickers/internals/demo';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+import { TimePicker } from '@mui/x-date-pickers/TimePicker';
+import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 
-
+import dayjs from 'dayjs';
 const DeliveryTimeWrapper = () => {
-const date = new Date()
-const month = String(date.getMonth() + 1).padStart(2, "0");
-const time = date.toTimeString().slice(0, 8);
-const optionsDay: Intl.DateTimeFormatOptions = { weekday: 'long' };
-const dayName = date.toLocaleDateString('en-US', optionsDay);
-
-
-
-
-
 
   return (
-    <div className="flex flex-col gap-6">
-      
-      <div className="flex justify-between items-center rounded-xl border border-gray-400 px-5 py-3">
-        <div className="flex justify-start items-center gap-3">
-          <IoMdTime size={25} />
-          <div>
-            <p className="font-medium text-lg">{dayName}</p>
-            <p className="font-normal text-lg opacity-70">from:{time}- to:{time}</p>
-          </div>
-        </div>
-        <IoIosArrowForward size={25} />
-      </div>
-      <div className="flex justify-between items-center rounded-xl border border-gray-400 px-5 py-3">
-        <div className="flex justify-start items-center gap-3">
-          <FaRegCalendarAlt size={25} />
-          <p className="font-medium text-lg">{dayName}, {month} , {time} to {time}</p>
-        </div>
-        <IoIosArrowForward size={25} />
-      </div> 
-      <div>
+    <div className="flex flex-col gap-4 ">
+    <h2>Today</h2>
+    <div className="flex gap-4 ">
+    <LocalizationProvider dateAdapter={AdapterDayjs}>
+    
+      <DemoContainer components={['TimePicker']}>
+        <TimePicker label="From" />
+      </DemoContainer>
+    </LocalizationProvider>
+    <LocalizationProvider dateAdapter={AdapterDayjs}>
+      <DemoContainer components={['TimePicker']}>
+        <TimePicker label="Till" />
+      </DemoContainer>
+     
+    </LocalizationProvider> 
     </div>
+
+    <div className="flex gap-4 ">
+    <LocalizationProvider dateAdapter={AdapterDayjs}>
+     
+          <DatePicker defaultValue={dayjs('2022-04-17')} />
+    </LocalizationProvider>
+    <LocalizationProvider dateAdapter={AdapterDayjs}>
+      <TimePicker label="Time" />
+    </LocalizationProvider>
+    
     </div>
-);
-};
+  </div>
+  )
+}
 
 export default DeliveryTimeWrapper;
