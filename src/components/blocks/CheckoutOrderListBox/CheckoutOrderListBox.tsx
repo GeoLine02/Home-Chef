@@ -5,7 +5,7 @@ import { RootState } from "../../../store/state/rootReducers";
 import CartItem from "../../elements/CartItem";
 import ClearCart from "../../elements/ClearCart";
 import { ProductQuantity } from "../../../types";
-import { useNavigate } from "react-router-dom";
+import {  useNavigate } from "react-router-dom";
 
 const CheckoutOrderListBox = () => {
   const cartList = useSelector((state: RootState) => state.cart.cart);
@@ -18,7 +18,7 @@ const CheckoutOrderListBox = () => {
         </h1>
         <ClearCart />
       </div>
-      {cartList.map((item: ProductQuantity) => (
+      {cartList?.map((item: ProductQuantity) => (
         <CartItem
           id={item.product.id}
           productComposition={item.product.productComposition}
@@ -28,6 +28,10 @@ const CheckoutOrderListBox = () => {
           productPrice={item.product.productPrice}
           restaurantID={item.product.restaurantID}
           key={item.product.id}
+          createdAt={item.product.createdAt}
+          orderSequence={item.product.orderSequence}
+          status={item.product.status}
+          order={item.product.order}
         />
       ))}
       <button
@@ -51,5 +55,6 @@ const CheckoutOrderListBox = () => {
     </div>
   );
 };
+
 
 export default CheckoutOrderListBox;

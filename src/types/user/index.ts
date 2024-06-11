@@ -1,3 +1,4 @@
+import { ProductQuantity } from "..";
 import { RestaurantType } from "../restaurant";
 
 export interface IVKUserProfileData {
@@ -31,6 +32,12 @@ export interface IUserById {
   role: string;
 }
 
+export interface IOrderList {
+  status: "completed" | "canceled" | "preparing";
+  productInfo: ProductQuantity;
+  nameRestaurant: string;
+  date: number;
+}
 export type AdressState = {
   address: { city: string; neighbourhood: string; suburb: string };
   display_name: string;

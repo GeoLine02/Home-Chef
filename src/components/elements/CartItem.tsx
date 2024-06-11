@@ -1,7 +1,10 @@
 import { ProductType } from "../blocks/ProductList/ProductList";
 import CartProductQuantity from "./CartProductQuantity";
 
+
 const CartItem = ({ id, productName, productPrice }: ProductType) => {
+
+  
   return (
     <div className="flex justify-between items-center">
       <div>

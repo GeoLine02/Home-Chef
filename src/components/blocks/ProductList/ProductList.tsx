@@ -8,6 +8,10 @@ export type ProductType = {
   productPrice: number;
   productDescription: string;
   cartItemQuantity?: number;
+  createdAt:  string;
+  orderSequence: number;
+  status: string
+  order: object;
 };
 
 type ProductListProps = {
@@ -27,6 +31,10 @@ const ProductList = ({ products }: ProductListProps) => {
           productPhoto={product.productPhoto}
           productPrice={product.productPrice}
           productDescription={product.productDescription}
+          createdAt = {product.createdAt}
+          orderSequence={product.orderSequence}
+          status={product.status}
+          order={product.order}
         />
       ))}
     </div>
