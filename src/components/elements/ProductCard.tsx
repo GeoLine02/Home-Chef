@@ -24,7 +24,7 @@ const ProductCard = ({
   const restaurantById = useSelector(
     (state: RootState) => state.restaurants?.restaurantById
   );
-console.log(location.pathname,"pathname")
+
   // gets clicked product
   const product = restaurantById.products?.find(
     (item: ProductType) => item.id === id

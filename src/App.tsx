@@ -116,23 +116,6 @@ const App = withTranslation()(function App() {
     };
   }, [handleScroll, restaurantsState?.length]);
 
-  // useEffect(() => {
-  //   if (window.location.pathname === "/") {
-  //     const apiCallOptions = {
-  //       headers: {
-  //         "content-type": "application/json",
-  //       },
-  //       method: "GET",
-  //     };
-  //     http(`/restaurant?offset=${offSet}`, apiCallOptions)
-  //       .then((jsonRestaurantList) => jsonRestaurantList.json())
-  //       .then((restaurantList) => {
-  //         setOffSet((prev) => prev + 15);
-  //         dispatch(handleFetchRestaurants(restaurantList));
-  //       });
-  //   }
-  // }, [dispatch]);
-
   return (
     <div
       className={
