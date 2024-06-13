@@ -13,7 +13,7 @@ import { composeWithDevTools } from "redux-devtools-extension";
 const persistConfig = {
   key: "route",
   storage,
-  blacklist: ["sideBar", "search"],
+  blacklist: ["auth", "sideBar", "search"],
 };
 
 // eslint-disable-next-line
