@@ -5,6 +5,7 @@ import { handleFetchRestaurants } from "../../../store/actions/actionCreator";
 import RestaurantCard from "../../elements/RestaurantCard";
 import { RootState } from "../../../store/state/rootReducers";
 import { RestaurantResultType } from "../../../types/restaurant";
+import { v4 as uuidv4 } from "uuid";
 
 const AllRestaurants = () => {
   const dispatch = useDispatch();
@@ -63,7 +64,7 @@ const AllRestaurants = () => {
             city={restaurant.city}
             ownerId={restaurant.ownerId}
             phoneNumber={restaurant.phoneNumber}
-            key={restaurant.id * Math.random()}
+            key={uuidv4()}
             id={restaurant.id}
             name={restaurant.name}
           />
