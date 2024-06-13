@@ -14,15 +14,13 @@ import { Controller } from "swiper/modules";
 import "swiper/css";
 import { text } from "../../../helpers/functions";
 import { ToastContainer, toast } from 'react-toastify';
-import i18n from "../../../i18n";
 
 const FilteredRestaurantCategoryList = () => {
   const dispatch = useDispatch();
   const restaurantCategories = useSelector(
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     (state: any) => state.restaurants.restaurantCategories
   );
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+
   const [controlledSwiper, setControlledSwiper] = useState<any>(null);
   const [activeIndex, setActiveIndex] = useState(0);
 
