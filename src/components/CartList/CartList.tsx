@@ -2,15 +2,26 @@ import { useSelector } from "react-redux";
 import CartItem from "../elements/CartItem";
 import { RootState } from "../../store/state/rootReducers";
 import { text } from "../../helpers/functions";
+import { useEffect } from "react";
 
 const CartList = () => {
   const cartList = useSelector((state: RootState) => state.cart?.cart);
   const cart = localStorage.getItem("cart");
   const parsedCart = cart ? JSON.parse(cart) : [];
+
+  // useEffect(() => {
+  //   const cart = localStorage.getItem("cart");
+
+  //   if (cart?.length) {
+  //     const parsedCart = JSON.parse(cart);
+      
+  //   }
+  // }, [cartList]);
+
   return (
     <div>
       <div className="mt-3">
-        {parsedCart?.length === 0 && (
+        {!parsedCart?.length && (
           <h1 className="font-medium text-3xl text-gray-400 text-center">
             {text("CART_IS_EMPTY")}
           </h1>
