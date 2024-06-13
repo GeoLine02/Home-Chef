@@ -28,7 +28,7 @@ export const cartReducer = (state = initialState, action: any) => {
 
     case appActions.ADD_CART_ITEM: {
       // let localCartArray = [];
-      const existingCart = localStorage.getItem("cart");
+      // const existingCart = localStorage.getItem("cart");
       const product = action.product;
       const existedItem = state.productQuantity.find(
         (item) => item.product.id === product.id
@@ -41,15 +41,15 @@ export const cartReducer = (state = initialState, action: any) => {
         };
       }
 
-      if (existingCart) {
-        // localCartArray = JSON.parse(existingCart);
-      }
+      // if (existingCart) {
+      //   localCartArray = JSON.parse(existingCart);
+      // }
 
-      if (existedItem) {
-        // localCartArray.push({ product, quantity: existedItem.quantity });
-      } else {
-        // localCartArray.push({ product, quantity: 1 });
-      }
+      // if (existedItem) {
+      //   localCartArray.push({ product, quantity: existedItem.quantity });
+      // } else {
+      //   localCartArray.push({ product, quantity: 1 });
+      // }
 
       // localStorage.setItem("cart", JSON.stringify(localCartArray));
 
@@ -69,7 +69,7 @@ export const cartReducer = (state = initialState, action: any) => {
     }
 
     case appActions.CLEAR_CART: {
-      // localStorage.removeItem("cart");
+      localStorage.removeItem("cart");
       return {
         ...state,
         cart: [],
@@ -82,18 +82,18 @@ export const cartReducer = (state = initialState, action: any) => {
 
       // let localCartArray = [];
       // const existingCart = localStorage.getItem("cart");
-      let existingCart = state.cart;
+      // let existingCart = state.cart;
 
-      if (existingCart) {
-        // localCartArray = JSON.parse(existingCart);
-      }
+      // if (existingCart) {
+      //   localCartArray = JSON.parse(existingCart);
+      // }
 
-      existingCart = existingCart.map((item: ProductQuantity) => {
-        if (item.product.id === product?.id) {
-          return { ...item, quantity: item.quantity + 1 };
-        }
-        return item;
-      });
+      // existingCart = existingCart.map((item: ProductQuantity) => {
+      //   if (item.product.id === product?.id) {
+      //     return { ...item, quantity: item.quantity + 1 };
+      //   }
+      //   return item;
+      // });
 
       // localStorage.setItem("cart", JSON.stringify(localCartArray));
       // searches existing item in productQuantityArray
@@ -154,23 +154,23 @@ export const cartReducer = (state = initialState, action: any) => {
     case appActions.DECREMENT_CART_ITEM_QUANTITY: {
       const { product } = action;
 
-      let localCartArray = [];
-      const existingCart = localStorage.getItem("cart");
+      // let localCartArray = [];
+      // const existingCart = localStorage.getItem("cart");
 
-      if (existingCart) {
-        localCartArray = JSON.parse(existingCart);
-      }
+      // if (existingCart) {
+      //   localCartArray = JSON.parse(existingCart);
+      // }
 
-      localCartArray = localCartArray.map((item: ProductQuantity) => {
-        if (item.product.id === product?.id) {
-          return { ...item, quantity: Math.max(0, item.quantity - 1) };
-        }
-        return item;
-      });
+      // localCartArray = localCartArray.map((item: ProductQuantity) => {
+      //   if (item.product.id === product?.id) {
+      //     return { ...item, quantity: Math.max(0, item.quantity - 1) };
+      //   }
+      //   return item;
+      // });
 
-      localCartArray = localCartArray.filter(
-        (item: ProductQuantity) => item.quantity > 0
-      );
+      // localCartArray = localCartArray.filter(
+      //   (item: ProductQuantity) => item.quantity > 0
+      // );
 
       // localStorage.setItem("cart", JSON.stringify(localCartArray));
 

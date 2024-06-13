@@ -3,7 +3,7 @@ import { getUserByToken } from "../helpers/http";
 import { useQuery } from "../hooks/useQuery";
 import { useDispatch } from "react-redux";
 import { handleFetchUserVkInfo } from "../store/actions/actionCreator";
-import routes from "../constants/routes";
+// import routes from "../constants/routes";
 import { useNavigate } from "react-router-dom";
 import { text } from "../helpers/functions";
 
@@ -53,7 +53,7 @@ const Social = () => {
       </div>
       <button
         className="flex mx-auto mb-12 px-6 py-3 font-semibold text-[20px] cursor-pointer bg-orange-400 border border-transparent rounded-full"
-        onClick={() => navigate(-2)}
+        onClick={() => navigate("/")}
       >
         {text("COMMON_HOME_PAGE")}
       </button>
