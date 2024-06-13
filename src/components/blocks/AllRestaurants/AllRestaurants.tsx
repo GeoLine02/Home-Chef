@@ -29,10 +29,12 @@ const AllRestaurants = () => {
   }, [dispatch, offSet]);
 
   const handleScroll = useCallback(() => {
-    if (
-      window.innerHeight + document.documentElement.scrollTop ===
-      document.documentElement.offsetHeight
-    ) {
+    const scrollThreshold = 200;
+    const scrollPosition =
+      window.innerHeight + document.documentElement.scrollTop;
+    const documentHeight = document.documentElement.offsetHeight;
+
+    if (scrollPosition >= documentHeight - scrollThreshold) {
       fetchRestaurants();
     }
   }, [fetchRestaurants]);

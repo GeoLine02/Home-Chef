@@ -23,7 +23,6 @@ import AuthGuard from "./guard/AuthGuard";
 import AdressConfirmationModal from "./components/blocks/AdressConfirmationModal/AdressConfirmationModal";
 import Orders from "./pages/Orders";
 
-
 const App = withTranslation()(function App() {
   const dispatch = useDispatch();
   const localCart = localStorage.getItem("cart");
@@ -92,8 +91,8 @@ const App = withTranslation()(function App() {
                 path={routes.favoriteRestaurants}
                 element={<FavoriteRestaurants />}
               />
-               {/* <Route path={`${routes.summeryorder}/:id`} element={<SummeryOrder/>}/> */}
-               <Route path={routes.orderList}element={<Orders/>} />
+              {/* <Route path={`${routes.summeryorder}/:id`} element={<SummeryOrder/>}/> */}
+              <Route path={routes.orderList} element={<Orders />} />
             </Route>
             <Route path={routes.home} element={<Home />} />
             <Route path={`${routes.home}/:id`} element={<RestaurantByID />} />
