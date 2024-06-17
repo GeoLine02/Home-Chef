@@ -7,6 +7,11 @@ export const toggleCart = () => {
     type: appActions.TOGGLE_CART,
   };
 };
+export const closeCart = () => {
+  return {
+    type: appActions.CLOSE_CART,
+  };
+};
 
 export const toggleBurger = () => {
   return {
