@@ -59,6 +59,12 @@ export const toggleAuthModal = () => {
   };
 };
 
+export const closeAuthModal = () => {
+  return {
+    type: appActions.CLOSE_AUTH_MODAL,
+  };
+};
+
 export const toggleProfileModal = () => {
   return {
     type: appActions.TOGGLE_PROFILE_MODAL,
@@ -107,6 +113,11 @@ export const selectProduct = (payload: any) => {
 export const toggleProductModal = () => {
   return {
     type: appActions.TOGGLE_PRODUCT_MODAL,
+  };
+};
+export const closeProductModal = () => {
+  return {
+    type: appActions.CLOSE_PRODUCT_MODAL,
   };
 };
 

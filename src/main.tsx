@@ -8,7 +8,7 @@ import rootReducers from "./store/state/rootReducers";
 import { Provider } from "react-redux";
 import "./i18n.ts";
 import { PersistGate } from "redux-persist/integration/react";
-import { composeWithDevTools } from "redux-devtools-extension";
+import { composeWithDevTools } from "@redux-devtools/extension";
 
 const persistConfig = {
   key: "route",
