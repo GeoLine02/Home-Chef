@@ -24,7 +24,6 @@ const ProductCard = ({
   const restaurantById = useSelector(
     (state: RootState) => state.restaurants?.restaurantById
   );
-console.log(location.pathname,"pathname")
   // gets clicked product
   const product = restaurantById.products?.find(
     (item: ProductType) => item.id === id
@@ -32,6 +31,7 @@ console.log(location.pathname,"pathname")
   const handleAddToCart = () => {
     const quantity = 1;
     dispatch(addCartItem(product, quantity));
+    localStorage.setItem("restaurantById", JSON.stringify(restaurantByID));
   };
 
   const localCart = localStorage.getItem("cart");
