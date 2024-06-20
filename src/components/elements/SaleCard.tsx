@@ -1,4 +1,4 @@
-import item from "../../assets/item.jpg";
+import SalesPhoto from "../../assets/salesPhoto.png";
 import { IoMdStar } from "react-icons/io";
 import { text } from "../../helpers/functions";
 
@@ -6,7 +6,7 @@ const SaleCard = () => {
   return (
     <div>
       <div>
-        <img className="rounded-md" src={item} alt="item" />
+        <img className="rounded-md" src={SalesPhoto} alt="item" />
       </div>
       <h1 className="text-xl">Chocolate Pancake</h1>
       <div className="flex gap-2">

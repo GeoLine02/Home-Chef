@@ -1,5 +1,6 @@
 import appActions from "../actions/actions";
 import { CartType, ProductQuantity } from "../../types";
+import { IOrder } from "../../types/orders";
 
 interface InitialStateType {
   cart: [] | CartType[];
@@ -21,19 +22,15 @@ export const cartReducer = (state = initialState, action: any) => {
         ...state,
         isCartOpen: !state.isCartOpen,
       };
-    case appActions.CLOSE_CART:
-      return {
-        ...state,
-        isCartOpen: false,
-      };
 
     case appActions.GET_LOCAL_CART_ITEMS: {
       return { ...state, cart: action.payload };
     }
 
     case appActions.ADD_CART_ITEM: {
-      // let localCartArray = [];
-      // const existingCart = localStorage.getItem("cart");
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      let localCartArray: any = [];
+      const existingCart = localStorage.getItem("cart");
       const product = action.product;
       const existedItem = state.productQuantity.find(
         (item) => item.product.id === product.id
@@ -46,17 +43,34 @@ export const cartReducer = (state = initialState, action: any) => {
         };
       }
 
-      // if (existingCart) {
-      //   localCartArray = JSON.parse(existingCart);
-      // }
+      if (existingCart) {
+        localCartArray = JSON.parse(existingCart);
+      }
 
-      // if (existedItem) {
-      //   localCartArray.push({ product, quantity: existedItem.quantity });
-      // } else {
-      //   localCartArray.push({ product, quantity: 1 });
-      // }
+      if (Array.isArray(action.product)) {
+        return {
+          ...state,
+          cart: action.product.map((item: IOrder) => {
+            localCartArray.push({
+              product: item,
+              quantity: 1,
+            });
+            localStorage.setItem("cart", JSON.stringify(localCartArray));
+            return {
+              product: item,
+              quantity: 1,
+            };
+          }),
+        };
+      }
 
-      // localStorage.setItem("cart", JSON.stringify(localCartArray));
+      if (existedItem) {
+        localCartArray.push({ product, quantity: existedItem.quantity });
+      } else {
+        localCartArray.push({ product, quantity: 1 });
+      }
+
+      localStorage.setItem("cart", JSON.stringify(localCartArray));
 
       if (existedItem) {
         return {
@@ -85,22 +99,21 @@ export const cartReducer = (state = initialState, action: any) => {
     case appActions.INCREMENT_CART_ITEM_QUANTITY: {
       const { product, quantity } = action;
 
-      // let localCartArray = [];
-      // const existingCart = localStorage.getItem("cart");
-      // let existingCart = state.cart;
+      let localCartArray = [];
+      const existingCart = localStorage.getItem("cart");
 
-      // if (existingCart) {
-      //   localCartArray = JSON.parse(existingCart);
-      // }
+      if (existingCart) {
+        localCartArray = JSON.parse(existingCart);
+      }
 
-      // existingCart = existingCart.map((item: ProductQuantity) => {
-      //   if (item.product.id === product?.id) {
-      //     return { ...item, quantity: item.quantity + 1 };
-      //   }
-      //   return item;
-      // });
+      localCartArray = localCartArray.map((item: ProductQuantity) => {
+        if (item.product.id === product?.id) {
+          return { ...item, quantity: item.quantity + 1 };
+        }
+        return item;
+      });
 
-      // localStorage.setItem("cart", JSON.stringify(localCartArray));
+      localStorage.setItem("cart", JSON.stringify(localCartArray));
       // searches existing item in productQuantityArray
       const existingQuantityItem = state.productQuantity.find(
         (item) => item.product?.id === product?.id
@@ -159,25 +172,25 @@ export const cartReducer = (state = initialState, action: any) => {
     case appActions.DECREMENT_CART_ITEM_QUANTITY: {
       const { product } = action;
 
-      // let localCartArray = [];
-      // const existingCart = localStorage.getItem("cart");
+      let localCartArray = [];
+      const existingCart = localStorage.getItem("cart");
 
-      // if (existingCart) {
-      //   localCartArray = JSON.parse(existingCart);
-      // }
+      if (existingCart) {
+        localCartArray = JSON.parse(existingCart);
+      }
 
-      // localCartArray = localCartArray.map((item: ProductQuantity) => {
-      //   if (item.product.id === product?.id) {
-      //     return { ...item, quantity: Math.max(0, item.quantity - 1) };
-      //   }
-      //   return item;
-      // });
+      localCartArray = localCartArray.map((item: ProductQuantity) => {
+        if (item.product.id === product?.id) {
+          return { ...item, quantity: Math.max(0, item.quantity - 1) };
+        }
+        return item;
+      });
 
-      // localCartArray = localCartArray.filter(
-      //   (item: ProductQuantity) => item.quantity > 0
-      // );
+      localCartArray = localCartArray.filter(
+        (item: ProductQuantity) => item.quantity > 0
+      );
 
-      // localStorage.setItem("cart", JSON.stringify(localCartArray));
+      localStorage.setItem("cart", JSON.stringify(localCartArray));
 
       const existingCartItem = state.cart.find(
         (item) => item.product.id === product?.id

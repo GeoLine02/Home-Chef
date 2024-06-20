@@ -5,12 +5,20 @@ import { useDispatch, useSelector } from "react-redux";
 import { filterRestaurants } from "../../../store/actions/actionCreator";
 import { RootState } from "../../../store/state/rootReducers";
 import { text } from "../../../helpers/functions";
+import { ToastContainer, toast } from 'react-toastify';
+
 
 const Filter = () => {
   const dispatch = useDispatch();
   const selectedCategoryId = useSelector(
     (state: RootState) => state.restaurants?.selectedCategoryID
   );
+
+  const showToastError= () => {
+    toast.error("Restaurants filter error");
+  }
+  
+  
   useEffect(() => {
     const filterRestaurantsData = async () => {
       try {
@@ -31,10 +39,11 @@ const Filter = () => {
             apiCallOptions
           );
           const data = await res.json();
-          dispatch(filterRestaurants(data));
+          dispatch(filterRestaurants(data)); 
+         
         }
-      } catch (err) {
-        console.log("Restaurants filter error", err);
+      }catch (err) { 
+        showToastError();
       }
     };
     filterRestaurantsData();
@@ -65,6 +74,14 @@ const Filter = () => {
       <div className="flex gap-4 items-center">
         <h1>{text("FILTER_FREE_SHIPPING")}</h1>
         <ToggleBtn />
+        <ToastContainer
+        position="top-left"
+        autoClose={3000}
+        closeOnClick
+        draggable
+        theme="light"
+        
+      />
       </div>
     </div>
   );

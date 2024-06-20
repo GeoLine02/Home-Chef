@@ -40,12 +40,16 @@ const ProfileDropDown = () => {
         </span>
       </div>
       <ul>
-        <li className="flex gap-[8px] items-center py-[8px] px-[16px]">
-          <FaListUl className="text-[18px]" />
+        
+        <Link to={routes.orderList}>
+          <li className="flex gap-[8px] items-center py-[8px] px-[16px]">
+          <FaListUl className="text-[18px]"/>
           <span className="text-[14px] leading-[20px] font-medium text-[#3D3D3D] hover:cursor-pointer">
             {text("COMMON_ORDERS")}
           </span>
         </li>
+        </Link>
+
         <li className="flex gap-[8px] items-center py-[8px] px-[16px]">
           <SlLocationPin className="text-[18px]" />
           <span className="text-[14px] leading-[20px] font-medium text-[#3D3D3D] hover:cursor-pointer">

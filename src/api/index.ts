@@ -102,3 +102,15 @@ export const removeFavoriteRestaurant = (
       console.log("remove favorite restaurants error!", error);
     });
 };
+
+export const getTotalAmount = (cartData: any) => {
+  console.log("cart", cartData);
+  const apiCallOptions = {
+    headers: {
+      "content-type": "application/json",
+    },
+    method: "POST",
+    body: JSON.stringify(cartData),
+  };
+  return http("/calculation", apiCallOptions);
+};

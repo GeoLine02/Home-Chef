@@ -28,6 +28,7 @@ const ProductDetails = ({
     );
     const quantity = 1;
     dispatch(addCartItem(product, quantity));
+    localStorage.setItem("restaurantById", restaurantByID);
   };
 
   return (

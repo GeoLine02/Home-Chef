@@ -14,6 +14,7 @@ import { ProductQuantity } from "../../types";
 import { useEffect } from "react";
 import { text } from "../../helpers/functions";
 import { useOutsideClick } from "../../hooks/useOutsideClick";
+import { useLocation } from "react-router-dom";
 const ProductCard = ({
   id,
   productPhoto,
@@ -21,13 +22,13 @@ const ProductCard = ({
   productPrice,
 }: ProductType) => {
   const dispatch = useDispatch();
+  const location = useLocation();
   const restaurantById = useSelector(
     (state: RootState) => state.restaurants?.restaurantById
   );
   const isProductModalOpen = useSelector(
     (state: RootState) => state.products.toggleProductModal
   );
-
   // gets clicked product
   const product = restaurantById.products?.find(
     (item: ProductType) => item.id === id
@@ -35,6 +36,7 @@ const ProductCard = ({
   const handleAddToCart = () => {
     const quantity = 1;
     dispatch(addCartItem(product, quantity));
+    localStorage.setItem("restaurantById", JSON.stringify(restaurantByID));
   };
 
   const localCart = localStorage.getItem("cart");
@@ -85,7 +87,7 @@ const ProductCard = ({
       <div className="block md:flex justify-between items-center">
         <h1 className="font-medium">${productPrice}</h1>
 
-        {isProductAdded ? (
+        {isProductAdded && location.pathname !== "/OrderList" ? (
           <CartProductQuantity id={id} />
         ) : (
           <div

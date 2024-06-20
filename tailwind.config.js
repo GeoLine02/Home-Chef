@@ -8,6 +8,10 @@ export default {
         "repeat-3-20": "repeat(3, 20%)",
         "repeat-4-20": "repeat(4, 20%)",
       },
+      dropShadow: { "custom-dropshadow": "0 0 10px rgba(0, 0, 0, 1)" },
+      boxShadow: {
+        "3xl-boxshadow": "0 35px 60px -15px rgba(0, 0, 0, 0.3)",
+      },
     },
   },
   plugins: [],
