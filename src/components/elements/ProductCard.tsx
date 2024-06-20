@@ -3,6 +3,7 @@ import { ProductType } from "../blocks/ProductList/ProductList";
 import { FaPlus } from "react-icons/fa6";
 import {
   addCartItem,
+  closeProductModal,
   getCartItems,
   selectProduct,
   toggleProductModal,
@@ -12,6 +13,7 @@ import CartProductQuantity from "./CartProductQuantity";
 import { ProductQuantity } from "../../types";
 import { useEffect } from "react";
 import { text } from "../../helpers/functions";
+import { useOutsideClick } from "../../hooks/useOutsideClick";
 import { useLocation } from "react-router-dom";
 const ProductCard = ({
   id,
@@ -23,6 +25,9 @@ const ProductCard = ({
   const location = useLocation();
   const restaurantById = useSelector(
     (state: RootState) => state.restaurants?.restaurantById
+  );
+  const isProductModalOpen = useSelector(
+    (state: RootState) => state.products.toggleProductModal
   );
   // gets clicked product
   const product = restaurantById.products?.find(
@@ -59,8 +64,19 @@ const ProductCard = ({
     dispatch(toggleProductModal());
   };
 
+  const handleCloseModal = () => {
+    if (isProductModalOpen) dispatch(closeProductModal());
+  };
+
+  const ref = useOutsideClick(
+    handleCloseModal
+  ) as React.RefObject<HTMLDivElement>;
+
   return (
-    <div className="lg:w-auto whitespace-nowrap overflow-x-clip w-full">
+    <div
+      className="lg:w-auto whitespace-nowrap overflow-x-clip w-full"
+      ref={ref}
+    >
       <img
         onClick={handleOpenModal}
         className="rounded-xl  cursor-pointer w-screen"

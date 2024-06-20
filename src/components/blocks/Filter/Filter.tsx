@@ -48,15 +48,26 @@ const Filter = () => {
     };
     filterRestaurantsData();
   }, [selectedCategoryId, dispatch]);
+
   return (
     <div className="hidden gap-6 lg:flex lg:flex-col lg:mt-6 lg:sticky lg:left-0 lg:top-5 w-fit">
       <form className="flex flex-col gap-6">
         <div className="flex gap-6">
-          <input type="radio" value="delivery" name="delivery" />
+          <input
+            type="checkbox"
+            id="delivery"
+            value="delivery"
+            name="delivery"
+          />
           <label htmlFor="delivery">{text("FILTER_DELIVERY")}</label>
         </div>
         <div className="flex gap-6">
-          <input type="radio" value="self-collection" name="delivery" />
+          <input
+            type="checkbox"
+            id="self-collection"
+            value="self-collection"
+            name="delivery"
+          />
           <label htmlFor="self-collection">{text("FILTER_SELF_COL")}</label>
         </div>
       </form>

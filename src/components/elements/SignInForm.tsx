@@ -1,15 +1,30 @@
 import { IoCloseOutline } from "react-icons/io5";
-import { useDispatch } from "react-redux";
-import { toggleAuthModal } from "../../store/actions/actionCreator";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  closeAuthModal,
+  toggleAuthModal,
+} from "../../store/actions/actionCreator";
 import { text } from "../../helpers/functions";
 import GoogleSignInBtn from "./buttons/GoogleSignInBtn";
 import VKSignInBtn from "./buttons/VKSignInBtn";
+import { RootState } from "../../store/state/rootReducers";
+import { useOutsideClick } from "../../hooks/useOutsideClick";
 
 const SignInForm = () => {
   const dispatch = useDispatch();
+  const isAuthOpen = useSelector((state: RootState) => state.auth.isAuthOpen);
+  // closeAuthModal
+
+  const handleCloseForm = () => {
+    if (isAuthOpen) dispatch(closeAuthModal());
+  };
+
+  const ref = useOutsideClick(
+    handleCloseForm
+  ) as React.RefObject<HTMLDivElement>;
 
   return (
-    <div className="flex flex-col gap-[32px]">
+    <div className="flex flex-col gap-[32px]" ref={ref}>
       <div
         className="top-4 right-4 bg-transparent w-[48px] h-[48px] rounded-full absolute md:top-[-20px] md:right-[-20px] md:bg-white flex items-center justify-center  hover:cursor-pointer"
         onClick={() => dispatch(toggleAuthModal())}
