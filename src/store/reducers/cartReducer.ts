@@ -22,6 +22,11 @@ export const cartReducer = (state = initialState, action: any) => {
         ...state,
         isCartOpen: !state.isCartOpen,
       };
+    case appActions.CLOSE_CART:
+      return {
+        ...state,
+        isCartOpen: false,
+      };
 
     case appActions.GET_LOCAL_CART_ITEMS: {
       return { ...state, cart: action.payload };
