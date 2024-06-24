@@ -2,4 +2,73 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Apply custom scrollbar styles globally */
+* {
+  /* scrollbar-width: thin; */
+  /* scrollbar-color: #888 #f1f1f1; */
+}
 
+::-webkit-scrollbar {
+  width: 0.7rem;
+}
+
+@layer utilities {
+  ::-webkit-scrollbar-corner,
+  ::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px grey;
+    border-radius: 0.65rem;
+    @apply bg-neutral-100;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    border-radius: 0.65rem;
+    @apply bg-neutral-400;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-neutral-500;
+  }
+
+  ::-webkit-scrollbar-thumb:active {
+    @apply bg-neutral-600;
+  }
+
+  ::-webkit-scrollbar-button {
+    display: block;
+    @apply bg-neutral-500;
+    background-repeat: no-repeat;
+    background-size: 70%;
+    background-position: center;
+  }
+
+  .no-button-scroll {
+    ::-webkit-scrollbar-button {
+      display: none;
+    }
+  }
+
+  ::-webkit-scrollbar-button:vertical:end:increment {
+    background-image: url("https://upload.wikimedia.org/wikipedia/commons/e/ee/Chevron-down.svg");
+  }
+
+  ::-webkit-scrollbar-button:vertical:end:decrement {
+    display: none;
+  }
+
+  ::-webkit-scrollbar-button:vertical:start:increment {
+    display: none;
+  }
+
+  ::-webkit-scrollbar-button:vertical:start:decrement {
+    background-image: url("https://upload.wikimedia.org/wikipedia/commons/7/7e/Chevron-up.svg");
+  }
+  ::-webkit-scrollbar-button:vertical:end:increment:hover,
+  ::-webkit-scrollbar-button:vertical:start:decrement:hover {
+    @apply bg-neutral-600;
+  }
+
+  ::-webkit-scrollbar-button:vertical:end:increment:active,
+  ::-webkit-scrollbar-button:vertical:start:decrement:active {
+    @apply bg-neutral-700;
+  }
+}

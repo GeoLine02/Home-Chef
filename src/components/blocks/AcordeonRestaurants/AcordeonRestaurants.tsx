@@ -1,5 +1,4 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import ScrollBtn from "../../elements/ScrollBtn";
 import { http } from "../../../helpers/http";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -9,12 +8,10 @@ import {
 } from "../../../store/actions/actionCreator";
 import { restaurantCategoryType } from "../../../types";
 import foodList from "../../../constants/FoodList";
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Controller } from "swiper/modules";
+import { SwiperSlide } from "swiper/react";
 import "swiper/css";
 import { text } from "../../../helpers/functions";
-import { ToastContainer, toast } from "react-toastify";
-import i18n from "../../../i18n";
+import { toast } from "react-toastify";
 import { IoMdArrowDropdown } from "react-icons/io";
 import { IoMdArrowDropup } from "react-icons/io";
 
@@ -25,8 +22,6 @@ const AcordeonRestaurants = () => {
     (state: any) => state.restaurants.restaurantCategories
   );
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const [controlledSwiper, setControlledSwiper] = useState<any>(null);
-  const [activeIndex, setActiveIndex] = useState(0);
 
   const [isAcordeonOpen, setIsAcordeonOpen] = useState(true);
   const [activeId, setActiveId] = useState<number | null>(null);
@@ -58,29 +53,13 @@ const AcordeonRestaurants = () => {
     }
   );
 
-  useEffect(() => {
-    const handleSlideChange = () => {
-      setActiveIndex(controlledSwiper.activeIndex);
-    };
-    if (controlledSwiper) {
-      controlledSwiper.on("slideChange", handleSlideChange);
-    }
-  }, [controlledSwiper]);
-
-  const handleClickPrev = () => controlledSwiper.slidePrev();
-  const handleClickNext = () => controlledSwiper.slideNext();
-
   const handleAcordeonTuggle = () => {
     setIsAcordeonOpen((isAcordeonOpen) => !isAcordeonOpen);
   };
 
-  const numberOfSlides = newRestaurantCategories?.length;
-  const slidesPerView = 12;
-  const lastSlideIndex = numberOfSlides - slidesPerView;
-
   return (
     <div
-      className="mt-4 flex flex-col"
+      className="mt-4 flex flex-col no-button-scroll "
       style={{ height: "calc(100vh - 13.75rem)" }}
     >
       <div
@@ -103,25 +82,11 @@ const AcordeonRestaurants = () => {
           </>
         )}
       </div>
-      {/* <Swiper
-        slidesPerView={slidesPerView}
-        modules={[Controller]}
-        controller={{ control: controlledSwiper }}
-        onSwiper={setControlledSwiper}
-        className="flex gap-3 whitespace-nowrap overflow-x-auto lg:w-full lg:mx-auto lg:overflow-x-hidden md:min-w-[768px]"
-      > */}
-      {/* <ToastContainer
-        position="top-left"
-        autoClose={3000}
-        closeOnClick
-        draggable
-        theme="light"
-      /> */}
       <div
-        className={`flex-grow overflow-y-auto transition-all duration-300 ease-in-out pt-2 ${
+        className={`overflow-clip transition-all duration-200 ease-in-out pt-2  ${
           isAcordeonOpen
-            ? "max-h-full"
-            : "max-h-0 opacity-0 pointer-events-none"
+            ? "max-h-full overflow-y-auto flex-grow"
+            : "max-h-0 overflow-hidden pointer-events-none"
         }`}
       >
         {newRestaurantCategories?.map((food: any, index: number) => {
@@ -148,11 +113,6 @@ const AcordeonRestaurants = () => {
           );
         })}
       </div>
-      {/* {activeIndex !== lastSlideIndex && (
-        <ScrollBtn role="right" onClick={handleClickNext} />
-      )}
-      {activeIndex !== 0 && <ScrollBtn role="left" onClick={handleClickPrev} />} */}
-      {/* </Swiper> */}
     </div>
   );
 };

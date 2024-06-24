@@ -23,6 +23,7 @@ export const calculateItemTotalCost = (cartState: ProductQuantity[]) => {
       },
     ],
   };
+  
   return getTotalAmount(orderCalculateData)
     .then((res) => res.json())
     .then((res) => res);
