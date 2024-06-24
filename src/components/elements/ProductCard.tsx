@@ -26,6 +26,7 @@ const ProductCard = ({
   const restaurantById = useSelector(
     (state: RootState) => state.restaurants?.restaurantById
   );
+
   const isProductModalOpen = useSelector(
     (state: RootState) => state.products.toggleProductModal
   );

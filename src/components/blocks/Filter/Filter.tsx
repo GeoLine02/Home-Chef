@@ -1,12 +1,13 @@
-import ToggleBtn from "../../elements/ToggleBtn";
+import { ToastContainer, toast } from "react-toastify";
 import { useEffect } from "react";
-import { http } from "../../../helpers/http";
 import { useDispatch, useSelector } from "react-redux";
-import { filterRestaurants } from "../../../store/actions/actionCreator";
-import { RootState } from "../../../store/state/rootReducers";
-import { text } from "../../../helpers/functions";
-import { ToastContainer, toast } from 'react-toastify';
 
+import ToggleBtn from "../../elements/ToggleBtn";
+import { http } from "../../../helpers/http";
+import { RootState } from "../../../store/state/rootReducers";
+import { filterRestaurants } from "../../../store/actions/actionCreator";
+import { text } from "../../../helpers/functions";
+import AcordeonRestaurants from "../AcordeonRestaurants/AcordeonRestaurants";
 
 const Filter = () => {
   const dispatch = useDispatch();
@@ -14,11 +15,10 @@ const Filter = () => {
     (state: RootState) => state.restaurants?.selectedCategoryID
   );
 
-  const showToastError= () => {
+  const showToastError = () => {
     toast.error("Restaurants filter error");
-  }
-  
-  
+  };
+
   useEffect(() => {
     const filterRestaurantsData = async () => {
       try {
@@ -39,10 +39,9 @@ const Filter = () => {
             apiCallOptions
           );
           const data = await res.json();
-          dispatch(filterRestaurants(data)); 
-         
+          dispatch(filterRestaurants(data));
         }
-      }catch (err) { 
+      } catch (err) {
         showToastError();
       }
     };
@@ -50,38 +49,34 @@ const Filter = () => {
   }, [selectedCategoryId, dispatch]);
 
   return (
-    <div className="hidden gap-6 lg:flex lg:flex-col lg:mt-6 lg:sticky lg:left-0 lg:top-5 w-fit">
-      <form className="flex flex-col gap-6">
-        <div className="flex gap-6">
-          <input
-            type="checkbox"
-            id="delivery"
-            value="delivery"
-            name="delivery"
+    <div className="lg:mt-6 lg:sticky lg:left-0 lg:top-5">
+      <div className="hidden gap-6 lg:flex lg:flex-col  w-fit">
+        <form className="flex flex-col gap-6">
+          <div className="flex gap-6">
+            <input type="radio" value="delivery" name="delivery" />
+            <label htmlFor="delivery">{text("FILTER_DELIVERY")}</label>
+          </div>
+          <div className="flex gap-6">
+            <input type="radio" value="self-collection" name="delivery" />
+            <label htmlFor="self-collection">{text("FILTER_SELF_COL")}</label>
+          </div>
+        </form>
+
+        <div className="flex gap-4 items-center">
+          <h1>{text("FILTER_FREE_SHIPPING")}</h1>
+          <ToggleBtn />
+          <ToastContainer
+            position="top-left"
+            autoClose={3000}
+            closeOnClick
+            draggable
+            theme="light"
           />
-          <label htmlFor="delivery">{text("FILTER_DELIVERY")}</label>
+
         </div>
-        <div className="flex gap-6">
-          <input
-            type="checkbox"
-            id="self-collection"
-            value="self-collection"
-            name="delivery"
-          />
-          <label htmlFor="self-collection">{text("FILTER_SELF_COL")}</label>
-        </div>
-      </form>
-      <div className="flex gap-4 items-center">
-        <h1>{text("FILTER_FREE_SHIPPING")}</h1>
-        <ToggleBtn />
-        <ToastContainer
-        position="top-left"
-        autoClose={3000}
-        closeOnClick
-        draggable
-        theme="light"
-        
-      />
+      </div>
+      <div>
+        <AcordeonRestaurants />
       </div>
     </div>
   );
