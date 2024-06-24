@@ -59,11 +59,11 @@ const App = withTranslation()(function App() {
         if (user) {
           dispatch(handleFetchUserVkInfo(user));
         }
-        getUsersById(user.id).then((user) => {
-          if (user) {
-            dispatch(saveUserData(user));
-          }
-        });
+        // getUsersById(user.id).then((user) => {
+        //   if (user) {
+        //     dispatch(saveUserData(user));
+        //   }
+        // });
       });
     }
   }, [dispatch]);

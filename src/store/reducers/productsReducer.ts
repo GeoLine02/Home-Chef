@@ -20,6 +20,12 @@ export const productsRedcuer = (state = initialState, action: any) => {
         toggleProductModal: !state.toggleProductModal,
       };
     }
+    case appActions.CLOSE_PRODUCT_MODAL: {
+      return {
+        ...state,
+        toggleProductModal: false,
+      };
+    }
     // stores choosen product
     case appActions.SELECT_PRODUCT: {
       return {

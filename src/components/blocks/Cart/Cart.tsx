@@ -1,11 +1,12 @@
 import { AiOutlineClose } from "react-icons/ai";
 import { useDispatch, useSelector } from "react-redux";
-import { toggleCart } from "../../../store/actions/actionCreator";
+import { closeCart, toggleCart } from "../../../store/actions/actionCreator";
 import CheckOutBtn from "../../elements/CheckOutBtn";
 import ClearCart from "../../elements/ClearCart";
 import CartList from "../../CartList/CartList";
 import { RootState } from "../../../store/state/rootReducers";
 import { text } from "../../../helpers/functions";
+import { useOutsideClick } from "../../../hooks/useOutsideClick";
 
 const Cart = () => {
   const dispatch = useDispatch();
@@ -13,11 +14,18 @@ const Cart = () => {
   const handleToggleCart = () => {
     dispatch(toggleCart());
   };
-
+  const handleCloseCart = () => {
+    if (isCartOpen) dispatch(closeCart());
+  };
   const cartState = useSelector((state: RootState) => state.cart.cart);
+
+  const ref = useOutsideClick(
+    handleCloseCart
+  ) as React.RefObject<HTMLDivElement>;
 
   return (
     <div
+      ref={ref}
       className={
         isCartOpen
           ? "fixed flex flex-col justify-between w-screen h-screen p-6 left-0 top-0 md:absolute rounded-md md:left-auto md:top-20 md:right-52 md:w-fit md:h-auto ease-in-out duration-500 md:p-3 bg-white"

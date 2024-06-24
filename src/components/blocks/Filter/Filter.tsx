@@ -47,6 +47,7 @@ const Filter = () => {
     };
     filterRestaurantsData();
   }, [selectedCategoryId, dispatch]);
+
   return (
     <div className="lg:mt-6 lg:sticky lg:left-0 lg:top-5">
       <div className="hidden gap-6 lg:flex lg:flex-col  w-fit">
@@ -71,6 +72,7 @@ const Filter = () => {
             draggable
             theme="light"
           />
+
         </div>
       </div>
       <div>

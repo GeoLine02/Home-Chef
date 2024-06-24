@@ -37,6 +37,12 @@ export const authReducer = (state = initialState, action: any) => {
         isAuthOpen: !state.isAuthOpen,
       };
     }
+    case appActions.CLOSE_AUTH_MODAL: {
+      return {
+        ...state,
+        isAuthOpen: false,
+      };
+    }
     case appActions.TOGGLE_PROFILE_MODAL: {
       return {
         ...state,
