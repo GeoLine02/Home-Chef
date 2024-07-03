@@ -1,6 +1,6 @@
 import { useDispatch } from "react-redux";
 import { text } from "../../../helpers/functions";
-import { toggleChangeAddressModalAction } from "../../../store/actions/actionCreator";
+import { toggleUserAddressModal } from "../../../store/actions/actionCreator";
 
 const ChangeAddressBtn = () => {
   const dispatch = useDispatch();
@@ -8,7 +8,7 @@ const ChangeAddressBtn = () => {
   return (
     <button
       onClick={() => {
-        dispatch(toggleChangeAddressModalAction());
+        dispatch(toggleUserAddressModal());
       }}
     >
       <u className="opacity-70">{text("COMMON_CHANGE")}</u>

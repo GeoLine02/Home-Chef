@@ -1,5 +1,5 @@
 import { useDispatch } from "react-redux";
-import { toggleAddNewAddressModalAction } from "../../../store/actions/actionCreator";
+import { toggleUserAddressModal } from "../../../store/actions/actionCreator";
 
 const AddNewAddressBtn = () => {
   const dispatch = useDispatch();
@@ -7,10 +7,10 @@ const AddNewAddressBtn = () => {
   return (
     <button
       onClick={() => {
-        dispatch(toggleAddNewAddressModalAction());
+        dispatch(toggleUserAddressModal());
       }}
     >
-      <u className="opacity-70">add new address</u>
+      <u className="opacity-70">add address</u>
     </button>
   );
 };

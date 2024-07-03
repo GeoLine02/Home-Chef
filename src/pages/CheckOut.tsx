@@ -8,19 +8,26 @@ import ContinueCheckoutBtn from "../components/elements/ContinueCheckoutBtn";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../store/state/rootReducers";
 import { http } from "../helpers/http";
-import { saveRestaurantByIdData } from "../store/actions/actionCreator";
-import NewAddresModal from "../components/blocks/NewAddressModal/NewAddressModal";
-import AddressListModal from "../components/blocks/AddressListModal/AddressListModal";
-
+import {
+  getUserAddressList,
+  saveRestaurantByIdData,
+} from "../store/actions/actionCreator";
+import UserAddressModal from "../components/blocks/userAddressModal/UserAddresModal";
+import { fetchUserAddressList } from "../api/address";
 const CheckOut = () => {
   const dispatch = useDispatch();
   const restaurantByID = useSelector(
     (state: RootState) => state.restaurants?.restaurantById
   );
+  const { id } =
+    useSelector((state: RootState) => state.auth.authUserVkInfo) || {};
+
+  const toggleUserAddressModal = useSelector(
+    (state: RootState) => state.auth.toggleUserAddressModal
+  );
+
   const cart = useSelector((state: RootState) => state.cart?.cart);
   const restaurantID = cart[0]?.product?.restaurantID;
-  const { toggleAddNewAddressModal, toggleChangeAddressModal } =
-    useSelector((state: RootState) => state.auth) || {};
   useEffect(() => {
     const fetchRestaurantById = () => {
       const apiCallOptions = {
@@ -40,6 +47,14 @@ const CheckOut = () => {
     fetchRestaurantById();
   }, [restaurantByID.length, restaurantID, dispatch]);
 
+  useEffect(() => {
+    if (id) {
+      fetchUserAddressList(id).then((data) => {
+        dispatch(getUserAddressList(data));
+      });
+    }
+  }, [dispatch, id]);
+
   return (
     <main className="p-3 lg:py-6 bg-[#EEEEEE] relative">
       <div className="flex flex-col lg:flex-row justify-center items-start gap-8 w-full max-w-screen-2xl mx-auto">
@@ -57,8 +72,7 @@ const CheckOut = () => {
           <ContinueCheckoutBtn />
         </div>
       </div>
-      {toggleAddNewAddressModal ? <NewAddresModal /> : null}
-      {toggleChangeAddressModal ? <AddressListModal /> : null}
+      {toggleUserAddressModal && <UserAddressModal />}
     </main>
   );
 };

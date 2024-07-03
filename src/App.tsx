@@ -14,15 +14,14 @@ import { getUserByToken } from "./helpers/http";
 import {
   getCartItems,
   handleFetchUserVkInfo,
-  saveUserData,
+  // saveUserData,
 } from "./store/actions/actionCreator";
 import FavoriteRestaurants from "./pages/FavoriteRestaurants";
 import { withTranslation } from "react-i18next";
-import { getUsersById } from "./api/index";
+// import { getUsersById } from "./api/index";
 import AuthGuard from "./guard/AuthGuard";
 import AdressConfirmationModal from "./components/blocks/AdressConfirmationModal/AdressConfirmationModal";
 import Orders from "./pages/Orders";
-
 
 const App = withTranslation()(function App() {
   const dispatch = useDispatch();
@@ -41,12 +40,10 @@ const App = withTranslation()(function App() {
     (state: RootState) => state.search.isSearchFocused
   );
   const isAuthOpen = useSelector((state: RootState) => state.auth?.isAuthOpen);
-  const isChangeAddressOpen = useSelector(
-    (state: RootState) => state.auth.toggleChangeAddressModal
+  const isUserAddressModalOpen = useSelector(
+    (state: RootState) => state.auth.toggleUserAddressModal
   );
-  const isNewAddressModalOpen = useSelector(
-    (state: RootState) => state.auth.toggleAddNewAddressModal
-  );
+
   const isProductOpen = useSelector(
     (state: RootState) => state.products.toggleProductModal
   );
@@ -75,8 +72,7 @@ const App = withTranslation()(function App() {
         isSideBarOpen ||
         isAuthOpen ||
         isProductOpen ||
-        isChangeAddressOpen ||
-        isNewAddressModalOpen
+        isUserAddressModalOpen
           ? "blur-sm bg-[#000000]/[0.5] h-screen overflow-y-hidden"
           : ""
       }
@@ -92,8 +88,8 @@ const App = withTranslation()(function App() {
                 path={routes.favoriteRestaurants}
                 element={<FavoriteRestaurants />}
               />
-               {/* <Route path={`${routes.summeryorder}/:id`} element={<SummeryOrder/>}/> */}
-               <Route path={routes.orderList}element={<Orders/>} />
+              {/* <Route path={`${routes.summeryorder}/:id`} element={<SummeryOrder/>}/> */}
+              <Route path={routes.orderList} element={<Orders />} />
             </Route>
             <Route path={routes.home} element={<Home />} />
             <Route path={`${routes.home}/:id`} element={<RestaurantByID />} />

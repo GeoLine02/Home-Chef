@@ -1,3 +1,4 @@
+import { IUserAddress } from "../../types/location";
 import { IOrder } from "../../types/orders";
 import {
   AdressState,
@@ -12,9 +13,9 @@ export interface IRootState {
   authUserVkInfo: undefined | IVKUserProfileData;
   userByID: undefined | IUserById;
   authGoogleInfo: undefined | IGoogleProfileData;
-  userAddress: [] | AdressState[];
-  toggleAddNewAddressModal: boolean;
-  toggleChangeAddressModal: boolean;
+  userAddress: [] | IUserAddress[];
+  selectedAddress: IUserAddress | null;
+  toggleUserAddressModal: boolean;
   userOrderList: IOrder[];
 }
 export const initialState: IRootState = {
@@ -24,8 +25,8 @@ export const initialState: IRootState = {
   userByID: undefined,
   authGoogleInfo: undefined,
   userAddress: [],
-  toggleAddNewAddressModal: false,
-  toggleChangeAddressModal: false,
+  selectedAddress: null,
+  toggleUserAddressModal: false,
   userOrderList: [],
 };
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -85,23 +86,33 @@ export const authReducer = (state = initialState, action: any) => {
         userAddress: action.payload,
       };
     }
-    case appActions.TOGGLE_ADD_NEW_ADDRESS_MODAL: {
+    case appActions.TOGGLE_USER_ADDRESS_MODAL: {
       return {
         ...state,
-        toggleAddNewAddressModal: !state.toggleAddNewAddressModal,
+        toggleUserAddressModal: !state.toggleUserAddressModal,
       };
     }
 
-    case appActions.TOGGLE_CHANGE_ADDRESS_MODAL: {
-      return {
-        ...state,
-        toggleChangeAddressModal: !state.toggleChangeAddressModal,
-      };
-    }
     case appActions.SAVE_ORDERS_LIST: {
       return {
         ...state,
         userOrderList: action.payload,
+      };
+    }
+
+    case appActions.GET_SELECTED_ADDRESS: {
+      return {
+        ...state,
+        selectedAddress: action.payload,
+      };
+    }
+
+    case appActions.UPDATE_USER_ADDRESS: {
+      const upadtedAddress = action.updatedUserAddress;
+      console.log("upadtedAddress", upadtedAddress);
+      return {
+        ...state,
+        userAddress: upadtedAddress,
       };
     }
 

@@ -1,7 +1,6 @@
 import { ProductQuantity } from "../types";
 import { getTotalAmount } from "../api/index";
 export const calculateItemTotalCost = (cartState: ProductQuantity[]) => {
-  console.log("cartState", cartState);
   const orderCalculateData = {
     pickupLocation: {
       latitude: 55.744089,
@@ -23,7 +22,7 @@ export const calculateItemTotalCost = (cartState: ProductQuantity[]) => {
       },
     ],
   };
-  
+
   return getTotalAmount(orderCalculateData)
     .then((res) => res.json())
     .then((res) => res);

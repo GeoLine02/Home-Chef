@@ -1,10 +1,10 @@
-import { useSelector } from "react-redux";
+// import { useSelector } from "react-redux";
 import { text } from "../../../helpers/functions";
-import { calculateItemTotalCost } from "../../../helpers/totalCartCost";
-import { RootState } from "../../../store/state/rootReducers";
+// import { calculateItemTotalCost } from "../../../helpers/totalCartCost";
+// import { RootState } from "../../../store/state/rootReducers";
 
 const CheckoutPricesBox = () => {
-  const cartState = useSelector((state: RootState) => state.cart.cart);
+  // const cartState = useSelector((state: RootState) => state.cart.cart);
   return (
     <div className="rounded-lg flex justify-start flex-col gap-4 w-full bg-[#ffffff] p-6 min-h-screen">
       <h1 className="text-2xl font-bold">{text("COMMON_PRICE")}</h1>
@@ -13,7 +13,7 @@ const CheckoutPricesBox = () => {
           {text("CHECKOUT_PRODUCTS_IN_ORDER")}
         </h1>
         <h1 className="font-medium text-base opacity-70">
-          {calculateItemTotalCost(cartState)}
+          {/* {calculateItemTotalCost(cartState)} */}
         </h1>
       </div>
       <div className="flex justify-between">

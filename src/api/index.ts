@@ -104,7 +104,7 @@ export const removeFavoriteRestaurant = (
 };
 
 export const getTotalAmount = (cartData: any) => {
-  console.log("cart", cartData);
+  // console.log("cart", cartData);
   const apiCallOptions = {
     headers: {
       "content-type": "application/json",

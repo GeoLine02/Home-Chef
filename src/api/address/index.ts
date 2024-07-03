@@ -1,4 +1,5 @@
 import { http } from "../../helpers/http";
+import { IUserAddress } from "../../types/location";
 
 // *********************
 // new address
@@ -74,17 +75,24 @@ export const fetchSingleUserAddress = (
 // update address
 // ***********************
 
-export const fetchUpdateMyAddress = (
+export const fetchUpdateUserAddress = (
   userID: number,
   userAddressID: number,
-  updatedAddress: string
+  updatedAddress: IUserAddress
 ) => {
+  console.log("updatedAddress", updatedAddress.address.road);
   const apiCallOptions = {
     headers: {
       "content-type": "application/json",
     },
     method: "PATCH",
-    body: JSON.stringify({ updateAddress: updatedAddress }),
+    body: JSON.stringify({
+      city: updatedAddress?.address.city,
+      street: updatedAddress?.address.road,
+      neighborhood: updatedAddress?.address.suburb,
+      lat: Number(updatedAddress?.lat),
+      lng: Number(updatedAddress?.lon),
+    }),
   };
   http(`/profile/update-address/${userID}/${userAddressID}`, apiCallOptions)
     .then((updatedAddressJson) => {
