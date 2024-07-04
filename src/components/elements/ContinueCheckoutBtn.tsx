@@ -1,21 +1,27 @@
 import { useSelector } from "react-redux";
-import { text } from "../../helpers/functions";
-import { calculateItemTotalCost } from "../../helpers/totalCartCost";
+// import { text } from "../../helpers/functions";
+// import { calculateItemTotalCost } from "../../helpers/totalCartCost";
 import { RootState } from "../../store/state/rootReducers";
 import { http } from "../../helpers/http";
 import { useEffect, useState } from "react";
 
 const ContinueCheckoutBtn = () => {
+
+
   const [itemTotalCost, setItemTotalCost] = useState(0);
+
 
   const userID = useSelector((state: RootState) => state.auth.authUserVkInfo);
   const cartState = useSelector((state: RootState) => state.cart.cart);
 
   const createOrder = async () => {
+
+
     const cart = cartState.map((el: any) => ({
       id: el.product.id,
       quantity: el.quantity,
     }));
+
 
     const apiCallOptions = {
       headers: {
@@ -23,6 +29,11 @@ const ContinueCheckoutBtn = () => {
       },
       method: "POST",
       body: JSON.stringify({
+
+        products: cartState,
+        userAddressID: 2,
+        tokenizeCard: true,
+
         orderProducts: cart,
         userAddressID: 2,
         tokenizeCard: true,
@@ -39,6 +50,7 @@ const ContinueCheckoutBtn = () => {
             },
           ],
         },
+
       }),
     };
     try {
@@ -54,6 +66,15 @@ const ContinueCheckoutBtn = () => {
       }
     } catch (error) {
       console.log(error);
+
+    }
+  };
+  const handleCreateOrder = () => {
+    if (userID) {
+      createOrder();
+    }
+  };
+
     }
   };
   const handleCreateOrder = () => {
@@ -70,12 +91,18 @@ const ContinueCheckoutBtn = () => {
     });
   }, []);
 
+
   return (
     <button
       onClick={handleCreateOrder}
       className="px-6 h-12 my-4 cursor-pointer bg-orange-400 border border-transparent rounded-full w-full font-medium text-base"
     >
+
+      check out
+      {/* {text("CHECKOUT_BTN")} {calculateItemTotalCost(cartState)} */}
+
       {text("CHECKOUT_BTN")} {itemTotalCost}
+
     </button>
   );
 };

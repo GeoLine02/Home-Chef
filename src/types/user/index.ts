@@ -38,6 +38,18 @@ export interface IOrderList {
   nameRestaurant: string;
   date: number;
 }
+
+export interface IUserAddress {
+  id: number;
+  city: string;
+  street: string;
+  neighborhood: string;
+  lat: number;
+  lng: number;
+  userID: number;
+  lon: number;
+}
+
 export type AdressState = {
   address: { city: string; neighbourhood: string; suburb: string };
   display_name: string;

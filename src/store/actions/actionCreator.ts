@@ -232,9 +232,9 @@ export const getUserAddressList = (payload: any) => {
   };
 };
 
-export const toggleAddNewAddressModalAction = () => {
+export const toggleUserAddressModal = () => {
   return {
-    type: appActions.TOGGLE_ADD_NEW_ADDRESS_MODAL,
+    type: appActions.TOGGLE_USER_ADDRESS_MODAL,
   };
 };
 
@@ -252,3 +252,20 @@ export const saveOrdersListAction = (payload: any) => {
   };
 };
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export const getSelectedAddress = (payload: any) => {
+  return {
+    type: appActions.GET_SELECTED_ADDRESS,
+    payload,
+  };
+};
+
+export const updateUserAddress = (
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  updatedUserAddress: any
+) => {
+  return {
+    type: appActions.UPDATE_USER_ADDRESS,
+    updatedUserAddress,
+  };
+};

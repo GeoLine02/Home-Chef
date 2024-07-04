@@ -27,6 +27,11 @@ const CheckOutBtn = () => {
     }
   };
 
+  // useEffect(() => {
+  //   calculateItemTotalCost(cartState).then((res) => setItemTotalCost(res));
+  // });
+
+
   useEffect(() => {
     calculateItemTotalCost(cartState).then((res) => {
       if (typeof res === "number") {
