@@ -3,8 +3,11 @@ import { text } from "../../helpers/functions";
 import { calculateItemTotalCost } from "../../helpers/totalCartCost";
 import { RootState } from "../../store/state/rootReducers";
 import { http } from "../../helpers/http";
+import { useEffect, useState } from "react";
 
 const ContinueCheckoutBtn = () => {
+  const [itemTotalCost, setItemTotalCost] = useState(0);
+
   const userID = useSelector((state: RootState) => state.auth.authUserVkInfo);
   const cartState = useSelector((state: RootState) => state.cart.cart);
 
@@ -59,12 +62,20 @@ const ContinueCheckoutBtn = () => {
     }
   };
 
+  useEffect(() => {
+    calculateItemTotalCost(cartState).then((res) => {
+      if (typeof res === "number") {
+        setItemTotalCost(res);
+      }
+    });
+  }, []);
+
   return (
     <button
       onClick={handleCreateOrder}
       className="px-6 h-12 my-4 cursor-pointer bg-orange-400 border border-transparent rounded-full w-full font-medium text-base"
     >
-      {text("CHECKOUT_BTN")} {calculateItemTotalCost(cartState)}
+      {text("CHECKOUT_BTN")} {itemTotalCost}
     </button>
   );
 };

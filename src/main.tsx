@@ -9,7 +9,7 @@ import "./i18n.ts";
 const store = createStore(rootReducers);
 
 store.subscribe(() => {
-  console.log("current state", store.getState());
+  // console.log("current state", store.getState());
 });
 
 ReactDOM.createRoot(document.getElementById("root")!).render(

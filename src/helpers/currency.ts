@@ -3,15 +3,6 @@ import { getTotalAmount } from "../api/payments";
 
 export const calculateItemTotalCost = (cartState: ProductQuantity[]) => {
   const orderCalculateData = {
-    pickupLocation: {
-      latitude: 55.744089,
-      longitude: 37.546276,
-    },
-    deliveryLocation: {
-      latitude: 55.740674,
-      longitude: 37.625019,
-    },
-    orderKG: 25,
     orderProducts: [
       {
         id: 1,
@@ -22,6 +13,19 @@ export const calculateItemTotalCost = (cartState: ProductQuantity[]) => {
         quantity: 1,
       },
     ],
+    deliveryOptions: {
+      matter: "meals",
+      points: [
+        {
+          address: "Москва, ул. Покровка, 11",
+          contact_person: { phone: "79030000001" },
+        },
+        {
+          address: "Москва, ул. Солянка, 4",
+          contact_person: { phone: "79030000001" },
+        },
+      ],
+    },
   };
 
   return getTotalAmount(orderCalculateData)

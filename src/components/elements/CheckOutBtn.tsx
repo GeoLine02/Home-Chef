@@ -26,9 +26,15 @@ const CheckOutBtn = () => {
       dispatch(toggleAuthModal());
     }
   };
+
   useEffect(() => {
-    calculateItemTotalCost(cartState).then((res) => setItemTotalCost(res));
-  });
+    calculateItemTotalCost(cartState).then((res) => {
+      if (typeof res === "number") {
+        setItemTotalCost(res);
+      }
+    });
+  }, []);
+
   return (
     <button
       onClick={handleCheckOut}
