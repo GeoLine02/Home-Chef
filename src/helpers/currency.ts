@@ -1,5 +1,6 @@
 import { ProductQuantity } from "../types";
-import { getTotalAmount } from "../api/index";
+import { getTotalAmount } from "../api/payments";
+
 export const calculateItemTotalCost = (cartState: ProductQuantity[]) => {
   const orderCalculateData = {
     orderProducts: [
@@ -28,6 +29,17 @@ export const calculateItemTotalCost = (cartState: ProductQuantity[]) => {
   };
 
   return getTotalAmount(orderCalculateData)
-    .then((res) => res.json())
-    .then((res) => res);
+    .then((res: unknown) => {
+      if (
+        res &&
+        typeof res === "object" &&
+        "json" in res &&
+        typeof (res as Response).json === "function"
+      ) {
+        return (res as Response).json();
+      } else {
+        throw new Error("Response does not have a json method");
+      }
+    })
+    .then((res: unknown) => res);
 };
