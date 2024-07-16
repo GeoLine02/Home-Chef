@@ -12,6 +12,17 @@ export const closeCart = () => {
     type: appActions.CLOSE_CART,
   };
 };
+export const closeDatePicker = () => {
+  return {
+    type: appActions.CLOSE_DATEPICKER_MODAL,
+  };
+};
+
+export const toggleDatePicker = () => {
+  return {
+    type: appActions.TOGGLE_DATEPICKER_MODAL,
+  };
+};
 
 export const toggleBurger = () => {
   return {
@@ -251,4 +262,3 @@ export const saveOrdersListAction = (payload: any) => {
     payload,
   };
 };
-

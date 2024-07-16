@@ -13,7 +13,6 @@ import { useOutsideClick } from "../../hooks/useOutsideClick";
 const SignInForm = () => {
   const dispatch = useDispatch();
   const isAuthOpen = useSelector((state: RootState) => state.auth.isAuthOpen);
-  // closeAuthModal
 
   const handleCloseForm = () => {
     if (isAuthOpen) dispatch(closeAuthModal());

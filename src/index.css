@@ -10,6 +10,7 @@
 
 ::-webkit-scrollbar {
   width: 0.7rem;
+  height: 0.7rem;
 }
 
 @layer utilities {
@@ -71,4 +72,30 @@
   ::-webkit-scrollbar-button:vertical:start:decrement:active {
     @apply bg-neutral-700;
   }
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateY(-200%);
+  }
+  to {
+    transform: translateY(0%);
+  }
+}
+
+@keyframes slideOut {
+  from {
+    transform: translateY(0%);
+  }
+  to {
+    transform: translateY(-200%);
+  }
+}
+
+.slide-in {
+  animation: slideIn 0.5s forwards;
+}
+
+.slide-out {
+  animation: slideOut 0.5s forwards;
 }
