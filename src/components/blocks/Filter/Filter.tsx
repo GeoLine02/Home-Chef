@@ -72,10 +72,9 @@ const Filter = () => {
             draggable
             theme="light"
           />
-
         </div>
       </div>
-      <div>
+      <div className="hidden lg:block">
         <AcordeonRestaurants />
       </div>
     </div>
